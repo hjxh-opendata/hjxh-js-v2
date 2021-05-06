@@ -9,7 +9,7 @@ function loadCookie(cookie) {
   return cookiesDict;
 };
 
-function getAntiContentFromCookie(cookie) {
+function getAntiContent(cookie) {
     const _cookieDict = loadCookie(cookie);
 
     var window = {
@@ -5624,8 +5624,8 @@ function getAntiContentFromCookie(cookie) {
 }
 
 
-module.exports = getAntiContentFromCookie;
+module.exports = getAntiContent;
 
 if (require.main === module) {
-    console.log(getAntiContentFromCookie(process.argv[2]))
+    console.log(getAntiContent(process.argv[2]))
 }

@@ -3055,7 +3055,7 @@ function xxx(e) {
 }
 
 
-function encryptPassword(e) {
+function getEncryptedPassword(e) {
   var k = {};
   xxx(k);
   var t = new k.default();
@@ -3066,7 +3066,7 @@ function encryptPassword(e) {
   return t.encrypt(e);
 }
 
-module.exports = encryptPassword;
+module.exports = getEncryptedPassword;
 
 if(require.main === module){
   console.log(hackEncryptPassword("Fl123456..."));

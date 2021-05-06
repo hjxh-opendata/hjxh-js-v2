@@ -7,7 +7,7 @@ import db from "./db";
 import { PddResult, PddUserInfo } from "./api/interface";
 import dayjs from "dayjs";
 
-const hackAntiContentFromCookie = require("./algos/getAntiContent");
+const hackAntiContentFromCookie = require("../hjxh-reactjs/src/hack_core/getAntiContent");
 
 export const SDK_PATH = path.resolve(__dirname);
 export const DATA_PATH = path.resolve(SDK_PATH, "data");
