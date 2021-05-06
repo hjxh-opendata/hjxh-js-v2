@@ -1,0 +1,81 @@
+import { Header } from "antd/lib/layout/layout";
+import {
+  SiderCollapsedWidth,
+  SiderWidth,
+  URL_API_DOCS,
+} from "../../config/const";
+import { Breadcrumb, Button, message, Space } from "antd";
+import { AntdIcons } from "../../utils/antd_icons";
+import React from "react";
+
+export function CompHeader(props: {
+  collapsed: boolean;
+  breadcrumb: string[];
+}) {
+  return (
+    <Header
+      style={{
+        width: "100%",
+        height: "50px",
+        position: "fixed",
+        background: "white",
+        zIndex: 1,
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          paddingLeft:
+            10 + (props.collapsed ? SiderCollapsedWidth : SiderWidth),
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Breadcrumb>
+          {props.breadcrumb.map((b) => (
+            <Breadcrumb.Item key={b}>{b}</Breadcrumb.Item>
+          ))}
+        </Breadcrumb>
+
+        <Space
+          size={"large"}
+          direction={"horizontal"}
+          style={{ height: "100%", display: "flex", alignItems: "center" }}
+        >
+          <Button type={"primary"}>
+            <a href={URL_API_DOCS} target={"_blank"} rel={"noreferrer"}>
+              API
+            </a>
+          </Button>
+
+          <AntdIcons
+            type={"icon-message"}
+            style={{ fontSize: 20 }}
+            id={"messages"}
+            onClick={() => message.warn({ content: "消息系统待开发中~" })}
+          />
+          <AntdIcons
+            type={"icon-feedback"}
+            style={{ fontSize: 20 }}
+            id={"help"}
+            onClick={() => message.warn({ content: "反馈系统待开发中~" })}
+          />
+          <AntdIcons
+            type={"icon-settings"}
+            style={{ fontSize: 20 }}
+            id={"settings"}
+            onClick={() => message.warn({ content: "设置系统待开发中~" })}
+          />
+          <AntdIcons
+            type={"icon-member"}
+            style={{ fontSize: 20 }}
+            id={"accounts"}
+            onClick={() => message.warn({ content: "账号系统待开发中~" })}
+          />
+        </Space>
+      </div>
+    </Header>
+  );
+}

@@ -8,7 +8,7 @@ const hackAntiContentFromCookie = require('../algos/hack_anti-content_from_cooki
  * cookie 必填，否则直接403被拒绝
  * anti-content 只能用一次，第二次就54001了
  */
-const fetchDataOfListPage = async (cookie, antiContent) => {
+const fetchDataOfListPage = async (cookie: string, antiContent: string) => {
   // console.log({ Cookie, antiContent, length: antiContent.length });
 
   const res = await axios
