@@ -6,13 +6,13 @@ import { SiderCollapsedWidth, SiderWidth } from "../../config/const";
 import React from "react";
 
 import Banner from "../../assets/logo/hjxh-banner-200x50-white.png";
-import Logo from '../../assets/logo/hjxh-logo.png'
+import Logo from "../../assets/logo/hjxh-logo.png";
+import { NavLink } from "react-router-dom";
 
 export function CompSider(props: {
   collapsed: boolean;
   onCollapse: () => void;
   setBreadcrumb: any;
-  setKey: any;
 }) {
   const buildSider = (router: RouterItem, breadcrumb: string[] = []) =>
     router.children ? (
@@ -26,10 +26,9 @@ export function CompSider(props: {
         key={router.key}
         onClick={() => {
           props.setBreadcrumb([...breadcrumb, router.title]);
-          props.setKey(router.key);
         }}
       >
-        {router.title}
+        <NavLink to={router.key}>{router.title}</NavLink>
       </Menu.Item>
     );
 
@@ -68,7 +67,7 @@ export function CompSider(props: {
             src={props.collapsed ? Logo : Banner}
             width={"100%"}
             height={"100%"}
-            style={{  padding: "10px 20px" }}
+            style={{ padding: "10px 20px" }}
           />
         </div>
 

@@ -10,11 +10,11 @@ import { SiderCollapsedWidth, SiderWidth } from "./config/const";
 import CompUsers from "./components/platform/users/CompUsers";
 import { CompHeader } from "./components/layout/CompHeader";
 import { CompSider } from "./components/layout/CompSider";
+import { Route, Switch} from "react-router-dom";
 
 export const LayoutBase = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [breadcrumb, setBreadcrumb] = useState<string[]>(["首页"]);
-  const [key, setKey] = useState("home");
 
   return (
     <Layout style={{ minHeight: "100vh", minWidth: "100vw" }}>
@@ -22,7 +22,6 @@ export const LayoutBase = () => {
         collapsed={collapsed}
         onCollapse={() => setCollapsed(!collapsed)}
         setBreadcrumb={setBreadcrumb}
-        setKey={setKey}
       />
 
       <CompHeader collapsed={collapsed} breadcrumb={breadcrumb} />
@@ -37,26 +36,16 @@ export const LayoutBase = () => {
       >
         <Content style={{ margin: "16px 16px" }}>
           <div id={"content"} style={{ padding: 24, minHeight: 600 }}>
-            {(() => {
-              switch (key) {
-                case "raw_orders":
-                  return <CompOrders />;
-                case "raw_ad_search":
-                  return <CompAdSearch url={"/ad/search"} />;
-                case "raw_ad_scene":
-                  return <CompAdSearch url={"/ad/scene"} />;
-                case "raw_ad_fangxin":
-                  return <CompAdFangxin url={"/ad/fangxin"} />;
-                case "raw_goods_detail":
-                  return <CompGoodsDetail />;
-                case "raw_goods_comments":
-                  return <CompGoodsComments />;
-                case "site_users":
-                  return <CompUsers />;
-                default:
-                  return <></>;
-              }
-            })()}
+              <Switch>
+                <Route path={'/'} exact/>
+                <Route path={'/raw_orders'} exact component={CompOrders}/>
+                <Route path={'/raw_ad_search'} exact component={() => <CompAdSearch url={'/ad/search'}/>}/>
+                <Route path={'/raw_ad_scene'} exact component={() => <CompAdSearch url={'/ad/scene'}/>}/>
+                <Route path={'/raw_ad_fangxin'} exact component={() => <CompAdFangxin url={'/ad/fangxin'}/>}/>
+                <Route path={'/raw_goods_detail'} exact component={CompGoodsDetail}/>
+                <Route path={'/raw_goods_comments'} exact component={CompGoodsComments}/>
+                <Route path={'/site_users'} exact component={CompUsers}/>
+              </Switch>
           </div>
         </Content>
       </Layout>
