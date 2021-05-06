@@ -1,7 +1,9 @@
 import axios from "axios";
+import { AXIOS_BASE_URL } from "../const";
 
 const $ = axios.create({
-  baseURL: "http://localhost:8000/api/v2/",
+  baseURL: AXIOS_BASE_URL,
+  withCredentials: true
 });
 
 export default $;

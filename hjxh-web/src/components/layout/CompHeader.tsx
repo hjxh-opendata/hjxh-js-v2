@@ -1,33 +1,26 @@
 import { Header } from "antd/lib/layout/layout";
-import {
-  SiderCollapsedWidth,
-  SiderWidth,
-  URL_API_DOCS,
-} from "../../config/const";
+import { URL_API_DOCS } from "../../const";
 import { Breadcrumb, Button, message, Space } from "antd";
 import { AntdIcons } from "../../utils/antd_icons";
 import React from "react";
 
-export function CompHeader(props: {
-  collapsed: boolean;
-  breadcrumb: string[];
-}) {
+export function CompHeader(props: { breadcrumb: string[] }) {
   return (
     <Header
       style={{
         width: "100%",
         height: "50px",
-        position: "fixed",
         background: "white",
         zIndex: 1,
+        position: 'sticky',
+        top: 0
       }}
     >
       <div
         style={{
           width: "100%",
           height: "100%",
-          paddingLeft:
-            10 + (props.collapsed ? SiderCollapsedWidth : SiderWidth),
+          padding: 10,
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",

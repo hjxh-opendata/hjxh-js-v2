@@ -1,6 +1,7 @@
 export interface RouterItem {
   key: string;
   title: string;
+  icon?: string;
   children?: RouterItem[];
 }
 
@@ -8,10 +9,12 @@ export const routers: RouterItem[] =[
   {
     key: "home",
     title: "首页",
+    icon: 'icon-shouye',
   },
   {
     key: "analysis",
     title: "聚合分析",
+    icon: 'icon-zhujijuhe',
     children: [
       {
         key: "analysis_orders",
@@ -26,6 +29,7 @@ export const routers: RouterItem[] =[
   {
     key: "raw",
     title: "原始数据",
+    icon: 'icon-jurassic_data',
     children: [
       {
         key: "raw_orders",
@@ -56,10 +60,11 @@ export const routers: RouterItem[] =[
   {
     key: 'site',
     title: '平台相关',
+    icon: 'icon-pingtaiyilan',
     children: [
       {
         key: 'site_users',
-        title: '店铺纵览',
+        title: '店铺管理',
       }
     ]
   }

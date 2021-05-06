@@ -1,6 +1,15 @@
 # 皇家小虎数据中台前端、算法
 
 ## 开发进度
+### 2021年05月07日
+#### 修复`dbQuery`模板函数空类型导致的数据库`query`失败以至于`cors`错的问题
+因为`sort`函数较为敏感，所以之前直接将`sort`记为空或者空字段的方案是不可行的。
+
+最后考虑到`sort`在`uri`拼接的最后，所以对于空`sort`直接不参与拼接，解决了问题。
+
+尽管如此，有时间还是得看一下后盾部分，想想怎样设计接口，才能使服务端`query`更稳健与方便。
+
+
 ### 2021年05月06日
 #### 完成路由配置
 使用`react-router-dom`替换了原先的基于`id`的导航。
@@ -10,6 +19,23 @@
 目前来看，貌似速度是比之前的要快很多的，大爱~
 
 ## 开发经验
+
+### 解决`Sider`和`Header`均固定，且`Sider`支持`collapse`的问题
+根据`antd`官方文档给出的`Layout`示例，有单独固定`Sider`的，也有单独固定`Header`的，都是使用的`position: fixed`的手段。
+
+然而，当把两个合在一起，问题就出现了，因为`fixed`布局导致我们必须要计算`Slider`伸缩的宽度，从而产生麻烦，并且由于`Slider`内部使用了伸缩动效（较为复杂的`css`），这导致机即使我们计算的精准无误，也会产生伸缩时难以忍受的动效+刷新不同步的问题。
+
+#### 步骤一，headers布局改为sticky
+解决的第一个办法，就是将`header`的`fixed`改成`sticky`，这样同样达到了固定顶部的效果，并且贴合容器，不会出现以`fixed`布局需要计算`width`的问题，支持流式自动布局。
+
+参考：
+- [javascript - How to create sticky headers on scroll with react - Stack Overflow](https://stackoverflow.com/questions/62970456/how-to-create-sticky-headers-on-scroll-with-react)
+
+
+#### 步骤二，content设置固定高度
+参考：
+- [html - Independent Overflow-y Scrolling on Sidebar and Content - Stack Overflow](https://stackoverflow.com/questions/35730748/independent-overflow-y-scrolling-on-sidebar-and-content)
+
 
 ### 突然意识到IDE总是自动补全`props`、`state`的原因
 只要在`live templates - React`里去除这两个就可以！

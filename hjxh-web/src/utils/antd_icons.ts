@@ -1,6 +1,6 @@
 import { TableColumnProps } from "antd";
 import { createFromIconfontCN } from "@ant-design/icons";
-import { ALI_ICON_PATH } from "../config/const";
+import { ALI_ICON_PATH } from "../const";
 
 export const AntdIcons = createFromIconfontCN({
   scriptUrl: ALI_ICON_PATH, // 在 iconfont.cn 上生成

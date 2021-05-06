@@ -1,22 +1,23 @@
-import routers, { RouterItem } from "../../config/routers";
+import routers, { RouterItem } from "../../routers";
 import SubMenu from "antd/es/menu/SubMenu";
 import { Image, Menu } from "antd";
 import Sider from "antd/es/layout/Sider";
-import { SiderCollapsedWidth, SiderWidth } from "../../config/const";
-import React from "react";
+import { SiderCollapsedWidth, SiderWidth } from "../../const";
+import React, { useState } from "react";
 
 import Banner from "../../assets/logo/hjxh-banner-200x50-white.png";
 import Logo from "../../assets/logo/hjxh-logo.png";
 import { NavLink } from "react-router-dom";
+import { AntdIcons } from "../../utils/antd_icons";
 
-export function CompSider(props: {
-  collapsed: boolean;
-  onCollapse: () => void;
-  setBreadcrumb: any;
-}) {
+export function CompSider(props: { setBreadcrumb: any }) {
   const buildSider = (router: RouterItem, breadcrumb: string[] = []) =>
     router.children ? (
-      <SubMenu key={router.key} title={router.title}>
+      <SubMenu
+        key={router.key}
+        title={router.title}
+        icon={router.icon && <AntdIcons type={router.icon} />}
+      >
         {router.children.map((subRouter) =>
           buildSider(subRouter, [...breadcrumb, router.title])
         )}
@@ -24,6 +25,7 @@ export function CompSider(props: {
     ) : (
       <Menu.Item
         key={router.key}
+        icon={router.icon && <AntdIcons type={router.icon} />}
         onClick={() => {
           props.setBreadcrumb([...breadcrumb, router.title]);
         }}
@@ -32,39 +34,33 @@ export function CompSider(props: {
       </Menu.Item>
     );
 
+  const [collapsed, setCollapsed] = useState(false);
   return (
     <Sider
       collapsible
-      collapsed={props.collapsed}
+      collapsed={collapsed}
       width={SiderWidth}
       collapsedWidth={SiderCollapsedWidth}
-      onCollapse={props.onCollapse}
+      onCollapse={() => setCollapsed(!collapsed)}
       style={{
         overflow: "auto",
-        height: "100vh",
-        position: "fixed",
+        minHeight: "100vh",
         zIndex: 10,
-        left: 0,
       }}
     >
       {/* inline模式会在同列伸展出menu，数目少的时候比vertical要合适 */}
-      <Menu
-        theme={"dark"}
-        defaultOpenKeys={["analysis", "site"]}
-        mode={"inline"}
-      >
+      <Menu theme={"dark"} defaultOpenKeys={["raw", "site"]} mode={"inline"}>
         <div
           style={{
             width: "100%",
             height: "50px",
-            // background: "aqua",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
           }}
         >
           <Image
-            src={props.collapsed ? Logo : Banner}
+            src={collapsed ? Logo : Banner}
             width={"100%"}
             height={"100%"}
             style={{ padding: "10px 20px" }}

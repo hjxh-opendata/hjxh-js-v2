@@ -1,11 +1,11 @@
 import { Avatar, Table, TableColumnProps, TablePaginationConfig } from "antd";
 import React, { useEffect, useState } from "react";
-import { ORDER_STATUS_STRS } from "./interface";
 import dayjs from "dayjs";
 import { fixedColumns } from "../../general/fixedColumns";
 import { FilterValue } from "antd/es/table/interface";
 import assert from "assert";
 import { dbQuery } from "../../../utils/db_support";
+import { ORDER_STATUS_STRS } from "../../../interface/pdd_orders";
 
 export const ordersColumns: TableColumnProps<any>[] = [
   {
