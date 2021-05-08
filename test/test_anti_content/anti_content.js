@@ -392,7 +392,7 @@ var pako;
 
   // else {
 
-  //     ("undefined" != typeof window ? window : "undefined" != typeof global ? global : "undefined" != typeof self ? self : this).pako = t()
+  //     ("undefined" != typeof period ? period : "undefined" != typeof global ? global : "undefined" != typeof self ? self : this).pako = t()
   // }
   pako = t();
 })(function () {

@@ -1,6 +1,6 @@
 import {Button, Checkbox, CheckboxOptionType, Drawer, Skeleton} from "antd";
 import React, {useState} from "react";
-import {AntdIcons} from "../../utils/antd_icons";
+import {MyIcons} from "../antd_icons";
 
 const checks: CheckboxOptionType[] = [
   { style: { width: "100%" }, label: "订单量", value: "订单量" },
@@ -54,7 +54,7 @@ export const CompSelectChecks = () => {
     >
       <Button type={"text"}>最近一周</Button>
       <Button type={"text"}>最近一个月</Button>
-      <AntdIcons
+      <MyIcons
         type={"icon-settings"}
         style={{ fontSize: 20 }}
         onClick={() => setShowSetColumns(!showSetColumns)}

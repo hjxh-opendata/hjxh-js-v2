@@ -1,22 +1,22 @@
-import routers, { RouterItem } from "../../routers";
-import SubMenu from "antd/es/menu/SubMenu";
-import { Image, Menu } from "antd";
-import Sider from "antd/es/layout/Sider";
-import { SiderCollapsedWidth, SiderWidth } from "../../const";
-import React, { useState } from "react";
+import routers, {RouterItemWithPath} from "../../routers"
+import SubMenu from "antd/es/menu/SubMenu"
+import {Image, Menu} from "antd"
+import Sider from "antd/es/layout/Sider"
+import {SiderCollapsedWidth, SiderWidth} from "../../const"
+import React, {useState} from "react"
+import {Link} from "react-router-dom";
 
-import Banner from "../../assets/logo/hjxh-banner-200x50-white.png";
-import Logo from "../../assets/logo/hjxh-logo.png";
-import { NavLink } from "react-router-dom";
-import { AntdIcons } from "../../utils/antd_icons";
+import Banner from "../../assets/logo/hjxh-banner-200x50-white.png"
+import Logo from "../../assets/logo/hjxh-logo.png"
+import {MyIcons} from "../antd_icons"
 
 export function CompSider(props: { setBreadcrumb: any }) {
-  const buildSider = (router: RouterItem, breadcrumb: string[] = []) =>
+  const buildSider = (router: RouterItemWithPath, breadcrumb: string[] = []) =>
     router.children ? (
       <SubMenu
-        key={router.key}
+        key={router.path}
         title={router.title}
-        icon={router.icon && <AntdIcons type={router.icon} />}
+        icon={router.icon && <MyIcons type={router.icon}/>}
       >
         {router.children.map((subRouter) =>
           buildSider(subRouter, [...breadcrumb, router.title])
@@ -24,17 +24,17 @@ export function CompSider(props: { setBreadcrumb: any }) {
       </SubMenu>
     ) : (
       <Menu.Item
-        key={router.key}
-        icon={router.icon && <AntdIcons type={router.icon} />}
+        key={router.path}
+        icon={router.icon && <MyIcons type={router.icon}/>}
         onClick={() => {
-          props.setBreadcrumb([...breadcrumb, router.title]);
+          props.setBreadcrumb([...breadcrumb, router.title])
         }}
       >
-        <NavLink to={router.key}>{router.title}</NavLink>
+        <Link to={router.api ? router.api : router.path}>{router.title}</Link>
       </Menu.Item>
-    );
+    )
 
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(false)
   return (
     <Sider
       collapsible
@@ -49,7 +49,7 @@ export function CompSider(props: { setBreadcrumb: any }) {
       }}
     >
       {/* inline模式会在同列伸展出menu，数目少的时候比vertical要合适 */}
-      <Menu theme={"dark"} defaultOpenKeys={["raw", "site"]} mode={"inline"}>
+      <Menu theme={"dark"} defaultOpenKeys={[ '/analysis', "/rawdata", "/users"]} mode={"inline"}>
         <div
           style={{
             width: "100%",
@@ -63,12 +63,13 @@ export function CompSider(props: { setBreadcrumb: any }) {
             src={collapsed ? Logo : Banner}
             width={"100%"}
             height={"100%"}
-            style={{ padding: "10px 20px" }}
+            style={{padding: "10px 20px"}}
+            preview={false}
           />
         </div>
 
         {routers.map((router) => buildSider(router, []))}
       </Menu>
     </Sider>
-  );
+  )
 }

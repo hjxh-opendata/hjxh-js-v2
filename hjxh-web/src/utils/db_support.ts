@@ -8,7 +8,7 @@ export const dbQuery = async (
   filter: Record<string, FilterValue | null> = {},
   sorter: any = {}
 ) => {
-  console.log({ pagination, filter, sorter });
+  // console.log({ pagination, filter, sorter });
   let query = JSON.stringify(
     Object.keys(filter)
       .filter((k) => filter[k] !== null)
@@ -23,7 +23,7 @@ export const dbQuery = async (
   if(Object.keys(sorter).length > 0){
     uri += "&sort=" + JSON.stringify({ [sorter.field]: sorter.order === "ascend" ? 1 : -1 })
   }
-  console.log({ query, limit, skip, uri });
+  // console.log({ query, limit, skip, uri });
   const res = await $.get(uri);
   return res.data;
 };

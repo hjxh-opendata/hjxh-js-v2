@@ -3,7 +3,7 @@ const hackAntiContentFromCookie = require('../algos/hack_anti-content_from_cooki
 // axios.defaults.withCredentials = true;
 
 /**
- * user-agent 必填，否则verifyAuthToken, error_code: 54001
+ * users-agent 必填，否则verifyAuthToken, error_code: 54001
  * anti-content 必填，否则同上
  * cookie 必填，否则直接403被拒绝
  * anti-content 只能用一次，第二次就54001了

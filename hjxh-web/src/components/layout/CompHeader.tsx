@@ -1,7 +1,7 @@
 import { Header } from "antd/lib/layout/layout";
 import { URL_API_DOCS } from "../../const";
 import { Breadcrumb, Button, message, Space } from "antd";
-import { AntdIcons } from "../../utils/antd_icons";
+import { MyIcons } from "../antd_icons";
 import React from "react";
 
 export function CompHeader(props: { breadcrumb: string[] }) {
@@ -43,25 +43,25 @@ export function CompHeader(props: { breadcrumb: string[] }) {
             </a>
           </Button>
 
-          <AntdIcons
+          <MyIcons
             type={"icon-message"}
             style={{ fontSize: 20 }}
             id={"messages"}
             onClick={() => message.warn({ content: "消息系统待开发中~" })}
           />
-          <AntdIcons
+          <MyIcons
             type={"icon-feedback"}
             style={{ fontSize: 20 }}
             id={"help"}
             onClick={() => message.warn({ content: "反馈系统待开发中~" })}
           />
-          <AntdIcons
+          <MyIcons
             type={"icon-settings"}
             style={{ fontSize: 20 }}
             id={"settings"}
             onClick={() => message.warn({ content: "设置系统待开发中~" })}
           />
-          <AntdIcons
+          <MyIcons
             type={"icon-member"}
             style={{ fontSize: 20 }}
             id={"accounts"}

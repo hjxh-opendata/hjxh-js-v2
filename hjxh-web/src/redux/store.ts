@@ -1,20 +1,25 @@
-import { combineReducers, applyMiddleware } from "redux";
-import { createStore } from "redux";
-import { ordersReducer } from "./orders/reducer";
-import thunkMiddleware from "redux-thunk";
-import loggerMiddleware from "redux-logger";
-import { adReducer } from "./ad/reducer";
+import { applyMiddleware, combineReducers, createStore } from "redux"
+import thunkMiddleware from "redux-thunk"
+import loggerMiddleware from "redux-logger"
+import { goodsReducer } from "./goods"
+import { usersReducer } from "./users"
+import { composeWithDevTools } from "redux-devtools-extension"
+import {adReducer} from "./ad";
+import {periodsReducer} from "./periods";
 
 export const rootReducer = combineReducers({
-  orders: ordersReducer,
+  goods: goodsReducer,
+  users: usersReducer,
   ad: adReducer,
-});
+  periods: periodsReducer
+})
 
 export const store = createStore(
   rootReducer,
-  applyMiddleware(thunkMiddleware, loggerMiddleware)
-);
+  // add redux support in the F12
+  composeWithDevTools(applyMiddleware(thunkMiddleware, loggerMiddleware))
+)
 
-export default store;
+export default store
 
-export type AppState = ReturnType<typeof rootReducer>;
+export type AppState = ReturnType<typeof rootReducer>

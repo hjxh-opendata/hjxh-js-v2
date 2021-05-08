@@ -1,5 +1,5 @@
 import { PddAntiContentParams } from "./pdd_base";
-import { URL_FETCH_AD, URL_FETCH_AD_FANGXIN } from "../../node/src/const";
+import { URL_FETCH_AD, URL_FETCH_AD_FANGXIN } from "../../../hjxh-node/src/const";
 
 export type SceneNumberType = 0 | 2 | 6;
 export const SceneNumbers: SceneNumberType[] = [0, 2, 6];

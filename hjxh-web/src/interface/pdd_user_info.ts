@@ -1,19 +1,15 @@
 import {PddExtraParams, PddParams, PddResult} from "./pdd_base";
 
 export interface PddUserInfo {
-  hasLogin: boolean;
   id: number;
-  userId: number;
-  mallId: number;
-  isAdUser: boolean;
+  mall_id: number;
   mallOwner: boolean;
   username: string
-  mall: {
-    logo: string;
-    mallId: number;
-    mall_id: number;
-    mall_name: string;
-  };
+  isBindWeChat: boolean;
+  mobile: string
+  nickname: string
+  created_at: string
+  updated_at: string
 }
 
 export interface PddUserInfoResult extends PddResult {
@@ -26,14 +22,7 @@ export interface UserInfoBase {
   cookie: string;
 }
 
-export interface UserInfo extends UserInfoBase {
-  hasLogin: boolean;
-  id: number;
-  isAdUser: boolean;
-  mallId: number;
-  mallOwner: boolean;
-
-  userId: number;
+export interface UserInfo extends UserInfoBase, PddUserInfo {
   updateTime: Date;
 }
 
