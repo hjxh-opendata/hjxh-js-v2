@@ -1,7 +1,7 @@
 import mongoose, {Collection} from "mongoose";
 import assert from "assert";
 import { PddClient } from "./pdd_client";
-import { MONGO_DATABASE_NAME, MONGO_URI } from "./const";
+import {MONGO_DATABASE_NAME, MONGO_URI} from "../../hjxh-web/src/const";
 
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,

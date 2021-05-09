@@ -133,7 +133,6 @@ const addRouterItemWithPath = (
 
 export const routerWithPath = routersBase.map((i) => addRouterItemWithPath(i))
 
-console.log("routers", routerWithPath )
 export default routerWithPath
 
 if (require.main === module) {

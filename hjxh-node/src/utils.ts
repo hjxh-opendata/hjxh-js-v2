@@ -1,5 +1,5 @@
 import assert from "assert";
-import {StringDict} from "../../hjxh-web/src/interface/errorCode";
+import {StringDict} from "../../hjxh-web/src/interface/errors";
 
 export const preprocessCookie = (s: string): string => {
   let a = s.split(/[\s\n]/).filter((k: string) => k);

@@ -1,12 +1,13 @@
 import { Layout } from "antd"
-import React, { useState } from "react"
+import React, { useEffect } from "react"
 import CompHeader from "./components/layout/CompHeader"
-import { CompSider } from "./components/layout/CompSider"
+import CompSider from "./components/layout/CompSider"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import CompOrdersAnalysis from "./components/analysis/CompOrdersAnalysis"
 import CompRawTable from "./components/general/CompRawTable"
 import { RouterItemBase, routerOfRawData } from "./routers"
 import {
+  API_GET_USERS,
   URI_ANALYSIS_AD,
   URI_ANALYSIS_ORDERS,
   URI_HOME,
@@ -15,12 +16,11 @@ import {
 } from "./const"
 import CompAdAnalysis from "./components/analysis/ad/CompAdAnalysis"
 import CompUsersList from "./components/users/CompUsersList"
-import { Content } from "antd/lib/layout/layout"
 import { Provider } from "react-redux"
 import store from "./redux/store"
-
-import "./styles/index.css"
-import "antd/dist/antd.css"
+import $ from "./utils/my_axios"
+import { SET_USERS } from "./redux/users"
+import { Content } from "antd/lib/layout/layout"
 
 const genRoute = (fatherRouter: RouterItemBase): any[] => {
   let routes: any[] = []
@@ -44,21 +44,36 @@ const genRoute = (fatherRouter: RouterItemBase): any[] => {
 }
 
 export const App = () => {
-  const [breadcrumb, setBreadcrumb] = useState<string[]>(["首页"])
+  /**
+   * 直接这样写可行，是因为这个store就是这个文件共用的，所以没问题
+   */
+  useEffect(() => {
+    $.get(API_GET_USERS).then((e) => {
+      store.dispatch({
+        type: SET_USERS,
+        payload: e.data.result.items,
+      })
+    })
+  })
 
   return (
-    <BrowserRouter>
-      <Provider store={store}>
+    <Provider store={store}>
+      <BrowserRouter>
         <Layout
-          style={{ minHeight: "100vh", minWidth: "100vw", display: "flex" }}
+          style={{
+            minHeight: "100vh",
+            minWidth: "100vw",
+            display: "flex",
+            flexDirection: "row",
+          }}
         >
-          <CompSider setBreadcrumb={setBreadcrumb} />
+          <CompSider />
 
           <Layout
             className={"site-layout"}
-            style={{ width: "100%", height: "100vh", overflow: "auto" }}
+            // style={{ width: "100%", height: "100vh", overflow: "auto" }}
           >
-            <CompHeader breadcrumb={breadcrumb} />
+            <CompHeader />
 
             <Content style={{ margin: "16px 16px" }}>
               <div id={"content"} style={{ padding: 24, minHeight: 600 }}>
@@ -93,8 +108,8 @@ export const App = () => {
             </Content>
           </Layout>
         </Layout>
-      </Provider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </Provider>
   )
 }
 

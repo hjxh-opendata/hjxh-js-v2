@@ -5,6 +5,7 @@
 - [ ] 解决加密算法只适合本机的问题
 - [ ] 改用`scrapy`进行爬虫
 - [ ] 改用`node`端的`api`
+- [ ] 测试域名对`cookie`的验证影响, refer: [domain](#domain) 
 - [ ] 使用`jsdom`重新完成pdd加密的hack,refer: [jsdom](#jsdom)
 
 ## 开发进度
@@ -46,6 +47,18 @@ https://github.com/zalmoxisus/redux-devtools-extension#13-use-redux-devtools-ext
 目前来看，貌似速度是比之前的要快很多的，大爱~
 
 ## 开发经验
+
+<a name='domain'></a>
+### 关于cookie验证403的问题，2021年05月10日05:45:57
+其实是选错了api。
+
+验证用户是否有效有两个api，一个会返回mall信息（yingxiao），一个不用（mms）。
+
+我们目前使用的是商家后台的cookie，所以走mms渠道是可以获得有效信息的，但是直接访问yingxiao会出问题。
+
+反过来可以不？待测试
+
+
 <a name="jsdom"></a>
 ### jsdom或许是pdd加密算法的又一大杀器
 ![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/1322153107609.png?Expires=4774186594&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=vaKrNv0Y%2Fb0TY%2BZ%2B5dwwUJvTxng%3D)

@@ -6,9 +6,11 @@ import React, { useState } from "react"
 import { Controls, setControls } from "../../redux/controls"
 import { connect } from "react-redux"
 import { AppState } from "../../redux/store"
+import {BreadcrumbPath,} from "../../redux/breadcrumb";
 
 export interface CompHeaderProps {
   controls: Controls
+  breadcrumb: BreadcrumbPath
 }
 
 export interface CompHeaderPropsFather {
@@ -152,6 +154,7 @@ export function CompHeader(
 
 const state2props = (state: AppState): CompHeaderProps => ({
   controls: state.controls,
+  breadcrumb: state.breadcrumb.path
 })
 const dispatch2props = {
   setControls,

@@ -20,7 +20,7 @@ export const CompUserItem = (props: {
 
   const verifyUser = async () => {
     setLoading(true)
-    $.put(API_VERIFY_USER_COOKIE, qs.stringify({ username: user.username }))
+    $.put(API_VERIFY_USER_COOKIE, {}, {params: { username: user.username }})
       .then((e) => {
         console.log(e.data)
         setUser({ ...user, ...e.data.result })

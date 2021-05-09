@@ -326,6 +326,7 @@ export class PddClient {
 
 if (require.main === module) {
   createPddClient(DEFAULT_USERNAME).then((pddClient) => {
-    pddClient.initAllData();
+    pddClient.verifyUser()
+    // pddClient.initAllData();
   });
 }
