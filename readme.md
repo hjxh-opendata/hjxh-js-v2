@@ -5,8 +5,13 @@
 - [ ] 解决加密算法只适合本机的问题
 - [ ] 改用`scrapy`进行爬虫
 - [ ] 改用`node`端的`api`
+- [ ] 使用`jsdom`重新完成pdd加密的hack,refer: [jsdom](#jsdom)
 
 ## 开发进度
+
+### ts-jest Support， 2021年05月10日01:42:06
+参考：
+- [Installation | ts-jest](https://kulshekhar.github.io/ts-jest/docs/getting-started/installation)
 
 ### 配置了`redux-devtool`，2021年05月08日08:57:45
 参考：
@@ -41,6 +46,25 @@ https://github.com/zalmoxisus/redux-devtools-extension#13-use-redux-devtools-ext
 目前来看，貌似速度是比之前的要快很多的，大爱~
 
 ## 开发经验
+<a name="jsdom"></a>
+### jsdom或许是pdd加密算法的又一大杀器
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/1322153107609.png?Expires=4774186594&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=vaKrNv0Y%2Fb0TY%2BZ%2B5dwwUJvTxng%3D)
+
+
+### 关于`jest`报错：`You should not use <Link> outside a <Router>`，2021年05月10日02:46:31
+
+其实这个问题，是因为`create-react-app`的默认测试文件`App.test.js`是直接拿`App.tsx`进行`render`测试，然而当时我的项目目录，已经把主配置移到了`index.tsx`文件，比如`store`和`BrowserRouter`等。
+
+所以解决方案就是把`index.tsx`简化，所有`Provider`全写进`App.tsx`，包括`css`文件。
+
+### 关于在`try...catch...finally`的`finally`中使用`return`的问题
+参考：
+- [解决async/await滥用产生的困境 - 知乎](https://zhuanlan.zhihu.com/p/138331544)
+- [java - Can we use "return" in finally block - Stack Overflow](https://stackoverflow.com/questions/18205493/can-we-use-return-in-finally-block)
+
+### 关于从`prop`获得的传入`useState`的数据不会再度刷新， 2021年05月09日14:15:39
+参考：
+- [reactjs - React.useState does not reload state from props - Stack Overflow](https://stackoverflow.com/questions/54865764/react-usestate-does-not-reload-state-from-props)
 
 ### 【重要】 关于不同位置的cookie的差异， 2021年05月08日21:31:33
 原来如此！必须在拼多多商家后台页面进行cookie刷新，否则cookie是无效的……（比如在推广页面）

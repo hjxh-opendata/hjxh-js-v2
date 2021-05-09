@@ -1,5 +1,5 @@
 import assert from "assert";
-import { Dict } from "../../hjxh-web/src/interface/general";
+import {StringDict} from "../../hjxh-web/src/interface/errorCode";
 
 export const preprocessCookie = (s: string): string => {
   let a = s.split(/[\s\n]/).filter((k: string) => k);
@@ -52,8 +52,8 @@ export const sortDict = (d: { [key: string]: any }) => {
     );
 };
 
-export const getSubDict = (origin: Dict, ks: string[]): Dict => {
-  const out: Dict = {};
+export const getSubDict = (origin: StringDict, ks: string[]): StringDict => {
+  const out: StringDict = {};
   ks.forEach((k) => {
     out[k] = origin[k];
   });

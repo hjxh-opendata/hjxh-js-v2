@@ -12,6 +12,7 @@ import CompSelects from "../select/CompSelects"
 import { ColumnType } from "antd/es/table"
 import { AppState } from "../../redux/store"
 import { connect } from "react-redux"
+import { TableControls } from "../../redux/controls"
 
 export interface CompAnalyzeOrdersProps {
   window: number
@@ -20,6 +21,7 @@ export interface CompAnalyzeOrdersProps {
   selectedGoods: GoodsItem | null
   selectedUser: UserInfo | null
   orders: OrdersAnalysisData
+  table: TableControls
 }
 
 export interface CompOrdersAnalysisDispatch {
@@ -30,14 +32,13 @@ export const CompOrdersAnalysis = (
   props: CompAnalyzeOrdersProps & CompOrdersAnalysisDispatch
 ) => {
   const [loading, setLoading] = useState(false)
-  const [isVolume, setIsVolume] = useState(true)
-  const [isNumber, setIsNumber] = useState(true)
+  const [isAmount, setIsAmount] = useState(props.table.isAmount)
+  const [isPercentage, setIsPercentage] = useState(props.table.isPercentage)
 
   const fetchGoodsData = async () => {
     if (!props.selectedUser || !props.selectedGoods) return
     setLoading(true)
     const params = {
-      mall_id: props.selectedUser.mall_id,
       goods_id: props.selectedGoods.id,
       days: props.window,
     }
@@ -62,14 +63,16 @@ export const CompOrdersAnalysis = (
             style={{ width: 80 }}
             checkedChildren={"交易额"}
             unCheckedChildren={"交易量"}
-            onChange={() => setIsVolume(!isVolume)}
+            onChange={() => setIsAmount(!isAmount)}
+            defaultChecked={props.table.isAmount}
           />
 
           <Switch
             style={{ width: 80 }}
             checkedChildren={"百分比"}
             unCheckedChildren={"数值"}
-            onChange={() => setIsNumber(!isNumber)}
+            onChange={() => setIsPercentage(!isPercentage)}
+            defaultChecked={props.table.isPercentage}
           />
         </Space>
         <CompSelects />
@@ -77,7 +80,9 @@ export const CompOrdersAnalysis = (
 
       <Table
         loading={loading}
-        dataSource={isVolume ? props.orders.volume : props.orders.amount}
+        dataSource={
+          isAmount ? props.orders.amount : props.orders.volume
+        }
         /**
          * 通过算法对数字和百分比进行转化
          */
@@ -91,17 +96,19 @@ export const CompOrdersAnalysis = (
           ...props.orders.columns.slice(1).map(
             (s): ColumnType<any> => ({
               dataIndex: s,
-              title: s.match("【")
-                ? (<Tooltip title={s}>{s.substr(0, s.search("【"))}</Tooltip>)
-                : (s),
+              title: s.match("【") ? (
+                <Tooltip title={s}>{s.substr(0, s.search("【"))}</Tooltip>
+              ) : (
+                s
+              ),
               width: 80,
               align: "right",
               render: (v: number, r) =>
-                !isNumber
+                isPercentage
                   ? ((v / r.sum) * 100).toFixed(2) + "%"
-                  : isVolume
-                  ? v
-                  : (v / 100).toFixed(2),
+                  : isAmount
+                  ? (v / 100).toFixed(2)
+                  : v,
             })
           ),
         ]}
@@ -122,6 +129,7 @@ const state2props = (state: AppState): CompAnalyzeOrdersProps => ({
   goods: state.goods.list,
   selectedUser: state.users.selected,
   orders: state.goods.orders,
+  table: state.controls.table,
 })
 
 const dispatch2props: CompOrdersAnalysisDispatch = {

@@ -8,12 +8,12 @@ import { AppState } from "../../redux/store"
 import { connect } from "react-redux"
 import CompUpdateUser from "./CompUpdateUser"
 import CompAddUser from "./CompAddUser"
-import { Dict } from "../../interface/general"
 import dayjs from "dayjs"
 import {UsersControls} from "../../redux/controls";
 import $ from "../../utils/my_axios";
 import {API_VERIFY_USER_COOKIE} from "../../const";
 import qs from "qs";
+import {StringDict} from "../../interface/errorCode";
 
 dayjs.extend(require("dayjs/plugin/relativeTime"))
 
@@ -114,7 +114,7 @@ export const CompUsersTableDepreciated = (props: CompUsersProps) => {
               columns={["key", "val"].map((s) => ({
                 dataIndex: s,
                 title: s,
-                render: (s: string, rec: Dict) =>
+                render: (s: string, rec: StringDict) =>
                   ["_nano_fp", "PASS_ID"].includes(rec.key) ? (
                     <p style={{ color: "magenta" }}>{s}</p>
                   ) : (

@@ -4,8 +4,8 @@ import { paddy, sleep } from "../utils";
 import dayjs from "dayjs";
 import {MillisecondsDelay, SecondsEachDay} from "../const";
 import { GetOrdersParams} from "../../../hjxh-web/src/interface/pdd_orders";
-import {URL_FETCH_ORDERS} from "../const";
 import {COLL_ORDERS} from "../../../hjxh-web/src/const";
+import {REQUEST_ORDERS} from "../../../hjxh-web/src/interface/pdd_request/urls";
 
 export async function pdd_orders(
   pddClient: PddClient,
@@ -24,7 +24,7 @@ export async function pdd_orders(
     groupEndTime: endTime,
     sortType: 8,
   };
-  const e = await pddClient.fetch(URL_FETCH_ORDERS, data);
+  const e = await pddClient.fetch(REQUEST_ORDERS, data);
   const items = e.result.pageItems.map((item: any) => {
     item["_id"] = item["order_sn"];
     item["updateTime"] = new Date();

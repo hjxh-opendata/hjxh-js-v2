@@ -1,10 +1,6 @@
 import { getKeyFromCookie, paddy, preprocessCookie, sleep } from "./utils";
 import axios from "axios";
 import assert from "assert";
-import {
-  URL_FETCH_GOODS_LIST,
-  URL_FETCH_USER_INFO,
-} from "./const";
 import db, { dbInsertItemsRobust } from "./db_client";
 import dayjs from "dayjs";
 import {
@@ -18,7 +14,13 @@ import {
   UserInfo,
 } from "../../hjxh-web/src/interface/pdd_user_info";
 import genAntiContent from "./hack_core/genAntiContent";
-import {COLL_GOODS_LIST, COLL_USERS, DEFAULT_USER_AGENT, DEFAULT_USERNAME} from "../../hjxh-web/src/const";
+import {
+  COLL_GOODS_LIST,
+  COLL_USERS,
+  DEFAULT_USER_AGENT,
+  DEFAULT_USERNAME,
+} from "../../hjxh-web/src/const";
+import {REQUEST_GOODS_LIST, REQUEST_USER_INFO_WITHOUT_MALL} from "../../hjxh-web/src/interface/pdd_request/urls";
 
 /**
  * 主控函数
@@ -72,7 +74,7 @@ export const fetchPddData = async (
  * @param extraParams
  * @param cookie
  */
-export async function* iterFetchPddData(
+export async function* iterPageFetchPddData(
   url: string,
   extraParams: PddExtraParams,
   cookie: string
@@ -89,7 +91,9 @@ export async function* iterFetchPddData(
   const sizeKey = SIZE_KEYS.find((k) => extraParams[k] !== undefined);
   assert(pageKey && sizeKey, "当前参数并非可迭代参数： " + extraParams);
 
-  console.log(`start iter fetching ${url}, params: ${JSON.stringify(extraParams)}`);
+  console.log(
+    `start iter fetching ${url}, params: ${JSON.stringify(extraParams)}`
+  );
   let cur = ((extraParams[pageKey] as number) - 1) * extraParams[sizeKey];
   let tot = 99999;
   while (cur < tot) {
@@ -125,7 +129,7 @@ export const fetchPddUserInfoFromCookie = async (
   userAgent: string = DEFAULT_USER_AGENT
 ): Promise<PddUserInfo> => {
   cookie = preprocessCookie(cookie);
-  const res = await fetchPddData(URL_FETCH_USER_INFO, {}, cookie, userAgent);
+  const res = await fetchPddData(REQUEST_USER_INFO_WITHOUT_MALL, {}, cookie, userAgent);
   return res.result as PddUserInfo;
 };
 
@@ -152,8 +156,8 @@ export const createPddClient = async (
       ...pddUserInfo,
       password,
       cookie,
-      verifiedTime: new Date(),
-      verifiedStatus: true
+      verifiedTime: new Date().getTime(),
+      verifiedStatus: true,
     };
     db.collection(COLL_USERS)
       .updateOne({ _id: pddUserInfo.id }, { $set: userInfo }, { upsert: true })
@@ -190,6 +194,13 @@ export class PddClient {
     return genAntiContent(this.userInfo.cookie);
   }
 
+  /**
+   * 最底层接口，指定url和参数，获取数据结果
+   * 不包括翻页、数据库等支持
+   *
+   * @param url
+   * @param extraParams
+   */
   public async fetch(
     url: string,
     extraParams: PddExtraParams
@@ -208,12 +219,25 @@ export class PddClient {
     return res.data;
   }
 
-  public async *iterFetchTargetFunc(url: string, extraParams: PddExtraParams) {
-    yield* iterFetchPddData(url, extraParams, this.userInfo.cookie);
+  /**
+   * 迭代【翻页】获取指定接口的数据（通过检测参数中是否存在pageNum, pageSize等字段）
+   *
+   * @param url
+   * @param extraParams
+   */
+  public async *iterPagesFetchTargetFunc(url: string, extraParams: PddExtraParams) {
+    yield* iterPageFetchPddData(url, extraParams, this.userInfo.cookie);
   }
 
-  public async initFetchTargetFunc(
-    targetFunc: any,
+  /**
+   * 迭代【天数】获取指定接口的数据
+   *
+   * @param targetFunc
+   * @param targetFuncName
+   * @param days
+   */
+  public async iterDaysFetchTargetFunc(
+    targetFunc: (pddClient: PddClient, ...args: any) => Promise<boolean>,
     targetFuncName: string,
     days: number = 30
   ) {
@@ -226,58 +250,69 @@ export class PddClient {
         " to " +
         endDate.format("MM-DD")
     );
-    for (let day = 1; day <= days; day++) {
-      console.log(`fetching ${targetFuncName} ( ${day} / ${days} )`);
-      await targetFunc(this, endDate.format("YYYY-MM-DD"));
+    let day = 1;
+    while (
+      (await targetFunc(this, endDate.format("YYYY-MM-DD"))) &&
+      days++ < days
+    ) {
+      console.log(`fetched ${targetFuncName} ( ${day} / ${days} )`);
       endDate = endDate.subtract(1, "day");
     }
     console.log("finished init data of " + targetFuncName);
   }
 
-  public async verifyUser() {
+  public async verifyUser(): Promise<boolean> {
     console.log("verifying users info...");
-    try{
-      const res_user_info = await this.fetch(URL_FETCH_USER_INFO, {});
+    let success: boolean = false;
+    try {
+      const res_user_info = await this.fetch(REQUEST_USER_INFO_WITHOUT_MALL, {});
       assert(
         res_user_info.result.username === this.userInfo.username,
         "登录失败" + JSON.stringify(res_user_info)
       );
-      db.collection(COLL_USERS).updateOne({"username": this.userInfo.username}, {"$set": {
-        verifiedStatus: true, verifiedTime: new Date()
-        }})
+      success = true;
       console.log("verified users info.");
     } catch (e) {
-      db.collection(COLL_USERS).updateOne({"username": this.userInfo.username}, {"$set": {
-        verifiedStatus: false, verifiedTime: new Date()
-        }})
-      console.log("FAILED to verify users info, msg: ");
-      console.error(e.message)
+      console.error("FAILED to verify users info, msg: ");
+      console.error(e.message);
     }
 
+    await db.collection(COLL_USERS).updateOne(
+      { username: this.userInfo.username },
+      {
+        $set: {
+          verifiedStatus: success,
+          verifiedTime: new Date(),
+        },
+      }
+    );
+    return success;
   }
 
   public async fetchGoodsList() {
     console.log("fetching goods list...");
-    const iter = await this.iterFetchTargetFunc(URL_FETCH_GOODS_LIST, {
+    const iter = await this.iterPagesFetchTargetFunc(REQUEST_GOODS_LIST, {
       page: 1,
       size: 50,
     });
     while (true) {
       const res = await iter.next();
       if (res.done) break;
-      dbInsertItemsRobust(COLL_GOODS_LIST, res.value, this, "id");
+      if (!await dbInsertItemsRobust(COLL_GOODS_LIST, res.value, this, "id")) break;
     }
     console.log("fetched goods list.");
   }
 
+
   public async initAllData() {
     //  verify users info
-    await this.verifyUser();
+    if(!await this.verifyUser()) return;
 
     //  fetch goods list
     await this.fetchGoodsList();
 
     //  fetch goods detail
+
 
     //  fetch goods comments history
 
@@ -290,7 +325,6 @@ export class PddClient {
 }
 
 if (require.main === module) {
-  const username2 =  '好食先生冯露'
   createPddClient(DEFAULT_USERNAME).then((pddClient) => {
     pddClient.initAllData();
   });

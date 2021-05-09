@@ -23,8 +23,6 @@ export function CompHeader(
   props: CompHeaderProps & CompHeaderPropsFather & CompHeaderDispatch
 ) {
   const [visControls, setVisControls] = useState(false)
-  const controls: Controls = JSON.parse(JSON.stringify(props.controls))
-  console.log("controls", controls)
 
   return (
     <Header
@@ -91,24 +89,62 @@ export function CompHeader(
         </Space>
       </div>
 
-      <Modal
-        visible={visControls}
-        onCancel={setVisControls.bind(null, false)}
-        onOk={() => {
-          props.setControls(controls)
-          setVisControls(false)
-          message.info('设置生效')
-        }}
-      >
-        <Form labelCol={{ span: 16 }}>
-          <Form.Item label={"自动验证账号页面所有账号"}>
-            <Switch
-              onChange={() => {
-                controls.users.enable_auto_verify_users ^= 1
-              }}
-            />
-          </Form.Item>
-        </Form>
+      <Modal visible={visControls} footer={false} onCancel={()=>setVisControls(false)}>
+        <div style={{ paddingTop: 20 }}>
+          <Form
+            labelCol={{ span: 16 }}
+            onValuesChange={(e) => {
+              console.log("change", e)
+            }}
+            onFinish={(e: any) => {
+              console.log("finished", e)
+              props.setControls({
+                table: {
+                  isAmount: e.isAmount,
+                  isPercentage: e.isPercentage,
+                },
+                users: {
+                  enable_auto_verify_users: e.enable_auto_verify_users,
+                },
+              })
+              setVisControls(false)
+
+            }}
+          >
+            <Form.Item
+              label={"默认显示 交易量 / 交易额"}
+              name={'isAmount'}
+              valuePropName={"checked"}
+              initialValue={props.controls.table.isAmount}
+            >
+              <Switch/>
+            </Form.Item>
+
+            <Form.Item
+              label={"默认显示 数值 / 百分比"}
+              name={'isPercentage'}
+              valuePropName={"checked"}
+              initialValue={props.controls.table.isPercentage}
+            >
+              <Switch/>
+            </Form.Item>
+
+            <Form.Item
+              label={"自动验证账号页面所有账号"}
+              name={'enable_auto_verify_users'}
+              valuePropName={"checked"}
+              initialValue={props.controls.users.enable_auto_verify_users}
+            >
+              <Switch/>
+            </Form.Item>
+
+            <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+              <Button htmlType={"submit"} type={"primary"}>
+                确认修改
+              </Button>
+            </Form.Item>
+          </Form>
+        </div>
       </Modal>
     </Header>
   )

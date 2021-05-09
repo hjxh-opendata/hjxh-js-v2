@@ -2,13 +2,10 @@ import { createPddClient, PddClient } from "../../pdd_client";
 import { getSubDict, sleep } from "../../utils";
 import { dbInsertItemsRobust } from "../../db_client";
 import dayjs from "dayjs";
-import {
-  URL_FETCH_COMMENTS_LIST,
-  URL_FETCH_COMMENTS_SINGLE,
-} from "../../const";
 import { PddExtraParams } from "../../../../hjxh-web/src/interface/pdd_base";
 import { COMMENTS_DETAIL_KEYS } from "../../../../hjxh-web/src/interface/pdd_goods_comments";
 import {COLL_GOODS_COMMENTS_DETAIL, COLL_GOODS_COMMENTS_LIST} from "../../../../hjxh-web/src/const";
+import {REQUEST_COMMENTS_LIST, REQUEST_COMMENTS_SINGLE} from "../../../../hjxh-web/src/interface/pdd_request/urls";
 
 export const fetchCommentsSingleOfHistory = async (
   pddClient: PddClient,
@@ -16,7 +13,7 @@ export const fetchCommentsSingleOfHistory = async (
 ) => {
   console.log("fetching comment history of goodsId: " + goodsId);
 
-  const data = await pddClient.fetch(URL_FETCH_COMMENTS_SINGLE, {
+  const data = await pddClient.fetch(REQUEST_COMMENTS_SINGLE, {
     goodsId: goodsId,
   });
   const items = (data.result as any[]).map((item) => {
@@ -40,7 +37,7 @@ export const pdd_goods_comments = async (
       pageNo,
       pageSize: 20,
     };
-    const data = await pddClient.fetch(URL_FETCH_COMMENTS_LIST, params);
+    const data = await pddClient.fetch(REQUEST_COMMENTS_LIST, params);
     const items = data.result.goodsEvaluates as any[];
 
     console.log("updating comments [list] of yesterday");

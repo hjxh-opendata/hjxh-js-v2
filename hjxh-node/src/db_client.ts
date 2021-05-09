@@ -1,4 +1,4 @@
-import mongoose, { Collection } from "mongoose";
+import mongoose, {Collection} from "mongoose";
 import assert from "assert";
 import { PddClient } from "./pdd_client";
 import { MONGO_DATABASE_NAME, MONGO_URI } from "./const";
@@ -22,13 +22,13 @@ db.on("error", (e) => {
 export default db;
 
 
-export const dbInsertItemsRobust = (
+export const dbInsertItemsRobust = async (
   coll: Collection | string,
   items: any[],
   mallId?: number | PddClient,
   ids?: string[] | string
-) => {
-  if (items.length === 0) return;
+): Promise<boolean> => {
+  if (items.length === 0) return false;
 
   if (typeof coll === "string") {
     coll = db.collection(coll);
@@ -66,15 +66,13 @@ export const dbInsertItemsRobust = (
       }
     });
   }
-  coll
-    .insertMany(items, { ordered: false })
-    .then((insertedResult) => {
-      console.log(
-        "inserted into coll of " + (coll as Collection).name,
-        insertedResult.result
-      );
-    })
-    .catch((e) => {
-      console.warn(e.message);
-    });
+  try {
+    const insertedResult = await   coll.insertMany(items, { ordered: false })
+    console.log("inserted into coll of " + coll.name, insertedResult.result);
+    return true
+  }
+  catch (e) {
+    console.warn(e.message);
+    return false
+  }
 };

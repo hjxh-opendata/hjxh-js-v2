@@ -70,3 +70,12 @@ export const COLL_GOODS_DETAIL = "goods_detail"
 export const COLL_GOODS_COMMENTS_LIST = "goods_comments_list"
 export const COLL_GOODS_COMMENTS_DETAIL = "goods_comments_detail"
 export const COLL_API_DOCS = "api_docs"
+
+// mongodb connection config
+export const MONGO_HOST = "nanchuan.site"
+export const MONGO_PORT = 2708
+export const MONGO_DB_AUTH = "hjxh-operate"
+export const MONGO_USERNAME = "hjxh-operator"
+export const MONGO_PASSWORD = "hjxh-operator"
+export const MONGO_DATABASE_NAME = "hjxh-operate"
+export const MONGO_URI = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DATABASE_NAME}?authSource=${MONGO_DB_AUTH}`

@@ -1,5 +1,5 @@
 import { PddAntiContentParams } from "./pdd_base";
-import { URL_FETCH_AD, URL_FETCH_AD_FANGXIN } from "../../../hjxh-node/src/const";
+import {REQUEST_AD, REQUEST_AD_FANGXIN} from "./pdd_request/urls";
 
 export type SceneNumberType = 0 | 2 | 6;
 export const SceneNumbers: SceneNumberType[] = [0, 2, 6];
@@ -20,9 +20,9 @@ export const Scene2CollId: { [key in SceneNumberType]: string } = {
   6: "unitId",
 };
 export const Scene2Url: { [key in SceneNumberType]: string } = {
-  0: URL_FETCH_AD,
-  2: URL_FETCH_AD,
-  6: URL_FETCH_AD_FANGXIN,
+  0: REQUEST_AD,
+  2: REQUEST_AD,
+  6: REQUEST_AD_FANGXIN,
 };
 
 export interface GetAdParams extends PddAntiContentParams {

@@ -36,7 +36,7 @@ export const CompAddUser = () => {
     return (
       <>
         <Button type={"primary"} onClick={() => setVis(true)}>
-          新增店铺
+          新增账号
         </Button>
         <Spin spinning={loading}>
           <Modal

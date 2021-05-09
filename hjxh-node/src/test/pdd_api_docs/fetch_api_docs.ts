@@ -1,7 +1,7 @@
 import {createPddClient} from "../../pdd_client";
-import {Dict} from "../../../../hjxh-web/src/interface/general";
 import db from "../../db_client";
 import {COLL_API_DOCS} from "../../../../hjxh-web/src/const";
+import {StringDict} from "../../../../hjxh-web/src/interface/errorCode";
 
 const URL_FETCH_API_DOCS = 'https://open-api.pinduoduo.com/pop/doc/info/get'
 
@@ -18,7 +18,7 @@ const fetchApiDocs = async (id: string) => {
   const res = await pddClient.fetch(URL_FETCH_API_DOCS, params)
   console.log(res)
 
-  const dict = res.result.responseParamList.reduce((target: Dict, cur: Dict) => (target[cur['paramName']] =cur['paramDesc'], target), {})
+  const dict = res.result.responseParamList.reduce((target: StringDict, cur: StringDict) => (target[cur['paramName']] =cur['paramDesc'], target), {})
   console.log(dict)
   const item = {
     "_id": id,

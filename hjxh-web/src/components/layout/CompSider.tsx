@@ -1,7 +1,5 @@
 import routers, {RouterItemWithPath} from "../../routers"
-import SubMenu from "antd/es/menu/SubMenu"
 import {Image, Menu} from "antd"
-import Sider from "antd/es/layout/Sider"
 import {SiderCollapsedWidth, SiderWidth} from "../../const"
 import React, {useState} from "react"
 import {Link} from "react-router-dom";
@@ -9,6 +7,8 @@ import {Link} from "react-router-dom";
 import Banner from "../../assets/logo/hjxh-banner-200x50-white.png"
 import Logo from "../../assets/logo/hjxh-logo.png"
 import {MyIcons} from "../antd_icons"
+import SubMenu from "antd/lib/menu/SubMenu"
+import Sider from "antd/lib/layout/Sider"
 
 export function CompSider(props: { setBreadcrumb: any }) {
   const buildSider = (router: RouterItemWithPath, breadcrumb: string[] = []) =>

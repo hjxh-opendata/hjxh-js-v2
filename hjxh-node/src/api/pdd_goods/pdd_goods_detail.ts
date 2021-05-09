@@ -1,15 +1,15 @@
 import { createPddClient, PddClient } from "../../pdd_client";
-import { URL_FETCH_GOODS_DETAIL } from "../../const";
 import { sleep } from "../../utils";
 import { dbInsertItemsRobust } from "../../db_client";
 import { GetGoodsDetailParams } from "../../../../hjxh-web/src/interface/pdd_goods_detail";
 import { PddResult } from "../../../../hjxh-web/src/interface/pdd_base";
 import {COLL_GOODS_DETAIL} from "../../../../hjxh-web/src/const";
+import {REQUEST_GOODS_DETAIL} from "../../../../hjxh-web/src/interface/pdd_request/urls";
 
 export const fetchGoodsDetailOfDay = async (
   pddClient: PddClient,
   date: string
-) => {
+): Promise<boolean> => {
   let pageNum = 1,
     cnt = 0;
   while (true) {
@@ -27,7 +27,7 @@ export const fetchGoodsDetailOfDay = async (
       sortType: 1,
     };
     const data: PddResult = await pddClient.fetch(
-      URL_FETCH_GOODS_DETAIL,
+      REQUEST_GOODS_DETAIL,
       params
     );
     let items = data.result.goodsDetailList as any[];
@@ -39,7 +39,8 @@ export const fetchGoodsDetailOfDay = async (
       item["mallId"] = pddClient.userInfo.mall_id;
     });
 
-    dbInsertItemsRobust(COLL_GOODS_DETAIL, items);
+    if(! await dbInsertItemsRobust(COLL_GOODS_DETAIL, items))
+      return false
 
     const tot = data.result.totalNum;
     cnt += items.length;
@@ -50,10 +51,11 @@ export const fetchGoodsDetailOfDay = async (
       break;
     }
   }
+    return false
 };
 
 if (require.main === module) {
   createPddClient().then((pddClient) => {
-    pddClient.initFetchTargetFunc(fetchGoodsDetailOfDay, "商品明细");
+    pddClient.iterDaysFetchTargetFunc(fetchGoodsDetailOfDay, "商品明细");
   });
 }
