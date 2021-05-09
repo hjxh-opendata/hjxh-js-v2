@@ -1,8 +1,7 @@
 import { Layout } from "antd"
 import React, { useState } from "react"
 import { Content } from "antd/es/layout/layout"
-import CompUsers from "./components/users/CompUsers"
-import { CompHeader } from "./components/layout/CompHeader"
+import CompHeader from "./components/layout/CompHeader"
 import { CompSider } from "./components/layout/CompSider"
 import { Route, Switch } from "react-router-dom"
 import CompOrdersAnalysis from "./components/analysis/CompOrdersAnalysis"
@@ -16,6 +15,7 @@ import {
   URI_USERS_MONITOR,
 } from "./const"
 import CompAdAnalysis from "./components/analysis/ad/CompAdAnalysis";
+import CompUsersList from "./components/users/CompUsersList";
 
 const genRoute = (fatherRouter: RouterItemBase): any[] => {
   let routes: any[] = []
@@ -65,8 +65,8 @@ export const LayoutBase = () => {
               {/* plug in the dynamic routers */}
               {(() => genRoute(routerOfRawData))()}
 
-              <Route path={URI_USERS_LOGIN} exact component={CompUsers} />
-              <Route path={URI_USERS_MONITOR} exact component={CompUsers} />
+              <Route path={URI_USERS_LOGIN} exact component={CompUsersList} />
+              <Route path={URI_USERS_MONITOR} exact component={CompUsersList} />
             </Switch>
           </div>
         </Content>

@@ -1,4 +1,4 @@
-import $ from "../../utils/axios_hook";
+import $ from "../../utils/my_axios";
 import {API_UPDATE_COOKIE_OF_USER} from "../../const";
 import qs from "qs";
 import {AjaxResult} from "../../interface/pdd_base";
@@ -19,7 +19,7 @@ export const CompUpdateUser = (props: {initUsers: any, username: string, cookie:
       const cookie_list = userInfo.cookie.split(/\s/g).filter((s) => s)
       const cookie = cookie_list[cookie_list.length - 1]
       const res = (
-        await $.put(API_UPDATE_COOKIE_OF_USER, qs.stringify({ cookie }), {
+        await $.post(API_UPDATE_COOKIE_OF_USER, qs.stringify({ cookie }), {
           params: { username: userInfo.username },
         })
       ).data as AjaxResult
@@ -36,7 +36,7 @@ export const CompUpdateUser = (props: {initUsers: any, username: string, cookie:
       width: 800,
       title: "更新用户信息",
       okButtonProps: { form: "update_user", htmlType: "submit" },
-      okText: "确认修改",
+      okText: "确认更新",
       content: (
         <Form
           id={"update_user"}

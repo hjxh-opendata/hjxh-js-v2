@@ -1,7 +1,7 @@
 import { Space, Switch, Table, Tooltip } from "antd"
 import React, { useEffect, useState } from "react"
 import { API_ANALYZE_ORDERS } from "../../const"
-import $ from "../../utils/axios_hook"
+import $ from "../../utils/my_axios"
 import {
   GoodsItem,
   OrdersAnalysisData,

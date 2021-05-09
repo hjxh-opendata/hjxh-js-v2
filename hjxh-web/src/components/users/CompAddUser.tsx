@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import $ from "../../utils/axios_hook";
+import $ from "../../utils/my_axios";
 import {API_ADD_USER, DEFAULT_COOKIE, DEFAULT_PASSWORD, DEFAULT_USERNAME} from "../../const";
 import {AjaxResult} from "../../interface/pdd_base";
 import {Button, Form, Input, message, Modal, Spin} from "antd";

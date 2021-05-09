@@ -6,12 +6,14 @@ import { usersReducer } from "./users"
 import { composeWithDevTools } from "redux-devtools-extension"
 import {adReducer} from "./ad";
 import {periodsReducer} from "./periods";
+import controlsReducer from "./controls";
 
 export const rootReducer = combineReducers({
   goods: goodsReducer,
   users: usersReducer,
   ad: adReducer,
-  periods: periodsReducer
+  periods: periodsReducer,
+  controls: controlsReducer
 })
 
 export const store = createStore(

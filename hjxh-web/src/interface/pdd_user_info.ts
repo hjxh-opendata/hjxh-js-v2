@@ -1,5 +1,6 @@
 import {PddExtraParams, PddParams, PddResult} from "./pdd_base";
 
+
 export interface PddUserInfo {
   id: number;
   mall_id: number;
@@ -23,7 +24,8 @@ export interface UserInfoBase {
 }
 
 export interface UserInfo extends UserInfoBase, PddUserInfo {
-  updateTime: Date;
+  verifiedTime: number;
+  verifiedStatus: boolean
 }
 
 export interface PddUserInfoParams extends PddExtraParams {

@@ -17,7 +17,7 @@ export const API_BASE_URL = API_URL_BASE + "/api/v2/";
 export const API_GET_USERS = '/users'
 export const API_ADD_USER = '/users/add'
 export const API_UPDATE_COOKIE_OF_USER = '/users/update_cookie_of_user'
-export const API_VERIFY_USER_COOKIE = '/users/verify_cookie'
+export const API_VERIFY_USER_COOKIE = '/users/verify_cookie_of_user'
 
 // api - malls
 export const API_GET_MALLS = '/malls'

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import $ from "../../utils/axios_hook";
+import $ from "../../utils/my_axios";
 import {Pagination} from "antd";
 
 export interface CompPaginationProps {

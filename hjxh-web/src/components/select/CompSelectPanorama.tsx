@@ -1,6 +1,6 @@
 import {Button, Modal, Table, TableColumnProps, Tooltip} from "antd"
 import { useEffect, useState } from "react"
-import $ from "../../utils/axios_hook"
+import $ from "../../utils/my_axios"
 import {API_GET_AD_ALL, API_ORDERS_RANK} from "../../const"
 import { UserInfo } from "../../interface/pdd_user_info"
 import { AppState } from "../../redux/store"

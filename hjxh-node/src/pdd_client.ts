@@ -152,7 +152,8 @@ export const createPddClient = async (
       ...pddUserInfo,
       password,
       cookie,
-      updateTime: new Date(),
+      verifiedTime: new Date(),
+      verifiedStatus: true
     };
     db.collection(COLL_USERS)
       .updateOne({ _id: pddUserInfo.id }, { $set: userInfo }, { upsert: true })
@@ -235,12 +236,24 @@ export class PddClient {
 
   public async verifyUser() {
     console.log("verifying users info...");
-    const res_user_info = await this.fetch(URL_FETCH_USER_INFO, {});
-    assert(
-      res_user_info.result.username === this.userInfo.username,
-      "登录失败" + JSON.stringify(res_user_info)
-    );
-    console.log("verified users info.");
+    try{
+      const res_user_info = await this.fetch(URL_FETCH_USER_INFO, {});
+      assert(
+        res_user_info.result.username === this.userInfo.username,
+        "登录失败" + JSON.stringify(res_user_info)
+      );
+      db.collection(COLL_USERS).updateOne({"username": this.userInfo.username}, {"$set": {
+        verifiedStatus: true, verifiedTime: new Date()
+        }})
+      console.log("verified users info.");
+    } catch (e) {
+      db.collection(COLL_USERS).updateOne({"username": this.userInfo.username}, {"$set": {
+        verifiedStatus: false, verifiedTime: new Date()
+        }})
+      console.log("FAILED to verify users info, msg: ");
+      console.error(e.message)
+    }
+
   }
 
   public async fetchGoodsList() {

@@ -2,7 +2,7 @@ import { UserInfo } from "../interface/pdd_user_info"
 import { AnyAction } from "redux"
 import { Dispatch } from "react"
 import { SET_GOODS } from "./goods"
-import $ from "../utils/axios_hook"
+import $ from "../utils/my_axios"
 import {API_GET_GOODS_FROM_MALLS, API_GET_USERS} from "../const"
 
 export const SET_USERS = "SET_USERS"

@@ -1,7 +1,7 @@
 import { Skeleton, Table, TableColumnProps } from "antd";
 import React, { useEffect, useState } from "react";
 import { fixedColumns } from "../../../general/fixedColumns";
-import $ from "../../../../utils/axios_hook";
+import $ from "../../../../utils/my_axios";
 import {API_GET_GOODS_COMMENTS} from "../../../../const";
 
 const columns: TableColumnProps<any>[] = [

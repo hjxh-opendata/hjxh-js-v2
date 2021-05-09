@@ -1,6 +1,6 @@
 import {AnyAction} from "redux";
 import {Dispatch} from "react";
-import $ from "../utils/axios_hook";
+import $ from "../utils/my_axios";
 import {API_GET_AD_ALL} from "../const";
 
 export const SET_AD = "SET_AD"

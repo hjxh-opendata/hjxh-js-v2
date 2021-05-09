@@ -5,6 +5,7 @@ export const CompDeleteUser = () => {
   return (
     <Button
       type={"primary"}
+      // shape={'circle'}
       danger
       onClick={() => {
         Modal.confirm({

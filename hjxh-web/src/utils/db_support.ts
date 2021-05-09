@@ -1,6 +1,6 @@
 import { TablePaginationConfig } from "antd";
 import { FilterValue } from "antd/es/table/interface";
-import $ from "./axios_hook";
+import $ from "./my_axios";
 
 export const dbQuery = async (
   uri: string,
