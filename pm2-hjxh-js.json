@@ -1,7 +1,0 @@
-{
-  "script": "cd ./hjxh-web && HOST=0.0.0.0 yarn start",
-  "name": "皇家小虎数据中台前端",
-  "error_file": "logs/err.log",
-  "out_file": "logs/out.log",
-  "log_file": "logs/combined.log"
-}

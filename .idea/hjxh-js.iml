@@ -5,8 +5,9 @@
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
-      <excludeFolder url="file://$MODULE_DIR$/hjxh-node/old" />
-      <excludeFolder url="file://$MODULE_DIR$/hjxh-node" />
+      <excludeFolder url="file://$MODULE_DIR$/hjxh-backend/old" />
+      <excludeFolder url="file://$MODULE_DIR$/hjxh-backend/src/test" />
+      <excludeFolder url="file://$MODULE_DIR$/hjxh-backend/src/crawl_v1" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

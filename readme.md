@@ -8,6 +8,14 @@
 - [ ] 测试域名对`cookie`的验证影响, refer: [domain](#domain) 
 - [ ] 使用`jsdom`重新完成pdd加密的hack,refer: [jsdom](#jsdom)
 
+
+## 业务相关
+### 退款金额字段
+`sucRfOrdrAmt1d`，主要看前缀`sucRfOrdrAmt`
+
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/63093222231277.png?Expires=4774248365&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=Dgvmo97ffXCD3pL16TZQK2dr7oI%3D)
+
+
 ## 开发进度
 
 ### ts-jest Support， 2021年05月10日01:42:06
@@ -48,6 +56,77 @@ https://github.com/zalmoxisus/redux-devtools-extension#13-use-redux-devtools-ext
 
 ## 开发经验
 
+### 日期与时间控制（拼多多服务端、js端、python端）， 2021年05月10日16:14:58
+以pdd官网的时间为准，其2021年5月10号零点的时间戳为 `1620576000`。
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/49275045546839.png?Expires=4774234547&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=f%2FGZ2zfKOEljysXfVF77q3RloQI%3D)
+
+在`python`中，可以直接使用`datetime.datetime(2021, 5, 10).timestamp()`得到值是相同的：
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/49325049938852.png?Expires=4774234597&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=zXKArQzJJLEsd0H8QHYRAXRirAo%3D)
+
+（注意：`datetime.date`这个类没有直接的`timestamp`方法，并且也会在与`mongodb`等第三方打交道时出错，所以能不用就不用，毕竟`datetime`是`date`的真超集。）
+
+在`js`中，也可以直接调用，但是非常要注意的一个坑是，月份是从0开始记的，所以要`new Date(2021, 4, 10).getTime()`：
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/49426738409686.png?Expires=4774234699&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=YNIgVaPVGOO6Rd3XSrsflM7JqG0%3D)
+
+如果使用`dayjs`包的话，更方便：
+```js
+var d = dayjs('2021-05-10')
+console.log('时间戳（秒）: ', d.unix())
+console.log('时间戳（毫秒）: ', d.valueOf())
+```
+
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/49702714596339.png?Expires=4774234975&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=Go36MueBnsbma6a6oZoh36kxlcI%3D)
+
+还可以通过数组接收形式：
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/49767385785948.png?Expires=4774235039&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=zoNFps7rgj0pN0P442y%2F7U4lIGk%3D)
+
+不过，根据官方介绍，需要加`"dayjs/plugin/arraySupport"`插件，我也不知道为啥这里可以直接运行，我本来想截个报错作为对比的……（可能，被兼容了吧……）
+
+参考：
+- [字符串 · Day.js](https://day.js.org/docs/zh-CN/parse/string)
+- [Unix 时间戳 · Day.js](https://day.js.org/docs/zh-CN/display/unix-timestamp)
+- [数组 · Day.js](https://day.js.org/docs/zh-CN/parse/array)
+- [ArraySupport · Day.js](https://day.js.org/docs/zh-CN/plugin/array-support)
+
+
+### 终于解决换行问题， 2021年05月10日16:06:51
+由于系统用的`prettier`进行换行控制，而它的`printWidth`默认值是80，这导致某一行代码想不换行结果被换了，因为视觉上还有很大空间。
+
+查看系统的一些设置，有80、120两个界，`CodeStyle`里改成120无效，因为被`prettier`覆盖了，于是考虑新建一个本地`.prettierrc`文件，修改`printWidth`的值。
+
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/48911727673232.png?Expires=4774234184&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=O69TJM%2BZPC9io21jlz%2FNHLv4I2Q%3D)
+
+
+最后效果如下：
+
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/48740681382240.png?Expires=4774234013&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=z7IseE%2FS5BVj3LUYHXLtltIcUMo%3D)
+
+参考：
+- [Options · Prettier](https://prettier.io/docs/en/options.html#print-width)
+
+### 终于解决老自动乱提示库的问题， 2021年05月10日14:52:33
+
+之前在初始化项目之后，为了解决`promise`的问题，修改`tsconfig.json`里的`lib`为`es2015.primise`，这导致很多内置库无法识别，比如`Array`。
+
+但我联想到`create-react-app`项目里没有这个问题，所以觉得很有可能还是自己的配置问题。
+
+中途还尝试删掉`@types/mongoose`库（因为老是跳出`mongoodse`里的`Array`，让我导入，但一导入就错，不导入就反复横跳），结果删完之后原先只跳两个可选`Array`的出处，后来变成四个……其中第一个是来自`es2015`的。
+
+最后意识到了是`typescript`配置的问题，下意识地修改了一下：
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/44507751334980.png?Expires=4774229780&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=U%2BdBqy5diUjPJza5BSN62HbVQao%3D)
+
+结果就成了！这紫色粗斜字体可太好看了！
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/44282669866479.png?Expires=4774229555&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=nefuMwsg4LYrVrBOC2E4m6d9c1Y%3D)
+
+
+### 卧槽，一行代码解决`git push`卡住的问题， 2021年05月10日09:13:18
+```shell
+ git config --global core.askpass "git-gui--askpass"
+```
+
+参考：
+- [Git push hangs when pushing to Github? - Stack Overflow](https://stackoverflow.com/questions/16906161/git-push-hangs-when-pushing-to-github)
+
 <a name='domain'></a>
 ### 关于cookie验证403的问题，2021年05月10日05:45:57
 其实是选错了api。
@@ -63,12 +142,6 @@ https://github.com/zalmoxisus/redux-devtools-extension#13-use-redux-devtools-ext
 ### jsdom或许是pdd加密算法的又一大杀器
 ![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/1322153107609.png?Expires=4774186594&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=vaKrNv0Y%2Fb0TY%2BZ%2B5dwwUJvTxng%3D)
 
-
-### 关于`jest`报错：`You should not use <Link> outside a <Router>`，2021年05月10日02:46:31
-
-其实这个问题，是因为`create-react-app`的默认测试文件`App.test.js`是直接拿`App.tsx`进行`render`测试，然而当时我的项目目录，已经把主配置移到了`index.tsx`文件，比如`store`和`BrowserRouter`等。
-
-所以解决方案就是把`index.tsx`简化，所有`Provider`全写进`App.tsx`，包括`css`文件。
 
 ### 关于在`try...catch...finally`的`finally`中使用`return`的问题
 参考：
@@ -332,3 +405,71 @@ goodsUnfkUndfltRevCnt1m	Integer	6613
 ### 每个月开头总是这么难
 
 ![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-06/55327436289141.png?Expires=4773912394&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=zRK%2BjDChIKWcoyO8a%2FuD0cVUuuE%3D)
+
+
+## JEST 相关（由于起步使用，特单独记录）
+
+### TODO
+- [ ] 解决`create-react-app`的`jest`环境为`jsdom`从而无法测试`node`环境的一些`test`程序的问题
+
+### jset配置extend， 2021年05月10日15:54:53
+本来只是为了快速验证一个值是不是一个数字，结果发现比较麻烦，毕竟`number`和`Number`不是一回事。
+
+第一种方案是`expect(value).toEqual(expect.any(Number))`，就很繁琐，而且这个`toEqual`我很不能接受，因为我的意图就是判别类型，结果字面意义却是等于什么值，这不好，这太hack了。
+
+第二种方案是使用`jest-extend`，我发现这个不错，而且`star`数还挺高，`1.5 k`了。安装完后，直接使用`expect(value).toBeNumber()`就可以，这简直太友好了~
+
+注意，第二种方法要三步走，安装`jest-extend`，配置`jest.config.json`，再新增`global.d.ts`文件，这些都是值得的。
+
+参考：
+- [jestjs - `toBeInstanceOf(Number)` does not work in jest - Stack Overflow](https://stackoverflow.com/questions/52551035/tobeinstanceofnumber-does-not-work-in-jest)
+- [jest-community/jest-extended: Additional Jest matchers 🃏💪](https://github.com/jest-community/jest-extended#typescript)
+
+
+### 终于配置好了`jest`的`node`环境
+
+```js
+// /Users/mark/projects/HJXH/hjxh-js/hjxh-backend/src/crawl/pdd.test.ts
+import {createPddClient, PddClientPlus} from "./pdd";
+
+describe("pdd test", () => {
+    let pdd: PddClientPlus;
+
+    beforeAll(async () => {
+        console.log("=== started test pdd ===");
+        // 默认使用数据库第一个拼多多账号进行初始化
+        pdd = await createPddClient();
+    });
+
+    it("pdd should pass verification", async () => {
+        const e = await pdd.fetchUserInfo();
+        expect(e).toBe(true);
+    });
+});
+```
+
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/35174825782003.png?Expires=4774220447&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=yTCcYWSLhsqtJuAR6VePZUtMN%2Fk%3D)
+
+
+参考：
+- [测试异步代码 · Jest](https://jestjs.io/zh-Hans/docs/asynchronous)
+- [Globals · Jest](https://jestjs.io/docs/api#beforeallfn-timeout)
+- [jestjs - How to pass variable from beforeEach hook to tests in jest? - Stack Overflow](https://stackoverflow.com/questions/52397708/how-to-pass-variable-from-beforeeach-hook-to-tests-in-jest)
+
+### 在`node`环境配置`ts-jest`启动失败的原因， 2021年05月10日10:23:07
+
+尝试了很多配置，均未成功，后来在`ts-jest`官网找到了原因。
+
+- [Presets | ts-jest](https://kulshekhar.github.io/ts-jest/docs/getting-started/presets)
+
+参考以上链接，在`ts-jest`中，有三种`preset`，默认是第一种，即会把所有`ts | tsx`格式文件转成`js | jsx`。
+
+我当时测试的文件，由于为了适应`create-react-app`的配置，名称为`pdd-request.test.js`，是`js`格式，所以`ts-jest`不会自动将它转为`commonjs`。然而该文件里使用了`import`，属于`esm`，因此报错。
+
+解决办法就是将`preset`改成`ts-jest/presets/js-with-ts`，这样所有的`ts | tsx | js | jsx`都能转成`commonjs`了，不过此选项需要打开`tsconfig.json`中的`"allowJs": true`选项。
+
+### 关于`jest`报错：`You should not use <Link> outside a <Router>`，2021年05月10日02:46:31
+
+其实这个问题，是因为`create-react-app`的默认测试文件`App.test.js`是直接拿`App.tsx`进行`render`测试，然而当时我的项目目录，已经把主配置移到了`index.tsx`文件，比如`store`和`BrowserRouter`等。
+
+所以解决方案就是把`index.tsx`简化，所有`Provider`全写进`App.tsx`，包括`css`文件。
