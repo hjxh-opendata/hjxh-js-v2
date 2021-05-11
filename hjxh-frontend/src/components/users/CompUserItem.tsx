@@ -1,28 +1,63 @@
-import { UserInfo } from "../../interface/pdd_user_info"
-import { Button, Card, Space, Tag } from "antd"
-import { CompUpdateUser } from "./CompUpdateUser"
-import { CompDeleteUser } from "./CompDeleteUser"
+import {UserInfo} from "../../interface/pdd_user_info"
+import {Button, Card, Col, Row, Space, Tag} from "antd"
+import {CompUpdateUser} from "./CompUpdateUser"
+import {CompDeleteUser} from "./CompDeleteUser"
 import dayjs from "../../utils/my_dayjs"
-import React, { useEffect, useState } from "react"
+import React, {useEffect, useState} from "react"
 import $ from "../../utils/my_axios"
-import { API_VERIFY_USER_COOKIE } from "../../const"
-import { UsersControls } from "../../redux/controls"
-import { AppState } from "../../redux/store"
-import { connect } from "react-redux"
+import {API_GET_USER_STATS, API_VERIFY_USER_COOKIE} from "../../const"
+import {UsersControls} from "../../redux/controls"
+import {AppState} from "../../redux/store"
+import {connect} from "react-redux"
+
+export interface IStatus {
+  status: boolean
+  detail: string | number
+}
+
+export interface UserStats {
+  users?: IStatus
+  goods_list?: IStatus
+  mall_data?: IStatus
+}
+
+
+export const CompShowVerifiedStatus = (props: IStatus) => {
+  return (
+    <>
+      <Col span={8}>
+
+        {
+          props.status
+            ? <Tag color={'green'}>PASSED</Tag>
+            : <Tag color={"red"}>FAILED</Tag>
+        }
+      </Col>
+      <Col span={8}>
+        {props.detail}
+      </Col>
+    </>
+  )
+}
+
+export const CompShowVerifiedStatusPlus = (props: { item?: IStatus }) =>
+  props.item === undefined ? <Tag color={'gray'}>NOT INITIALIZED</Tag> :
+    <CompShowVerifiedStatus status={props.item.status} detail={props.item.detail}/>
 
 export const CompUserItem = (props: {
   user: UserInfo
   usersControl: UsersControls
 }) => {
-  const [user, setUser] = useState(props.user)
   const [loading, setLoading] = useState(false)
+  const [stats, setStats] = useState<UserStats>({})
+
+  const user = props.user
 
   const verifyUser = async () => {
     setLoading(true)
-    $.put(API_VERIFY_USER_COOKIE, {}, {params: { username: user.username }})
+    $.put(API_VERIFY_USER_COOKIE, {}, {params: {username: props.user.username}})
       .then((e) => {
         console.log(e.data)
-        setUser({ ...user, ...e.data.result })
       })
       .finally(() => {
         setLoading(false)
@@ -30,10 +65,15 @@ export const CompUserItem = (props: {
   }
 
   useEffect(() => {
+    // 自动验证
     if (props.usersControl.enable_auto_verify_users) {
       verifyUser()
     }
-  }, [])
+    $.get(API_GET_USER_STATS, {params: {user_id: user.id}}).then(e => {
+      console.log("stat of " + user.username, e.data.result)
+      setStats(e.data.result)
+    })
+  }, [props.user])
 
   const CompUserOperators = (
     <Space>
@@ -42,33 +82,51 @@ export const CompUserItem = (props: {
       </Button>
 
       <CompUpdateUser
-        initUsers={() => {}}
+        initUsers={() => {
+        }}
         username={user.username}
         cookie={user.cookie}
       />
 
-      {false && <CompDeleteUser />}
+      {false && <CompDeleteUser/>}
     </Space>
   )
 
   return (
     <Card
       title={user.username}
-      style={{ width: 400, margin: 10}}
+      style={{width: 400, margin: 10}}
       extra={CompUserOperators}
     >
-      <div>
-        验证状态：{" "}
-        {loading ? (
-          "正在验证中..."
-        ) : user.verifiedStatus ? (
-          <Tag color={"green"}>正常</Tag>
-        ) : (
-          <Tag color={"darkred"}>已过期</Tag>
-        )}
-      </div>
-      <div>验证时间： {dayjs(user.verifiedTime * 1000).fromNow()}</div>
-      <div>一期状态: 待检测中</div>
+
+      <Row gutter={[16, 8]}>
+        <Col span={6}>账号状态：</Col>
+        <Col span={6}>
+          {
+            loading
+              ? ("正在验证……")
+              : user.verifiedStatus
+              ? (<Tag color={"green"}>正常</Tag>)
+              : (<Tag color={"darkred"}>已过期</Tag>)
+          }
+        </Col>
+
+        <Col span={6}>验证时间：</Col>
+        <Col span={6}>
+          {dayjs(user.verifiedTime * 1000).fromNow()}
+        </Col>
+
+        <Col span={8}>用户信息检测：</Col>
+        <CompShowVerifiedStatusPlus item={stats.users}/>
+
+        <Col span={8}>商品信息检测：</Col>
+        <CompShowVerifiedStatusPlus item={stats.goods_list}/>
+
+        <Col span={8}>交易金额检测：</Col>
+        <CompShowVerifiedStatusPlus item={stats.mall_data}/>
+      </Row>
+
+
     </Card>
   )
 }

@@ -1,28 +1,35 @@
 # 皇家小虎数据中台前端、算法
 
 ## TODO
+
 - [ ] 验证是否主账号可以查到所有商品ID
 - [ ] 解决加密算法只适合本机的问题
 - [ ] 改用`scrapy`进行爬虫
 - [ ] 改用`node`端的`api`
-- [ ] 测试域名对`cookie`的验证影响, refer: [domain](#domain) 
+- [ ] 测试域名对`cookie`的验证影响, refer: [domain](#domain)
 - [ ] 使用`jsdom`重新完成pdd加密的hack,refer: [jsdom](#jsdom)
 
-
 ## 业务相关
+
 ### 退款金额字段
+
 `sucRfOrdrAmt1d`，主要看前缀`sucRfOrdrAmt`
 
 ![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/63093222231277.png?Expires=4774248365&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=Dgvmo97ffXCD3pL16TZQK2dr7oI%3D)
 
-
 ## 开发进度
 
+### 修复数据库翻页插入逻辑， 2021年05月11日11:28:50
+
+
 ### ts-jest Support， 2021年05月10日01:42:06
+
 参考：
+
 - [Installation | ts-jest](https://kulshekhar.github.io/ts-jest/docs/getting-started/installation)
 
 ### 配置了`redux-devtool`，2021年05月08日08:57:45
+
 参考：
 https://github.com/zalmoxisus/redux-devtools-extension#13-use-redux-devtools-extension-package-from-npm
 
@@ -56,7 +63,83 @@ https://github.com/zalmoxisus/redux-devtools-extension#13-use-redux-devtools-ext
 
 ## 开发经验
 
+### `eslint`报`module`错误， 2021年05月11日10:47:55
+
+在`eslint`配置文件中，添加`node`环境
+```json
+{
+  "env": {
+    "node": true
+  }
+}
+```
+参考：
+- [module is not defined and process is not defined in eslint in visual studio code - Stack Overflow](https://stackoverflow.com/questions/49789177/module-is-not-defined-and-process-is-not-defined-in-eslint-in-visual-studio-code)
+
+
+### Mongoose 还是 Mongodb
+
+#### mongoose vs mongodb
+
+就目前来看，由于拼多多的接口较多，而且不一致，所以设计规范的`Schema`
+是比较棘手的，另一方面，甲方的需求也可能时有变动，目前为了业务而设计的数据库规范可能不能很好地适应甲方的需求变更；最后考虑到平均两倍的性能差异，最终决定选择使用Mongodb而非Mongoose。 参考：
+
+- [node.js - Difference between MongoDB and Mongoose - Stack Overflow](https://stackoverflow.com/questions/28712248/difference-between-mongodb-and-mongoose)
+  （我觉得这个人回答问题的模式好好，提供事实而非观点！）
+- [Performance Difference in Mongoose vs MongoDB Native Driver | by bugwheels94 | Medium](https://bugwheels94.medium.com/performance-difference-in-mongoose-vs-mongodb-60be831c69ad)
+
+#### mongoose 总可以报错
+
+好吧……其实就是`Mongoose`的连接机制太难搞懂了，在做账号批量测试的时候，`db`是个`Connection`，然后这样同步写编译器不报错，但输出报错：
+
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-11/105901908617741.png?Expires=4774291174&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=9eLRuIS9QbcNvyv5e8gNyZtVo6g%3D)
+
+改成异步后，编译器`typescript`报错，但是结果是对的（需要加`//@ts-ignore`）：
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-11/106035859077064.png?Expires=4774291308&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=HNK7iOKm3xkSVMS44zcQvyPga%2FQ%3D)
+
+#### 装了 `@types/mongoose`也没用
+
+所以敢情是`typescript`的问题呗，那或许问题的答案就在于：`@types/mongoose`吧！
+
+确认目前是没有安装`@types/mongoose`的：
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-11/106096169564485.png?Expires=4774291368&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=GjJc6P39lrMVIBGexAmfECGIUmc%3D)
+
+好吧……辣鸡，装了也没用……（可能是我的`Connection`那边写的不好？但我可是抄的`MDN`的啊……anyway，实在是使用成本太高了，以后再用吧……我去选择`mongodb native dirver`了……）
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-11/106212578046549.png?Expires=4774291485&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=VIkeTAKayS7%2FAo41I%2BgzOZS%2Fhr4%3D)
+
+#### 一种不报错的，但很丑陋的实现方式
+
+```js
+new Promise((resolve) => resolve(
+    db.collection(COLL_USERS).find({}))
+)
+    .then((e: any) => {
+        console.log({e})
+    })
+```
+
+### 基于以上，使用`async/await`的最佳实现方式
+
+```js
+const f1 = async () => {
+    const cursor = await db.collection(COLL_USERS).find()
+    while (await cursor.hasNext()) {
+        console.log(await cursor.next())
+    }
+}
+
+const f2 = async () => {
+    const cursor = await db.collection(COLL_USERS).find()
+    console.log(await cursor.toArray())
+}
+
+f2()
+```
+
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-11/109655644260239.png?Expires=4774294928&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=aj%2Bxfn5JiIIOd3Ta3igzPek7k4w%3D)
+
 ### 日期与时间控制（拼多多服务端、js端、python端）， 2021年05月10日16:14:58
+
 以pdd官网的时间为准，其2021年5月10号零点的时间戳为 `1620576000`。
 ![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/49275045546839.png?Expires=4774234547&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=f%2FGZ2zfKOEljysXfVF77q3RloQI%3D)
 
@@ -69,6 +152,7 @@ https://github.com/zalmoxisus/redux-devtools-extension#13-use-redux-devtools-ext
 ![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/49426738409686.png?Expires=4774234699&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=YNIgVaPVGOO6Rd3XSrsflM7JqG0%3D)
 
 如果使用`dayjs`包的话，更方便：
+
 ```js
 var d = dayjs('2021-05-10')
 console.log('时间戳（秒）: ', d.unix())
@@ -83,25 +167,26 @@ console.log('时间戳（毫秒）: ', d.valueOf())
 不过，根据官方介绍，需要加`"dayjs/plugin/arraySupport"`插件，我也不知道为啥这里可以直接运行，我本来想截个报错作为对比的……（可能，被兼容了吧……）
 
 参考：
+
 - [字符串 · Day.js](https://day.js.org/docs/zh-CN/parse/string)
 - [Unix 时间戳 · Day.js](https://day.js.org/docs/zh-CN/display/unix-timestamp)
 - [数组 · Day.js](https://day.js.org/docs/zh-CN/parse/array)
 - [ArraySupport · Day.js](https://day.js.org/docs/zh-CN/plugin/array-support)
 
-
 ### 终于解决换行问题， 2021年05月10日16:06:51
+
 由于系统用的`prettier`进行换行控制，而它的`printWidth`默认值是80，这导致某一行代码想不换行结果被换了，因为视觉上还有很大空间。
 
 查看系统的一些设置，有80、120两个界，`CodeStyle`里改成120无效，因为被`prettier`覆盖了，于是考虑新建一个本地`.prettierrc`文件，修改`printWidth`的值。
 
 ![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/48911727673232.png?Expires=4774234184&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=O69TJM%2BZPC9io21jlz%2FNHLv4I2Q%3D)
 
-
 最后效果如下：
 
 ![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/48740681382240.png?Expires=4774234013&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=z7IseE%2FS5BVj3LUYHXLtltIcUMo%3D)
 
 参考：
+
 - [Options · Prettier](https://prettier.io/docs/en/options.html#print-width)
 
 ### 终于解决老自动乱提示库的问题， 2021年05月10日14:52:33
@@ -110,7 +195,8 @@ console.log('时间戳（毫秒）: ', d.valueOf())
 
 但我联想到`create-react-app`项目里没有这个问题，所以觉得很有可能还是自己的配置问题。
 
-中途还尝试删掉`@types/mongoose`库（因为老是跳出`mongoodse`里的`Array`，让我导入，但一导入就错，不导入就反复横跳），结果删完之后原先只跳两个可选`Array`的出处，后来变成四个……其中第一个是来自`es2015`的。
+中途还尝试删掉`@types/mongoose`库（因为老是跳出`mongoodse`里的`Array`，让我导入，但一导入就错，不导入就反复横跳），结果删完之后原先只跳两个可选`Array`
+的出处，后来变成四个……其中第一个是来自`es2015`的。
 
 最后意识到了是`typescript`配置的问题，下意识地修改了一下：
 ![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/44507751334980.png?Expires=4774229780&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=U%2BdBqy5diUjPJza5BSN62HbVQao%3D)
@@ -118,17 +204,20 @@ console.log('时间戳（毫秒）: ', d.valueOf())
 结果就成了！这紫色粗斜字体可太好看了！
 ![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/44282669866479.png?Expires=4774229555&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=nefuMwsg4LYrVrBOC2E4m6d9c1Y%3D)
 
-
 ### 卧槽，一行代码解决`git push`卡住的问题， 2021年05月10日09:13:18
+
 ```shell
  git config --global core.askpass "git-gui--askpass"
 ```
 
 参考：
+
 - [Git push hangs when pushing to Github? - Stack Overflow](https://stackoverflow.com/questions/16906161/git-push-hangs-when-pushing-to-github)
 
 <a name='domain'></a>
+
 ### 关于cookie验证403的问题，2021年05月10日05:45:57
+
 其实是选错了api。
 
 验证用户是否有效有两个api，一个会返回mall信息（yingxiao），一个不用（mms）。
@@ -137,41 +226,49 @@ console.log('时间戳（毫秒）: ', d.valueOf())
 
 反过来可以不？待测试
 
-
 <a name="jsdom"></a>
+
 ### jsdom或许是pdd加密算法的又一大杀器
+
 ![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/1322153107609.png?Expires=4774186594&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=vaKrNv0Y%2Fb0TY%2BZ%2B5dwwUJvTxng%3D)
 
-
 ### 关于在`try...catch...finally`的`finally`中使用`return`的问题
+
 参考：
+
 - [解决async/await滥用产生的困境 - 知乎](https://zhuanlan.zhihu.com/p/138331544)
 - [java - Can we use "return" in finally block - Stack Overflow](https://stackoverflow.com/questions/18205493/can-we-use-return-in-finally-block)
 
 ### 关于从`prop`获得的传入`useState`的数据不会再度刷新， 2021年05月09日14:15:39
+
 参考：
+
 - [reactjs - React.useState does not reload state from props - Stack Overflow](https://stackoverflow.com/questions/54865764/react-usestate-does-not-reload-state-from-props)
 
 ### 【重要】 关于不同位置的cookie的差异， 2021年05月08日21:31:33
+
 原来如此！必须在拼多多商家后台页面进行cookie刷新，否则cookie是无效的……（比如在推广页面）
 
 ### 关于`react-redux`的`connect`函数提示太多并且很慢的问题， 2021年05月08日21:01:58
-解决方案很简单：去掉  full method`就可以。
+
+解决方案很简单：去掉 full method`就可以。
 
 去掉之后，将打开新的世界，一切更美好~
 
 ![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-08/47818171510450.png?Expires=4774078921&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=9ahK4I3NdrubIXzVyF8tA4Tn9Wg%3D)
 
-
 ### 关于无法快捷导入自定义的`AntdIcon`， 2021年05月08日20:24:57
+
 其实是因为我们需要用组件形式导入`AntdIcon`（即，尖括号那种组件导入方式），所以虽然在自定义的`AntdIcon`里没有使用`jsx`语法，但还是需要改为`tsx`文件才支持。
 
 ### 关于mac dock失效、无法点击的最终解决方案，2021年05月08日08:05:32
+
 之前参考网上文章采取了重启的方式，今天早上在高度专注的情况下仔细研究了文章，敏锐的意识到最有可能是第三方插件的问题，尤其是`mac forge`这个，毕竟它动过了系统设置。
 
 最后我退出`mac forge`后，果然解决了问题！
 
 参考：
+
 - [How to Fix Mac Dock getting Stuck? - Appuals.com](https://appuals.com/how-to-fix-mac-dock-getting-stuck/)
 
 ### redux设计中，select 和 filter 的区别
@@ -181,6 +278,7 @@ console.log('时间戳（毫秒）: ', d.valueOf())
 这个思考，我认为很有意思，也是第一次思考这么细致的问题。
 
 ### 直接刷新路由，导致首页的异步载入未能预先完成
+
 想来这也是很有意思的一件事。
 
 我在首页执行`users`、`goods`的预先获取操作，但我现在停留的网页是在订单分析这。
@@ -194,14 +292,17 @@ console.log('时间戳（毫秒）: ', d.valueOf())
 然而，尴尬的事情发生了，最后一步的数据获取的参数，是没有数据的，233333，因为这个店铺的数据还没更新Orz。
 
 ### ts-node 配置问题
+
 `ts-node`真是个神奇的玩意……
 
 在封装了自己的`logger`后，进行测试，结果死活不成……
 
 参考：
+
 - [package.json - ts-node execute typescript with module import and module defined - Stack Overflow](https://stackoverflow.com/questions/63445821/ts-node-execute-typescript-with-module-import-and-module-defined)
 
 最终只需要改`tsconfig.json`的`module`就可以了：
+
 ```json
 {
   "compilerOptions": {
@@ -210,14 +311,17 @@ console.log('时间戳（毫秒）: ', d.valueOf())
   }
 }
 ```
+
 ### js reduce用法
+
 原来第一个参数是目标结果，而第二个参数才是数组内的每个元素，这一点和`map`、`forEach`等数组函数有很大的区别！
 
 ![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-07/54496392166889.png?Expires=4773998870&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=YL6C1U455BOB34pU4TafW6Fyrtw%3D)
 
-
 ### 解决`FormData`提交的问题
+
 使用`qs.stringify`可以完美解决，参考：
+
 - [axios中文文档|axios中文网 | axios](http://axios-js.com/zh-cn/docs/index.html#%E4%BD%BF%E7%94%A8-application-x-www-form-urlencoded-format)
 
 主要是我在`fastapi`对`user`里的`cookie`设置成了`form`格式，所以需要用这个手段。
@@ -227,14 +331,14 @@ console.log('时间戳（毫秒）: ', d.valueOf())
 直接调用`Modal.confirm`可以避免使用`hook`导致代码分离，但这样，就无法使用原生`Modal`的`footer`属性，以将`Form`的提交按钮绑定在`Modal`的`Footer`上。
 
 参考以下，可以得出一种改变`onButtonProps`的属性，从而达到绑定的效果，很有意思~：
+
 - [reactjs - How to submit form component in modal dialogue using antd react component library - Stack Overflow](https://stackoverflow.com/questions/41221633/how-to-submit-form-component-in-modal-dialogue-using-antd-react-component-librar)
 - [Button - Ant Design](https://ant.design/components/button/#API)
 
-【update 2021年05月07日21:35:30】 然而这种方案还是碰到了问题。
-因为对`Form`需要做一些验证，所以如果直接把`Form`绑定到`Confirm`按钮，会导致无论验证与否都直接关闭了`Modal`，这是很不符合预期的。
+【update 2021年05月07日21:35:30】 然而这种方案还是碰到了问题。 因为对`Form`需要做一些验证，所以如果直接把`Form`绑定到`Confirm`按钮，会导致无论验证与否都直接关闭了`Modal`
+，这是很不符合预期的。
 
 看样子，还是得用朴素的玩意。。
-
 
 ```typescript jsx
 const updateUser = (record: UserInfo) => {
@@ -406,13 +510,14 @@ goodsUnfkUndfltRevCnt1m	Integer	6613
 
 ![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-06/55327436289141.png?Expires=4773912394&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=zRK%2BjDChIKWcoyO8a%2FuD0cVUuuE%3D)
 
-
 ## JEST 相关（由于起步使用，特单独记录）
 
 ### TODO
+
 - [ ] 解决`create-react-app`的`jest`环境为`jsdom`从而无法测试`node`环境的一些`test`程序的问题
 
 ### jset配置extend， 2021年05月10日15:54:53
+
 本来只是为了快速验证一个值是不是一个数字，结果发现比较麻烦，毕竟`number`和`Number`不是一回事。
 
 第一种方案是`expect(value).toEqual(expect.any(Number))`，就很繁琐，而且这个`toEqual`我很不能接受，因为我的意图就是判别类型，结果字面意义却是等于什么值，这不好，这太hack了。
@@ -422,9 +527,9 @@ goodsUnfkUndfltRevCnt1m	Integer	6613
 注意，第二种方法要三步走，安装`jest-extend`，配置`jest.config.json`，再新增`global.d.ts`文件，这些都是值得的。
 
 参考：
+
 - [jestjs - `toBeInstanceOf(Number)` does not work in jest - Stack Overflow](https://stackoverflow.com/questions/52551035/tobeinstanceofnumber-does-not-work-in-jest)
 - [jest-community/jest-extended: Additional Jest matchers 🃏💪](https://github.com/jest-community/jest-extended#typescript)
-
 
 ### 终于配置好了`jest`的`node`环境
 
@@ -450,8 +555,8 @@ describe("pdd test", () => {
 
 ![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/35174825782003.png?Expires=4774220447&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=yTCcYWSLhsqtJuAR6VePZUtMN%2Fk%3D)
 
-
 参考：
+
 - [测试异步代码 · Jest](https://jestjs.io/zh-Hans/docs/asynchronous)
 - [Globals · Jest](https://jestjs.io/docs/api#beforeallfn-timeout)
 - [jestjs - How to pass variable from beforeEach hook to tests in jest? - Stack Overflow](https://stackoverflow.com/questions/52397708/how-to-pass-variable-from-beforeeach-hook-to-tests-in-jest)
@@ -464,12 +569,15 @@ describe("pdd test", () => {
 
 参考以上链接，在`ts-jest`中，有三种`preset`，默认是第一种，即会把所有`ts | tsx`格式文件转成`js | jsx`。
 
-我当时测试的文件，由于为了适应`create-react-app`的配置，名称为`pdd-request.test.js`，是`js`格式，所以`ts-jest`不会自动将它转为`commonjs`。然而该文件里使用了`import`，属于`esm`，因此报错。
+我当时测试的文件，由于为了适应`create-react-app`的配置，名称为`pdd-request.test.js`，是`js`格式，所以`ts-jest`不会自动将它转为`commonjs`。然而该文件里使用了`import`
+，属于`esm`，因此报错。
 
-解决办法就是将`preset`改成`ts-jest/presets/js-with-ts`，这样所有的`ts | tsx | js | jsx`都能转成`commonjs`了，不过此选项需要打开`tsconfig.json`中的`"allowJs": true`选项。
+解决办法就是将`preset`改成`ts-jest/presets/js-with-ts`，这样所有的`ts | tsx | js | jsx`都能转成`commonjs`了，不过此选项需要打开`tsconfig.json`
+中的`"allowJs": true`选项。
 
 ### 关于`jest`报错：`You should not use <Link> outside a <Router>`，2021年05月10日02:46:31
 
-其实这个问题，是因为`create-react-app`的默认测试文件`App.test.js`是直接拿`App.tsx`进行`render`测试，然而当时我的项目目录，已经把主配置移到了`index.tsx`文件，比如`store`和`BrowserRouter`等。
+其实这个问题，是因为`create-react-app`的默认测试文件`App.test.js`是直接拿`App.tsx`进行`render`测试，然而当时我的项目目录，已经把主配置移到了`index.tsx`文件，比如`store`
+和`BrowserRouter`等。
 
 所以解决方案就是把`index.tsx`简化，所有`Provider`全写进`App.tsx`，包括`css`文件。

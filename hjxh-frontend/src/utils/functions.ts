@@ -1,5 +1,5 @@
-import {StringDict} from "../interface/errors";
 import assert from "assert";
+import {StringDict} from "../interface/general";
 
 export const preprocessCookie = (s: string): string => {
   let a = s.split(/[\s\n]/).filter((k: string) => k)

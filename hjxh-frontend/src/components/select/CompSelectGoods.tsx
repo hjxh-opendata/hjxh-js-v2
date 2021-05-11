@@ -29,7 +29,8 @@ export const CompSelectGoods = (
         return (
           <Select.Option key={good.id} value={good.id}>
             <Tooltip title={good.goods_name} placement={'right'}>
-              {(good.cat_name || '-') + " : " + good.goods_name.substr(0, 10) + "..."}
+              {/*{(good.cat_name || '-') + " : " + good.goods_name.substr(0, 10) + "..."}*/}
+              {good.id}
             </Tooltip>
           </Select.Option>
         )

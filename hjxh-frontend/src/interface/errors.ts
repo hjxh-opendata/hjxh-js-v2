@@ -1,10 +1,4 @@
-export interface StringDict {
-  [key: string]: any
-}
 
-export interface NumberDict {
-  [key: number]: any
-}
 
 export enum errors {
   Success = "Success",

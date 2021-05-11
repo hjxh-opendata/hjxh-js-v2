@@ -5,6 +5,8 @@ export const ALI_ICON_PATH = "//at.alicdn.com/t/font_2518932_jmkm84pn3vh.js";
 export const SiderWidth = 200;
 export const SiderCollapsedWidth = 60;
 export const MAX_PAGE_SIZE = 50
+export const SCROLL_TABLE_Y = 600
+export const SCROLL_TABLE_X = 1000
 
 // net config
 export const SCHEMA = "http";
@@ -22,6 +24,7 @@ export const API_ADD_USER = '/users/add'
 export const API_FAST_ADD_USER = '/users/fast_add_user'
 export const API_UPDATE_COOKIE_OF_USER = '/users/update_cookie_of_user'
 export const API_VERIFY_USER_COOKIE = '/users/verify_cookie_of_user'
+export const API_GET_USER_STATS = '/users/stats'
 
 // api - malls
 export const API_GET_MALLS = '/malls'

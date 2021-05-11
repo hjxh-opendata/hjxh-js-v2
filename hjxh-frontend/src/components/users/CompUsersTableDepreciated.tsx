@@ -13,7 +13,7 @@ import {UsersControls} from "../../redux/controls";
 import $ from "../../utils/my_axios";
 import {API_VERIFY_USER_COOKIE} from "../../const";
 import qs from "qs";
-import {StringDict} from "../../interface/errors";
+import {StringDict} from "../../interface/general";
 
 dayjs.extend(require("dayjs/plugin/relativeTime"))
 

@@ -1,10 +1,11 @@
-import { AdItem, setAd } from "../../../redux/ad"
-import { Table } from "antd"
-import { AppState } from "../../../redux/store"
-import { connect } from "react-redux"
+import {AdItem, setAd} from "../../../redux/ad"
+import {Table} from "antd"
+import {AppState} from "../../../redux/store"
+import {connect} from "react-redux"
 import CompSelects from "../../select/CompSelects"
-import { useEffect } from "react"
-import { adColumns } from "./CompAdColumns"
+import React, {useEffect} from "react"
+import {adColumns} from "./CompAdColumns"
+import {SCROLL_TABLE_X, SCROLL_TABLE_Y} from "../../../const";
 
 interface CompAdAnalysisProps {
   goods_id?: number
@@ -26,8 +27,10 @@ export const CompAdAnalysis = (
   }, [props.goods_id, props.period])
   return (
     <div>
-      <CompSelects />
-      <Table columns={adColumns} dataSource={props.ad} rowKey={"date"} scroll={{x: 1300}}/>
+      <CompSelects/>
+      <Table columns={adColumns} dataSource={props.ad} rowKey={"date"}
+             scroll={{x: SCROLL_TABLE_X, y: SCROLL_TABLE_Y}}
+      />
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import { Space, Switch, Table, Tooltip } from "antd"
 import React, { useEffect, useState } from "react"
-import { API_ANALYZE_ORDERS } from "../../const"
+import {API_ANALYZE_ORDERS, SCROLL_TABLE_X, SCROLL_TABLE_Y} from "../../const"
 import $ from "../../utils/my_axios"
 import {
   GoodsItem,
@@ -113,9 +113,7 @@ export const CompOrdersAnalysis = (
           ),
         ]}
         rowKey={"date"}
-        scroll={{
-          x: 1000,
-        }}
+        scroll={{x: SCROLL_TABLE_X, y: SCROLL_TABLE_Y}}
         pagination={false}
       />
     </>
