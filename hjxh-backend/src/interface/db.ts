@@ -1,16 +1,11 @@
-export type Item = Record<string, any>;
-
-export interface BaseItem extends Item {
-  userId: number
-  updateTime: number | Date
-}
+import {DBItem} from "../../../hjxh-frontend/src/interface/general";
 
 export interface StatsItemId {
     userId: number
     apiType: string
 }
 
-export interface StatsItem extends BaseItem {
+export interface StatsItem extends DBItem {
   _id: StatsItemId
   status: boolean
   detail: any

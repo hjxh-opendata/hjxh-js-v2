@@ -1,4 +1,5 @@
-import {PddExtraParams, PddParams, PddResult} from "./pdd_base";
+import {PddExtraParams, PddResult} from "./pdd_base";
+import {DBItem} from "./general";
 
 
 export interface PddUserInfo {
@@ -23,7 +24,7 @@ export interface UserInfoBase {
   cookie: string;
 }
 
-export interface UserInfo extends UserInfoBase, PddUserInfo {
+export interface UserInfo extends DBItem, UserInfoBase, PddUserInfo {
   verifiedTime: number;
   verifiedStatus: boolean
 }

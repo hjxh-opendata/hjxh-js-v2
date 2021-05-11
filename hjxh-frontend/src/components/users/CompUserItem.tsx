@@ -9,16 +9,26 @@ import {API_GET_USER_STATS, API_VERIFY_USER_COOKIE} from "../../const"
 import {UsersControls} from "../../redux/controls"
 import {AppState} from "../../redux/store"
 import {connect} from "react-redux"
+import {toPercentage} from "../../utils/functions";
 
 export interface IStatus {
   status: boolean
   detail: string | number
 }
 
+export interface IStringStatus extends IStatus {
+  detail: string
+}
+
+export interface INumberStatus extends IStatus {
+  detail: number
+}
+
 export interface UserStats {
-  users?: IStatus
-  goods_list?: IStatus
-  mall_data?: IStatus
+  users?: INumberStatus
+  goods_list?: INumberStatus
+  mall_data?: INumberStatus
+  goods_quality?: INumberStatus
 }
 
 
@@ -34,7 +44,9 @@ export const CompShowVerifiedStatus = (props: IStatus) => {
         }
       </Col>
       <Col span={8}>
-        {props.detail}
+        {
+          typeof props.detail === 'string' ? props.detail : props.detail.toFixed(2)
+        }
       </Col>
     </>
   )
@@ -124,6 +136,13 @@ export const CompUserItem = (props: {
 
         <Col span={8}>交易金额检测：</Col>
         <CompShowVerifiedStatusPlus item={stats.mall_data}/>
+
+        <Col span={8}>退款金额检测：</Col>
+        <CompShowVerifiedStatusPlus item={stats.goods_quality}/>
+
+        <Col span={8}>退款比率：</Col>
+        <Col span={8}>{(stats.mall_data && stats.goods_quality) &&
+        toPercentage(stats.goods_quality.detail / stats.mall_data.detail)} </Col>
       </Row>
 
 

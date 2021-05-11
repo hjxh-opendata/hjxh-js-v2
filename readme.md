@@ -63,6 +63,10 @@ https://github.com/zalmoxisus/redux-devtools-extension#13-use-redux-devtools-ext
 
 ## 开发经验
 
+### 数据库的持久更新冗余设计， 2021年05月11日15:49:20
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-11/134088285379360.png?Expires=4774319361&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=zYkC6p0vhKB4Ic8bP1ZK76Q3vn4%3D)
+
+
 ### `eslint`报`module`错误， 2021年05月11日10:47:55
 
 在`eslint`配置文件中，添加`node`环境

@@ -24,3 +24,6 @@ export const REQUEST_MALL_SCORE =
 
 export const REQUEST_MALL_DATA_BY_MONTH =
   "https://mms.pinduoduo.com/sydney/api/mallInfo/queryMallDataPageOverView"
+
+export const REQUEST_GOODS_QUALITY =
+  "https://mms.pinduoduo.com/sydney/api/saleQuality/querySaleQualityTopGoodsDetailList"

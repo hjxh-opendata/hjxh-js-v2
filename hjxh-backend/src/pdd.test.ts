@@ -4,6 +4,7 @@ import {UserInfo} from "../../hjxh-frontend/src/interface/pdd_user_info";
 import db from "./db";
 import each from "jest-each";
 import {createPddClient} from "./utils/pdd";
+import exp from "constants";
 
 
 each([
@@ -30,13 +31,13 @@ each([
   });
 
 
-  it('获取用户信息', async function () {
+  xit('获取用户信息', async function () {
     const user: UserInfo = await db.collection(COLL_USERS).findOne({"username": pdd.username})
     expect(user.username).toBe(pdd.username)
     expect(user.verifiedStatus).toBe(true)  // 存到数据库中就有verifiedStatus字段了
   });
 
-  it('获取商品列表', async function () {
+  xit('获取商品列表', async function () {
     const res = await pdd.fetchGoodsList()
     expect(res).toBe(true)
   });
@@ -46,9 +47,17 @@ each([
     expect(res).toHaveProperty('dealDataVO')
   });
 
-  it('获取成交金额相关信息', async function () {
+  it('获取成交金额相关信息（月级）', async function () {
     const res = await pdd.fetchMallDataByMonth(2021, 4)
     expect(res).toHaveProperty('cfmOrdrAmt')
+  });
+
+  it('获取基于商品质量的退款数据（月级） ', async function () {
+    const res = await pdd.fetchGoodsQualityByMonth(2021, 4)
+    expect(res).toBeArray()
+    if(res.length > 0) {
+      expect(res[0]).toHaveProperty('rfSucOrdrAmt1m') // 退款金额
+    }
   });
 
 });

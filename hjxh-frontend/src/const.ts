@@ -81,6 +81,7 @@ export const COLL_API_DOCS = "api_docs"
 
 export const COLL_MALL_DATA = "mall_data"
 export const COLL_MALL_SCORE = "mall_score"
+export const COLL_GOODS_QUALITY = "goods_quality"
 
 // mongodb connection config
 export const MONGO_HOST = "nanchuan.site"

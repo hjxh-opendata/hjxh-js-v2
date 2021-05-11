@@ -2,13 +2,13 @@ import axios from "axios";
 import {
   REQUEST_GOODS_LIST,
   REQUEST_MALL_DATA_BY_MONTH,
-  REQUEST_MALL_SCORE,
-  REQUEST_USER_INFO_WITHOUT_MALL
+  REQUEST_GOODS_QUALITY,
+  REQUEST_USER_INFO_WITHOUT_MALL, REQUEST_MALL_SCORE
 } from "./interface/urls";
 import {errors} from "../../hjxh-frontend/src/interface/errors";
 import {UserInfo} from "../../hjxh-frontend/src/interface/pdd_user_info";
 import {
-  COLL_GOODS_LIST,
+  COLL_GOODS_LIST, COLL_GOODS_QUALITY,
   COLL_MALL_DATA,
   COLL_STATS,
   COLL_USERS,
@@ -24,8 +24,10 @@ import {sleep} from "../../hjxh-frontend/src/utils/functions";
 import {PddExtraParams} from "./interface/request";
 import {autoPreprocessItem, autoPreprocessItems} from "./utils/pdd";
 import {PddBaseHeader} from "./interface/response";
-import {Item, StatsCountItemDetail, StatsItem, StatsItemId} from "./interface/db";
+import {StatsCountItemDetail, StatsItem, StatsItemId} from "./interface/db";
+import {DBItem} from "../../hjxh-frontend/src/interface/general";
 
+export type BaseItems = DBItem | (DBItem[])
 
 export class PddClientPlus {
   public username: string;
@@ -49,7 +51,7 @@ export class PddClientPlus {
   public async fetchUnit(
     url: string,
     params: PddExtraParams
-  ): Promise<Item | Item[]> {
+  ): Promise<BaseItems> {
     const antiContent = genAntiContent(this.cookie);
     const data = {...params, crawlerInfo: antiContent};
     const headers: PddBaseHeader = {
@@ -100,10 +102,10 @@ export class PddClientPlus {
    * @param preprocess: 用于做一些自动的预处理
    */
   public async saveIntoDB(
-    data: Item | Item[],
+    data: BaseItems,
     coll_name: string,
     keys?: string[],
-    preprocess?: (data: Item | Item[]) => typeof data
+    preprocess?: (data: DBItem | DBItem[]) => typeof data
   ): Promise<boolean> {
     const coll: Collection = db.collection(coll_name);
     if (preprocess) {
@@ -120,7 +122,7 @@ export class PddClientPlus {
         return false;
       }
     } else {
-      const _data = autoPreprocessItem(data, this.userId, keys);
+      const _data: DBItem = autoPreprocessItem(data, this.userId, keys);
       const dbRes = await coll.updateOne({_id: _data._id}, {$set: _data}, {upsert: true});
       console.log(`single item saved into coll of ${coll_name}`, dbRes.result);
       return true;
@@ -140,7 +142,7 @@ export class PddClientPlus {
    * 从拼多多获取用户数据，更新客户端userId，并将用户信息存储到数据库
    */
   public async fetchUserInfo(): Promise<UserInfo> {
-    const userInfo = await this.fetchUnit(REQUEST_USER_INFO_WITHOUT_MALL, {}) as UserInfo
+    const userInfo: UserInfo = (await this.fetchUnit(REQUEST_USER_INFO_WITHOUT_MALL, {})) as UserInfo
     this.userId = userInfo.id;
     await this.saveIntoDB(userInfo, COLL_USERS);
     await this.saveIntoStats(COLL_USERS, true, { v1: this.userId})
@@ -156,8 +158,8 @@ export class PddClientPlus {
     let page = 1, cur = 0, total = 1;
     while (cur < total) {
       const params: PddExtraParams = {page, size: MAX_PAGE_SIZE};
-      const res = (await this.fetchUnit(REQUEST_GOODS_LIST, params)) as Item;
-      const items = res.goods_list as Item[];
+      const res = (await this.fetchUnit(REQUEST_GOODS_LIST, params)) as DBItem;
+      const items = res.goods_list as DBItem[];
       page++;
       cur += items.length;
       total = res.total as number;
@@ -179,21 +181,33 @@ export class PddClientPlus {
    * @param year
    * @param month
    */
-  public async fetchMallDataByMonth(year: number, month: number): Promise<Item> {
+  public async fetchMallDataByMonth(year: number, month: number): Promise<DBItem> {
     const queryDate = dayjs(new Date(year, month - 1)).endOf('month').format('YYYY-MM-DD')
-    const itemMallData: Item = await this.fetchUnit(REQUEST_MALL_DATA_BY_MONTH, {queryDate, queryType: 4})
+    const itemMallData = (await this.fetchUnit(REQUEST_MALL_DATA_BY_MONTH, {queryDate, queryType: 4})) as DBItem
     itemMallData.month = queryDate.substr(0, 7)
     itemMallData.userId = this.userId
     await this.saveIntoDB(itemMallData, COLL_MALL_DATA, ['month', "userId"])
     // stat
+    await this.saveIntoStats([COLL_MALL_DATA, queryDate].join("_"), true, {v1: itemMallData.cfmOrdrAmt})
     await this.saveIntoStats(COLL_MALL_DATA, true, {v1: itemMallData.cfmOrdrAmt})
     return itemMallData
+  }
+
+  public async fetchGoodsQualityByMonth(year: number, month: number): Promise<DBItem[]>{
+    const queryDate = dayjs(new Date(year, month - 1)).endOf('month').format('YYYY-MM-DD')
+    const items: DBItem[] = (await this.fetchUnit(REQUEST_GOODS_QUALITY, {queryDate})) as DBItem[]
+    await this.saveIntoDB(items, COLL_GOODS_QUALITY, ['queryDate', "userId", 'goodsId'])
+    // stat
+    const sum = items.reduce((o: number, item: DBItem) => (o+=item.rfSucOrdrAmt1m, o), 0)
+    await this.saveIntoStats([COLL_GOODS_QUALITY, queryDate].join("_") , true, {v1: sum})
+    await this.saveIntoStats(COLL_GOODS_QUALITY, true, {v1: sum})
+    return items
   }
 
   /**
    * 日级别的接口，不需要
    */
-  public async fetchMallScore(): Promise<Item> {
-    return this.fetchUnit(REQUEST_MALL_SCORE, {})
+  public async fetchMallScore(): Promise<DBItem> {
+    return (await this.fetchUnit(REQUEST_MALL_SCORE, {})) as DBItem
   }
 }

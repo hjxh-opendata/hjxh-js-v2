@@ -62,3 +62,8 @@ export const getSubDict = (origin: StringDict, ks: string[]): StringDict => {
   })
   return out
 }
+
+
+export const toPercentage = (s: number, k: number = 2): string => {
+  return (s * 100).toFixed(k) + "%"
+}
