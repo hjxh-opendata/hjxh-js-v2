@@ -664,6 +664,15 @@
     jest-diff "^26.0.0"
     pretty-format "^26.0.0"
 
+"@types/jsdom@^16.2.10":
+  version "16.2.10"
+  resolved "https://registry.npm.taobao.org/@types/jsdom/download/@types/jsdom-16.2.10.tgz#c05ea94682d035943ae2453b79d56178496b6653"
+  integrity sha1-wF6pRoLQNZQ64kU7edVheElrZlM=
+  dependencies:
+    "@types/node" "*"
+    "@types/parse5" "*"
+    "@types/tough-cookie" "*"
+
 "@types/json-schema@^7.0.3":
   version "7.0.7"
   resolved "https://registry.npm.taobao.org/@types/json-schema/download/@types/json-schema-7.0.7.tgz?cache=0&sync_timestamp=1613379043763&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fjson-schema%2Fdownload%2F%40types%2Fjson-schema-7.0.7.tgz#98a993516c859eb0d5c4c8f098317a9ea68db9ad"
@@ -695,6 +704,11 @@
   resolved "https://registry.nlark.com/@types/normalize-package-data/download/@types/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
   integrity sha1-5IbQ2XOW15vu3QpuM/RTT/a0lz4=
 
+"@types/parse5@*":
+  version "6.0.0"
+  resolved "https://registry.npm.taobao.org/@types/parse5/download/@types/parse5-6.0.0.tgz#38590dc2c3cf5717154064e3ee9b6947ee21b299"
+  integrity sha1-OFkNwsPPVxcVQGTj7ptpR+4hspk=
+
 "@types/prettier@^2.0.0":
   version "2.2.3"
   resolved "https://registry.npm.taobao.org/@types/prettier/download/@types/prettier-2.2.3.tgz#ef65165aea2924c9359205bf748865b8881753c0"
@@ -709,6 +723,11 @@
   version "2.0.0"
   resolved "https://registry.npm.taobao.org/@types/stack-utils/download/@types/stack-utils-2.0.0.tgz#7036640b4e21cc2f259ae826ce843d277dad8cff"
   integrity sha1-cDZkC04hzC8lmugmzoQ9J32tjP8=
+
+"@types/tough-cookie@*":
+  version "4.0.0"
+  resolved "https://registry.npm.taobao.org/@types/tough-cookie/download/@types/tough-cookie-4.0.0.tgz#fef1904e4668b6e5ecee60c52cc6a078ffa6697d"
+  integrity sha1-/vGQTkZotuXs7mDFLMageP+maX0=
 
 "@types/yargs-parser@*":
   version "20.2.0"
@@ -3088,7 +3107,7 @@ jsbn@~0.1.0:
   resolved "https://registry.npm.taobao.org/jsbn/download/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
   integrity sha1-peZUwuWi3rXyAdls77yoDA7y9RM=
 
-jsdom@^16.4.0:
+jsdom@^16.4.0, jsdom@^16.5.3:
   version "16.5.3"
   resolved "https://registry.npm.taobao.org/jsdom/download/jsdom-16.5.3.tgz#13a755b3950eb938b4482c407238ddf16f0d2136"
   integrity sha1-E6dVs5UOuTi0SCxAcjjd8W8NITY=

@@ -57,7 +57,7 @@ export const CompOrdersAnalysis = (
 
   return (
     <>
-      <div style={{ display: "flex", alignItems: "center" }}>
+      <div style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <Space>
           <Switch
             style={{ width: 80 }}

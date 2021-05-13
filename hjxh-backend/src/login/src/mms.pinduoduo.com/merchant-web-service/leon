@@ -1,0 +1,9 @@
+{
+  "errorMsg": null,
+  "errorCode": 1000000,
+  "result": {
+    "value": "{\n  \"header\": \"https://t16img.yangkeduo.com/mms_static/13fc8511407e935fa58e8918d2861851.js\",\n  \"header_next\": \"https://t16img.yangkeduo.com/mms_static/93c03a27845737543c705eda2af970dc.js\",\n\"message_service\":\"https://t16img.yangkeduo.com/mms_static/de87fcd0811c9cc87f0351183cb95a8c.pdf\",\n\"warning_text\": null,\n\"____common_modal\":{\"content\":\" \", \"uri\":\"^\\/orders\\/list\"}\n}",
+    "time": 1620881468473
+  },
+  "success": true
+}

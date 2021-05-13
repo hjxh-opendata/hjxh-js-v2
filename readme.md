@@ -19,6 +19,10 @@
 
 ## 开发进度
 
+### 已实现从`mms`获取`yingxiao`的`SUB_PASS_ID`，并通过测试， 2021年05月13日14:57:06
+核心思路：
+先调用`GEN_TOKEN`接口，获得系统`accessToken`，再通过这个`accessToken`结合`sub_system_id`获取`userAccessToken`，即`yingxiao`的`SUB_PASS_ID`。过程不难，全程只需要`mms`的`cookie`就可以，关键是这里涉及到了两个`access_token`，所以一开始根本没分清，还以为是同一个。（幸好之前研究过`OpenAuth`）
+
 ### 修复数据库翻页插入逻辑， 2021年05月11日11:28:50
 
 
@@ -62,6 +66,10 @@ https://github.com/zalmoxisus/redux-devtools-extension#13-use-redux-devtools-ext
 目前来看，貌似速度是比之前的要快很多的，大爱~
 
 ## 开发经验
+
+### AntiContent 测试：目标URL是不重要的，任意（但不能为空），2021年05月13日08:59:04
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-13/1628872986390.png?Expires=4774467520&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=uUdUrieP6HFz7aTFE6leODSO6JU%3D)
+
 
 ### 数据库的持久更新冗余设计， 2021年05月11日15:49:20
 ![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-11/134088285379360.png?Expires=4774319361&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=zYkC6p0vhKB4Ic8bP1ZK76Q3vn4%3D)

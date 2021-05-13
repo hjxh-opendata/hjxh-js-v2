@@ -1,3 +1,8 @@
+import { REQUEST_PDD_BASE } from "../interface/urls";
+
+const DEFAULT_USER_AGENT =
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36";
+
 function loadCookie(cookie) {
   let cookiesDict = {};
   cookie.split(";").forEach((s) => {
@@ -9,22 +14,20 @@ function loadCookie(cookie) {
   return cookiesDict;
 }
 
-const DEFAULT_USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36'
 function genAntiContent(cookie, userAgent = DEFAULT_USER_AGENT) {
   const _cookieDict = loadCookie(cookie);
-
   var window = {
     document: {
       cookie: cookie,
       location: {
-        href: "https://mms.pinduoduo.com/login",
+        href: REQUEST_PDD_BASE,
         port: "",
       },
       //  注意是两个r
       referrer: "https://mms.pinduoduo.com/home",
     },
     navigator: {
-      userAgent
+      userAgent,
     },
     screen: {
       availHeight: 1000 + Math.floor(Math.random() * 1000),
@@ -5686,8 +5689,8 @@ function genAntiContent(cookie, userAgent = DEFAULT_USER_AGENT) {
   })(funcs)().messagePack();
 }
 
-module.exports = genAntiContent;
+export default genAntiContent;
 
 if (require.main === module) {
-  console.log(genAntiContent(process.argv[2]));
+  console.log(genAntiContent(''));
 }

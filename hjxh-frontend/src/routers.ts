@@ -107,7 +107,7 @@ export const routersBase: RouterItemBase[] = [
     children: [
       {
         key: "login",
-        title: "账号管理",
+        title: "运营列表",
       },
       // {
       //   key: "monitor",
@@ -115,6 +115,11 @@ export const routersBase: RouterItemBase[] = [
       // }
     ],
   },
+
+  {
+    key:'accounts',
+    title: '账号相关'
+  }
 ]
 
 const addRouterItemWithPath = (

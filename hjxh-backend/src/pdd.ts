@@ -3,7 +3,7 @@ import {
   REQUEST_GOODS_LIST,
   REQUEST_MALL_DATA_BY_MONTH,
   REQUEST_GOODS_QUALITY,
-  REQUEST_USER_INFO_WITHOUT_MALL, REQUEST_MALL_SCORE
+  REQUEST_USER_INFO_WITHOUT_MALL, REQUEST_MALL_SCORE, REQUEST_RECENT_ORDER_LIST
 } from "./interface/urls";
 import {errors} from "../../hjxh-frontend/src/interface/errors";
 import {UserInfo} from "../../hjxh-frontend/src/interface/pdd_user_info";
@@ -205,9 +205,25 @@ export class PddClientPlus {
   }
 
   /**
-   * 日级别的接口，不需要
+   * 获取店铺的指标数据（日级）
    */
   public async fetchMallScore(): Promise<DBItem> {
     return (await this.fetchUnit(REQUEST_MALL_SCORE, {})) as DBItem
+  }
+
+
+  public async fetchRecentOrderList(): Promise<DBItem[]> {
+    const res = await this.fetchUnit(REQUEST_RECENT_ORDER_LIST, {
+      afterSaleType: 1,
+      groupEndTime: 1620837886,
+      groupStartTime: 1613061886,
+      orderType: 1,
+      pageNumber: 1,
+      pageSize: 20,
+      remarkStatus: -1,
+      sortType: 7,
+      urgeShippingStatus: -1,
+    })
+    return res as DBItem[]
   }
 }

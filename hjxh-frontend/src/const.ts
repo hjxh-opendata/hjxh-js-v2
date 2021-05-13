@@ -56,6 +56,8 @@ export const URI_ANALYSIS_AD = "/analysis/ad"
 export const URI_USERS_LOGIN = '/users/login'
 export const URI_USERS_MONITOR = '/users/monitor'
 
+export const URI_ACCOUNTS = "/accounts"
+
 // default
 export const DEFAULT_USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36'
 export const DEFAULT_USERNAME = "乐和食品店:冯露"

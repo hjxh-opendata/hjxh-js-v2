@@ -1,0 +1,48 @@
+# is_list 判断是否是列表，是的话要提供翻页、总计字段
+# is_inc 标记是否为增量数据，增量就是插入，存量就是更新
+# ids 提供设置id的关键字段，多个的话就是object
+# stats 提供要统计的字段，如果原数据是列表的话，求汇总 todo
+- requests:
+    -
+      name: 用户信息（一次性）
+      coll_name: users
+      url: https://mms.pinduoduo.com/janus/api/new/userinfo
+      is_inc: false
+      is_list: false
+      pagination:
+      params:
+      ids: userId
+      stats: userId
+    -
+      name: 商品信息（一次性）
+      coll_name: goods_list
+      url: https://mms.pinduoduo.com/vodka/v2/mms/query/display/mall/goodsList
+      is_inc: false
+      is_list: true
+      pagination:
+        page_num_key: page
+        page_size_key: size
+        total_key: total
+      params:
+      ids: id
+    -
+      name: 商店数据（含销售额）（月级）
+      coll_name: mall_data
+      url: https://mms.pinduoduo.com/sydney/api/mallInfo/queryMallDataPageOverView
+      is_inc: true
+      is_list: false
+      params:
+        queryDate: YYYY-MM-DD
+        queryType: 4  # 4 表示统计上个月
+      ids:
+        - userId
+        - queryDate
+    - name: 商品质量（含退款数据）（月级）
+      coll_name: goods_quality
+      url: https://mms.pinduoduo.com/sydney/api/saleQuality/querySaleQualityTopGoodsDetailList
+      is_inc: true
+      is_list: true
+      pagination:
+      params:
+
+

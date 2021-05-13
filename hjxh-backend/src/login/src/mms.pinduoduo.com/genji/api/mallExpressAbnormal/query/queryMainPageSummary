@@ -1,0 +1,1 @@
+{"success":true,"errorCode":1000000,"errorMsg":null,"result":{"customerReplyRate3min":0.9904,"customerReplyRateHoverAlert":false,"customerReplyRate5min":0.9969,"avgReplyTime":0.27,"avgReplyTimeHoverAlert":false,"complaintRate30day":4.0E-4,"customerReplyStatus":0,"expressServiceStatus":0,"afterSaleStatus":1,"inPunishByService":[]}}

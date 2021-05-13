@@ -1,0 +1,57 @@
+.input-wrapper {
+  position: relative;
+}
+
+@charset "UTF-8";
+/**
+ * 移动端应该需要rem
+ * 到时候再看
+ */
+.captcha-wrapper__picture .red-point {
+  position: absolute;
+  color: #fff;
+  background: #e02e24;
+  border: 1px solid #fff;
+  -moz-border-radius: 50%;
+       border-radius: 50%;
+  -webkit-transform: translate(-50%, -50%);
+     -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  cursor: pointer;
+}
+.captcha-wrapper__picture .picture-img {
+  position: relative;
+}
+
+.captcha-wrapper__slider .captcha-refresh {
+  text-align: right;
+}
+.captcha-wrapper__slider .slider-img {
+  position: relative;
+}
+.captcha-wrapper__slider .slider-img .slider-img-bg {
+  width: 100%;
+  height: 100%;
+}
+.captcha-wrapper__slider .slider-img .slider-item {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: auto;
+}
+
+
+
+.captcha-refresh img {
+  width: 16px;
+}
+
+
+/*# sourceMappingURL=http://esxftfvh.com/msfe/sourcemap/login/static/css/0.99305b3e4.chunk.css.map*/

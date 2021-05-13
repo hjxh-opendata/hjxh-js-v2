@@ -1,13 +1,14 @@
-import { Layout } from "antd"
-import React, { useEffect } from "react"
+import {Layout} from "antd"
+import React, {useEffect} from "react"
 import CompHeader from "./components/layout/CompHeader"
 import CompSider from "./components/layout/CompSider"
-import { BrowserRouter, Route, Switch } from "react-router-dom"
+import {BrowserRouter, Route, Switch} from "react-router-dom"
 import CompOrdersAnalysis from "./components/analysis/CompOrdersAnalysis"
 import CompRawTable from "./components/general/CompRawTable"
-import { RouterItemBase, routerOfRawData } from "./routers"
+import {RouterItemBase, routerOfRawData} from "./routers"
 import {
   API_GET_USERS,
+  URI_ACCOUNTS,
   URI_ANALYSIS_AD,
   URI_ANALYSIS_ORDERS,
   URI_HOME,
@@ -16,11 +17,12 @@ import {
 } from "./const"
 import CompAdAnalysis from "./components/analysis/ad/CompAdAnalysis"
 import CompUsersList from "./components/users/CompUsersList"
-import { Provider } from "react-redux"
+import {Provider} from "react-redux"
 import store from "./redux/store"
 import $ from "./utils/my_axios"
-import { SET_USERS } from "./redux/users"
-import { Content } from "antd/lib/layout/layout"
+import {SET_USERS} from "./redux/users"
+import {Content} from "antd/lib/layout/layout"
+import CompAccounts from "./components/accounts/CompAccounts";
 
 const genRoute = (fatherRouter: RouterItemBase): any[] => {
   let routes: any[] = []
@@ -31,7 +33,7 @@ const genRoute = (fatherRouter: RouterItemBase): any[] => {
         key={fatherRouter.api}
         path={fatherRouter.api}
         exact
-        component={() => <CompRawTable url={api} />}
+        component={() => <CompRawTable url={api}/>}
       />
     )
   }
@@ -67,18 +69,18 @@ export const App = () => {
             flexDirection: "row",
           }}
         >
-          <CompSider />
+          <CompSider/>
 
           <Layout
             className={"site-layout"}
-            style={{ width: "100%", height: "100vh", overflow: "auto" }}
+            style={{width: "100%", height: "100vh", overflow: "auto"}}
           >
-            <CompHeader />
+            <CompHeader/>
 
-            <Content style={{ margin: "16px 16px" }}>
-              <div id={"content"} style={{ padding: 24, minHeight: 600 }}>
+            <Content style={{margin: "16px 16px"}}>
+              <div id={"content"} style={{padding: 24, minHeight: 600}}>
                 <Switch>
-                  <Route path={URI_HOME} exact />
+                  <Route path={URI_HOME} exact/>
                   <Route
                     path={URI_ANALYSIS_ORDERS}
                     exact
@@ -102,6 +104,11 @@ export const App = () => {
                     path={URI_USERS_MONITOR}
                     exact
                     component={CompUsersList}
+                  />
+                  <Route
+                    path={URI_ACCOUNTS}
+                    exact
+                    component={CompAccounts}
                   />
                 </Switch>
               </div>

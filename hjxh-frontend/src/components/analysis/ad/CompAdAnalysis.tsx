@@ -26,12 +26,12 @@ export const CompAdAnalysis = (
     }
   }, [props.goods_id, props.period])
   return (
-    <div>
+    <>
       <CompSelects/>
       <Table columns={adColumns} dataSource={props.ad} rowKey={"date"}
              scroll={{x: SCROLL_TABLE_X, y: SCROLL_TABLE_Y}}
       />
-    </div>
+    </>
   )
 }
 

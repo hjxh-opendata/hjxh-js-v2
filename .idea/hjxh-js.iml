@@ -6,7 +6,6 @@
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/hjxh-backend/old" />
-      <excludeFolder url="file://$MODULE_DIR$/hjxh-backend/src/test" />
       <excludeFolder url="file://$MODULE_DIR$/hjxh-backend/src/crawl_v1" />
       <excludeFolder url="file://$MODULE_DIR$/hack" />
     </content>
