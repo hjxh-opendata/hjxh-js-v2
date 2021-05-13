@@ -3,18 +3,19 @@ import {
   REQUEST_AD,
   REQUEST_AUTH,
   REQUEST_COMMON_MALL_INFO,
-  REQUEST_GEN_TOKEN, REQUEST_GET_TOKEN,
-  REQUEST_MALL_SCORE,
-  REQUEST_RECENT_ORDER_LIST,
+  REQUEST_GEN_TOKEN,
+  REQUEST_GET_TOKEN,
+  REQUEST_MALL_SCORE, REQUEST_RECENT_ORDER_LIST,
   REQUEST_USER_INFO_WITHOUT_MALL
 } from "../interface/urls";
 import { DEFAULT_USER_AGENT } from "../../../hjxh-frontend/src/const";
-import { StringDict } from "../../../hjxh-frontend/src/interface/general";
 import genEncryptedPassword from "../algos/genEncryptedPassword";
 import genRiskSign from "../algos/genRiskSign";
 import genAntiContent from "../algos/genAntiContent";
 import $ from "../$";
 import assert from "assert";
+import { StringDict } from "../../../hjxh-frontend/src/interface/general";
+import { COOKIE_NANO_FP } from "../interface/request";
 
 export const queryUserInfo = async (
   cookie: string,
@@ -67,22 +68,15 @@ export const queryMallScoreInfo = async (
   );
 };
 
-export const queryRecentOrderList = async (
-  url: string,
-  cookie: string,
-  userAgent: string,
-  withAntiContent = true
-) => {
+export const queryRecentOrderList = async (PASS_ID: string) => {
+  const cookie = ["PASS_ID=" + PASS_ID, "_nano_fp="+COOKIE_NANO_FP].join(";")
   const antiContent = genAntiContent(cookie, DEFAULT_USER_AGENT);
   const headers: StringDict = {
     cookie,
-    "User-Agent": userAgent,
+    "Anti-Content": antiContent
   };
-  if (withAntiContent) {
-    headers["Anti-Content"] = antiContent;
-  }
 
-  return axios.post(
+  return $.post(
     REQUEST_RECENT_ORDER_LIST,
     {
       afterSaleType: 0,
@@ -92,34 +86,39 @@ export const queryRecentOrderList = async (
       pageNumber: 1,
       pageSize: 20,
       remarkStatus: -1,
-      urgeShippingStatus: -1,
+      urgeShippingStatus: -1
     },
     {
       headers,
-      withCredentials: true,
+      withCredentials: true
     }
   );
 };
 
-export const genAccessToken = async (
-  cookie: string,
-  userAgent: string,
-  redirectUrl = "https://yingxiao.pinduoduo.com/marketing/main/center/search/list"
-): Promise<string> => {
+export const genSystemAccessToken = async (cookie: string, userAgent: string): Promise<string> => {
+  const   redirectUrl = "https://yingxiao.pinduoduo.com/marketing/main/center/search/list"
   const res = await $.post(
     REQUEST_GEN_TOKEN,
     { redirectUrl },
     { headers: { cookie, "Anti-Content": genAntiContent(cookie, userAgent) } }
   );
-  assert(res.data.success);
-  const systemToken: string = res.data.result.accessToken;
+  assert(res.data.success, JSON.stringify(res.data));
+  return res.data.result.accessToken;
+}
+
+export const genAccessToken = async (
+  cookie: string,
+  userAgent: string,
+): Promise<string> => {
+  const systemToken = await genSystemAccessToken(cookie, userAgent)
+
   // 不用antiContent
   const res2 = await $.post(
     REQUEST_GET_TOKEN,
     {accessToken: systemToken, 	"subSystemId": 7 },
     {headers: { cookie }}
   )
-  assert(res2.data.success, "");
+  assert(res2.data.success, JSON.stringify(res2.data));
   `
   res2.data['set_cookie'] = [
     "SUB_SYSTEM_ID=7; Max-Age=864000; Expires=Sun, 23-May-2021 06:49:12 GMT; Path=/; HttpOnly",
@@ -131,7 +130,7 @@ export const genAccessToken = async (
 
 export const queryAd = async (cookie: string, userAgent: string) => {
   const antiContent = genAntiContent(cookie, userAgent);
-  console.log({ cookie, antiContent });
+  // console.log({ cookie, antiContent });
   return $.post(
     REQUEST_AD,
     {

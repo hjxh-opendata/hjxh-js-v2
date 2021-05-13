@@ -27,6 +27,8 @@ export interface UserInfoBase {
 export interface UserInfo extends DBItem, UserInfoBase, PddUserInfo {
   verifiedTime: number;
   verifiedStatus: boolean
+  PASS_ID: string
+  SUB_PASS_ID: string
 }
 
 export interface PddUserInfoParams extends PddExtraParams {

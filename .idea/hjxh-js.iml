@@ -8,6 +8,8 @@
       <excludeFolder url="file://$MODULE_DIR$/hjxh-backend/old" />
       <excludeFolder url="file://$MODULE_DIR$/hjxh-backend/src/crawl_v1" />
       <excludeFolder url="file://$MODULE_DIR$/hack" />
+      <excludeFolder url="file://$MODULE_DIR$/hjxh-backend" />
+      <excludeFolder url="file://$MODULE_DIR$/hjxh-backend-v2/old" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

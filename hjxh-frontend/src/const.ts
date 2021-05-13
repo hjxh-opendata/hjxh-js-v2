@@ -1,5 +1,3 @@
-
-
 // antd config
 export const ALI_ICON_PATH = "//at.alicdn.com/t/font_2518932_jmkm84pn3vh.js";
 export const SiderWidth = 200;
@@ -80,19 +78,9 @@ export const COLL_GOODS_DETAIL = "goods_detail"
 export const COLL_GOODS_COMMENTS_LIST = "goods_comments_list"
 export const COLL_GOODS_COMMENTS_DETAIL = "goods_comments_detail"
 export const COLL_API_DOCS = "api_docs"
-
 export const COLL_MALL_DATA = "mall_data"
 export const COLL_MALL_SCORE = "mall_score"
 export const COLL_GOODS_QUALITY = "goods_quality"
 
-// mongodb connection config
-export const MONGO_HOST = "nanchuan.site"
-export const MONGO_PORT = 2708
-export const MONGO_DB_AUTH = "hjxh-operate"
-export const MONGO_USERNAME = "hjxh-operator"
-export const MONGO_PASSWORD = "hjxh-operator"
-export const MONGO_DATABASE_NAME = "hjxh-operate"
-export const MONGO_URI = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DATABASE_NAME}?authSource=${MONGO_DB_AUTH}` // alias
-export const SecondsEachDay = 86400
-export const MillisecondsEachDay = 86400000
-export const MillisecondsDelay = 1000
+// const alias
+export const SECONDS_EACH_DAY = 86400

@@ -1,0 +1,62 @@
+userInfo:
+  description: 用户信息
+  note:
+  baseType: 1
+  path: /janus/api/new/userinfo
+  isAnti: false
+  isInc: false
+  params:
+  pagination:
+  collName: users
+  ids: id
+
+recentOrders:
+  description: 最近订单
+  baseType: 1
+  path: /mangkhut/mms/recentOrderList
+  isAnti: true
+  isInc: true
+  params:
+    orderType: 0                # 订单状态，默认为 1 （待发货），0 表全选
+    afterSaleType: 0            # 售后状态，默认为 1（无售后/取消售后），0 表全选
+    remarkStatus: -1            # 标注状态，-1 表全选
+    urgeShippingStatus: -1      # 承诺发货时间，-1 表全选
+    sortType: 8                 # 排序类型，默认为 7（最新上交订单在上），爬取适合选 8（在下）
+    groupStartTime: 1613134083  # 开始时间，中国某日零点，秒级时间戳
+    groupEndTime: 1620910083    # 结束时间，中国次日零点，秒级时间戳
+    pageNumber: 1
+    pageSize: 50
+  pagination:
+    pageNumKey: pageNumber
+    pageSizeKey: pageSize
+    totalSizeKey: totalItemNum
+    itemsKey: pageItems
+  collName: orders
+  ids: order_sn
+  note:
+
+adFangxin:
+  description: 放心推单元列表
+  baseType: 2
+  path: /venus/api/cpa/goods/list
+  isAnti: true
+  isInc: true
+  params:
+    mallId:                 # 店铺ID，例：506673970
+    scenesType: 6           # 场景（放心推，固定参数）
+    startDate: 2021-05-12   # 指定日期，YYYY-MM-DD
+    endDate: 2021-05-12     # 指定日期， YYYY-MM-DD
+    searchKey: null
+    pageNumber: 1
+    pageSize: 50
+  pagination:
+    pageNumKey: pageNumber
+    pageSizeKey: pageSize
+    totalSizeKey: total
+    itemsKey: result
+  collName: ad_fangxin
+  ids:
+    - unitId
+    - dateStr
+  note:
+
