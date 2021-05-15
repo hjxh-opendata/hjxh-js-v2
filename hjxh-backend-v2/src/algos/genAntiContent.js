@@ -4871,6 +4871,8 @@ function genAntiContent(cookie, userAgent = DEFAULT_USER_AGENT) {
 }
 
 module.exports = genAntiContent;
+//
+// export default genAntiContent
 
 if (require.main === module) {
   console.log(genAntiContent(""));

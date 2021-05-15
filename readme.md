@@ -10,6 +10,12 @@
 
 ## 业务相关
 
+### 子系统不存在，2021年05月14日19:21:54
+
+所以只要填一个合法的子域名就可以，比如拼多多营销 `PddBaseType.yx`
+
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-14/125423124178514.png?Expires=4774591316&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=Qu7QA1ME2OUlGqiutW132VQoWmg%3D)
+
 ### 测试结果
 No. | 测试项 | 预期 | 实际 | 结论
 --- | --- | ---- | ---- | ----
@@ -117,6 +123,47 @@ Set-Cookie3: x-visit-time=1620891591941; path="/"; domain=mms.pinduoduo.com; pat
 ![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-10/63093222231277.png?Expires=4774248365&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=Dgvmo97ffXCD3pL16TZQK2dr7oI%3D)
 
 ## 开发进度
+### 开始配置 `nest.js` 后端，2021年05月15日08:35:41
+实现了自定义统一返回接口，效果如下：
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-15/8269320052490.png?Expires=4774646127&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=dW7LrAgwuPeBD7G%2Fo7EE9iDSpLM%3D)
+
+自定返回格式部分代码：
+```ts
+// src/core/interceptors/transform.interceptor.ts
+
+@Injectable()
+export class TransformResponseInterceptor implements NestInterceptor {
+  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+    const response = context.switchToHttp().getResponse<Response>();
+    const statusCode = response.statusCode;
+    return next.handle().pipe(
+      map((data) => {
+        console.log({ statusCode, _data: display(data) });
+
+        return {
+          result: Array.isArray(data) ? {data, length: data.length} : data,
+          success: true,
+          message: '请求成功',
+        };
+      }),
+    );
+  }
+}
+
+```
+
+参考：
+- [nestjs 统一返回格式 | Random thoughts](https://yueqingsheng.github.io/post/nestjs-tong-yi-fan-hui-ge-shi/)
+
+### 发现之前的`mallId`可能是错的， 2021年05月14日10:08:28
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-14/92217193352746.png?Expires=4774558109&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=qgwD2ud1M7B1%2BXuK0lP5VCG9Z%2Fg%3D)
+
+
+### 完美通过所有的测试
+唯一的问题就是，今天我没动firefox，为啥晚上全都失效了呢……这可不好，总不能每天都重新录一下`PASS_ID`吧，说好的十天呢
+
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-13/54571919745875.png?Expires=4774520463&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=mOwmTN8DX8z8VfpUlpVDAwrEF5s%3D)
+
 
 ### 开发V2版backend，2021年05月13日17:12:17
 
@@ -179,6 +226,73 @@ https://github.com/zalmoxisus/redux-devtools-extension#13-use-redux-devtools-ext
 目前来看，貌似速度是比之前的要快很多的，大爱~
 
 ## 开发经验
+### ESM导入支持【吐血】， 2021年05月14日18:21:34
+refer：
+- [使用ts-node直接运行ts脚本和踩过的坑 - SegmentFault 思否](https://segmentfault.com/a/1190000039413384?utm_source=tag-newest)
+- [Allow import of directories with index.ts and import of files without extension · Issue #1198 · TypeStrong/ts-node](https://github.com/TypeStrong/ts-node/issues/1198#issuecomment-762473617)
+
+### 异步导致字典信息乱改的bug，2021年05月14日12:26:05
+由于将所有配置文件写在了`reqDict`内，让所有的用户和用户的子进程读取，这导致尽管用了一个变量去接受仍然是指针引用，导致了内部函数修改指针从而乱写的问题。
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-14/100499172553087.png?Expires=4774566391&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=%2BAoex2Je3BGlxyAUMSXcPef44AI%3D)
+
+如下，雷港在第一页爬取完之后准备爬第二页时，参数已经被其他用户多加了7（user打头的短的那七行）……
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-14/100621752530247.png?Expires=4774566514&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=c1pcifwdWdjyF77qup05mWykTL8%3D)
+
+解决方案至少有两种：
+第一种，在每个子进程内获取的字典参数，都用解构获取，即`{...reqDict}`，保证非指针引用。
+
+但这种方法，还是会产生疏忽。
+
+第二种，封装字典参数，因为本来就不是直接操作的文件级别的，而是已经有了一层读取再转成字典的操作，所以不妨在这个层继续加一层获取`params`的封装，以函数形式获取参数而非键形式。
+
+原先代码如下，向主程序返回一个全局字典：
+```ts
+export const readRequestDict = (): { [key: string]: PddRequest } => {
+  const requestPath = path.resolve(__dirname, "./config/request.yaml");
+  const reqDict = jsyaml.load(fs.readFileSync(requestPath, "utf-8")) as { [key: string]: PddRequest };
+  Object.keys(reqDict).forEach(
+      (k) => (reqDict[k].basePath = reqDict[k].baseType === 1 ? PddBaseType.home : PddBaseType.yx)
+  );
+  return reqDict;
+};
+```
+
+修改为通过参数返回一个函数，以避免对全局字典的修改，也避免对其他进程的干扰：
+```ts
+const REQUEST_CONFIG_PATH = path.resolve(__dirname, "./config/request.yaml");
+const globalRequestDict = jsyaml.load(fs.readFileSync(REQUEST_CONFIG_PATH, "utf-8")) as { [key: string]: PddRequest };
+Object.keys(globalRequestDict).forEach(
+  (k) => (globalRequestDict[k].basePath = globalRequestDict[k].baseType === 1 ? PddBaseType.home : PddBaseType.yx)
+);
+export const readRequestDict = (key: string): PddRequest => {
+  return { ...globalRequestDict[key] };
+};
+```
+
+结果你猜怎么着？
+
+还是不行，笑死，最后直接上了`lodash`的深拷贝：
+```ts
+export const readRequestDict = (key: RequestType): PddRequest => {
+  // 使用深拷贝
+  return _.cloneDeep(globalRequestDict[key]);
+};
+```
+
+**LODASH YYDS!**
+
+
+### 店铺还是用户，巨大的坑，2021年05月14日11:33:58
+在昨晚，我们使用"邓雪梅"的账号，爬取了十五万条订单数据，基于拼多多的接口设计我在所有业务中增加了`userId`标识，这导致次日需要更换账号使用"雷港"（但实际是同一店铺）重新进行爬取时，由于订单系统基于订单ID而设计的ID，导致所有数据都无法插入，于是今日的所有数据都是白爬，雷港的爬取量永远都是0……
+
+解决方案，是在业务里每一条再补加`mallId`字段，然后用`mallId`校验，之所以使用这么冗余的设计，一方面是因为`userId | mallId`暂时都有一些价值，另外一方面它们都是用数字存储的，所占空间可以接受。
+
+### nvm not found， 2021年05月14日10:37:50
+由于用的是`brew`，所以往上有些配置不能生效，参照官网的才行：
+- [nvm — Homebrew Formulae](https://formulae.brew.sh/formula/nvm)
+
+### 有符号位右移与符号位右移的bug
+![](http://mark-vue-oss.oss-cn-hangzhou.aliyuncs.com/pasteimageintomarkdown/2021-05-14/61078329158564.png?Expires=4774526970&OSSAccessKeyId=LTAI4G8kArj75ch3irL8mUUJ&Signature=NPJB7g%2BKKGBhCBkzD8N2np3yV1g%3D)
 
 
 ### typscript of headers
@@ -653,8 +767,8 @@ goodsUnfkUndfltRevCnt1m	Integer	6613
 ```js
 // jest.setup.js
 
-// 设置一分钟
-jest.setTimeout(60000)
+// 设置十分钟
+jest.setTimeout(600000)
 ```
 
 ```js

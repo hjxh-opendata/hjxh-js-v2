@@ -1,8 +1,8 @@
 Arguments: 
-  /Users/mark/.nvm/versions/node/v16.1.0/bin/node /usr/local/Cellar/yarn/1.22.10/libexec/bin/yarn.js add -D @types/dayjs
+  /Users/mark/.nvm/versions/node/v16.1.0/bin/node /usr/local/Cellar/yarn/1.22.10/libexec/bin/yarn.js add ts-node/register
 
 PATH: 
-  /Users/mark/miniconda3/bin:/Users/mark/miniconda3/condabin:/Users/mark/.pyenv/shims:/usr/local/sbin:/usr/local/bin:/Users/mark/.pyenv/plugins/pyenv-virtualenv/shims:/Users/mark/.pyenv/shims:/Users/mark/.pyenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
+  /Users/mark/miniconda3/bin:/Users/mark/miniconda3/condabin:/Users/mark/.pyenv/shims:/usr/local/sbin:/usr/local/bin:/Users/mark/.pyenv/plugins/pyenv-virtualenv/shims:/Users/mark/.pyenv/shims:/Users/mark/.pyenv/bin:/Users/mark/.nvm/versions/node/v16.1.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
 
 Yarn version: 
   1.22.10
@@ -14,17 +14,16 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: http://registry.npm.taobao.org/@types%2fdayjs: Not found
-      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.22.10/libexec/lib/cli.js:66988:18)
-      at Request.self.callback (/usr/local/Cellar/yarn/1.22.10/libexec/lib/cli.js:140749:22)
-      at Request.emit (node:events:365:28)
-      at Request.<anonymous> (/usr/local/Cellar/yarn/1.22.10/libexec/lib/cli.js:141721:10)
-      at Request.emit (node:events:365:28)
-      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.22.10/libexec/lib/cli.js:141643:12)
+  Error: https://github.com/ts-node/register: ESOCKETTIMEDOUT
+      at ClientRequest.<anonymous> (/usr/local/Cellar/yarn/1.22.10/libexec/lib/cli.js:141376:19)
       at Object.onceWrapper (node:events:471:28)
-      at IncomingMessage.emit (node:events:377:35)
-      at endReadableNT (node:internal/streams/readable:1312:12)
-      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+      at ClientRequest.emit (node:events:365:28)
+      at TLSSocket.emitRequestTimeout (node:_http_client:761:9)
+      at Object.onceWrapper (node:events:471:28)
+      at TLSSocket.emit (node:events:377:35)
+      at TLSSocket.Socket._onTimeout (node:net:475:8)
+      at listOnTimeout (node:internal/timers:557:17)
+      at processTimers (node:internal/timers:500:7)
 
 npm manifest: 
   {
@@ -35,16 +34,22 @@ npm manifest:
     "dependencies": {
       "axios": "^0.21.1",
       "dayjs": "^1.10.4",
+      "jest-each": "^26.6.2",
       "js-yaml": "^4.1.0",
       "jsdom": "^16.5.3",
-      "mongoose": "^5.12.8"
+      "lodash": "^4.17.21",
+      "mongoose": "^5.12.8",
+      "string-width": "^5.0.0"
     },
     "devDependencies": {
       "@types/axios": "^0.14.0",
       "@types/jest": "^26.0.23",
+      "@types/jest-each": "^24.3.0",
       "@types/js-yaml": "^4.0.1",
       "@types/jsdom": "^16.2.10",
+      "@types/lodash": "^4.14.169",
       "@types/node": "^15.0.3",
+      "@types/string-width": "^4.0.1",
       "jest": "^26.6.3",
       "jest-extended": "^0.11.5",
       "ts-jest": "^26.5.6",
@@ -671,6 +676,13 @@ Lockfile:
     dependencies:
       "@types/istanbul-lib-report" "*"
   
+  "@types/jest-each@^24.3.0":
+    version "24.3.0"
+    resolved "https://registry.nlark.com/@types/jest-each/download/@types/jest-each-24.3.0.tgz#cec9334032304753dd6ea7ccb70967023dcac23e"
+    integrity sha1-zskzQDIwR1PdbqfMtwlnAj3Kwj4=
+    dependencies:
+      jest-each "*"
+  
   "@types/jest@^26.0.23":
     version "26.0.23"
     resolved "https://registry.nlark.com/@types/jest/download/@types/jest-26.0.23.tgz?cache=0&sync_timestamp=1619435070571&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fjest%2Fdownload%2F%40types%2Fjest-26.0.23.tgz#a1b7eab3c503b80451d019efb588ec63522ee4e7"
@@ -692,6 +704,11 @@ Lockfile:
       "@types/node" "*"
       "@types/parse5" "*"
       "@types/tough-cookie" "*"
+  
+  "@types/lodash@^4.14.169":
+    version "4.14.169"
+    resolved "https://registry.nlark.com/@types/lodash/download/@types/lodash-4.14.169.tgz?cache=0&sync_timestamp=1620803098936&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Flodash%2Fdownload%2F%40types%2Flodash-4.14.169.tgz#83c217688f07a4d9ef8f28a3ebd1d318f6ff4cbb"
+    integrity sha1-g8IXaI8HpNnvjyij69HTGPb/TLs=
   
   "@types/mongodb@^3.5.27":
     version "3.6.12"
@@ -730,6 +747,13 @@ Lockfile:
     version "2.0.0"
     resolved "https://registry.npm.taobao.org/@types/stack-utils/download/@types/stack-utils-2.0.0.tgz#7036640b4e21cc2f259ae826ce843d277dad8cff"
     integrity sha1-cDZkC04hzC8lmugmzoQ9J32tjP8=
+  
+  "@types/string-width@^4.0.1":
+    version "4.0.1"
+    resolved "https://registry.nlark.com/@types/string-width/download/@types/string-width-4.0.1.tgz#a02e22c305d0b550f8d8da12b5b13e05123dc7b8"
+    integrity sha1-oC4iwwXQtVD42NoStbE+BRI9x7g=
+    dependencies:
+      string-width "*"
   
   "@types/tough-cookie@*":
     version "4.0.0"
@@ -814,6 +838,11 @@ Lockfile:
     version "5.0.0"
     resolved "https://registry.nlark.com/ansi-regex/download/ansi-regex-5.0.0.tgz#388539f55179bf39339c81af30a654d69f87cb75"
     integrity sha1-OIU59VF5vzkznIGvMKZU1p+Hy3U=
+  
+  ansi-regex@^6.0.0:
+    version "6.0.0"
+    resolved "https://registry.nlark.com/ansi-regex/download/ansi-regex-6.0.0.tgz#ecc7f5933cbe5ac7b33e209a5ff409ab1669c6b2"
+    integrity sha1-7Mf1kzy+WsezPiCaX/QJqxZpxrI=
   
   ansi-styles@^3.2.0, ansi-styles@^3.2.1:
     version "3.2.1"
@@ -1451,6 +1480,11 @@ Lockfile:
     resolved "https://registry.nlark.com/emoji-regex/download/emoji-regex-8.0.0.tgz#e818fd69ce5ccfcb404594f842963bf53164cc37"
     integrity sha1-6Bj9ac5cz8tARZT4QpY79TFkzDc=
   
+  emoji-regex@^9.2.2:
+    version "9.2.2"
+    resolved "https://registry.nlark.com/emoji-regex/download/emoji-regex-9.2.2.tgz#840c8803b0d8047f4ff0cf963176b32d4ef3ed72"
+    integrity sha1-hAyIA7DYBH9P8M+WMXazLU7z7XI=
+  
   end-of-stream@^1.1.0:
     version "1.4.4"
     resolved "https://registry.nlark.com/end-of-stream/download/end-of-stream-1.4.4.tgz#5ae64a5f45057baf3626ec14da0ca5e4b2431eb0"
@@ -2004,6 +2038,11 @@ Lockfile:
     resolved "https://registry.nlark.com/is-fullwidth-code-point/download/is-fullwidth-code-point-3.0.0.tgz#f116f8064fe90b3f7844a38997c0b75051269f1d"
     integrity sha1-8Rb4Bk/pCz94RKOJl8C3UFEmnx0=
   
+  is-fullwidth-code-point@^4.0.0:
+    version "4.0.0"
+    resolved "https://registry.nlark.com/is-fullwidth-code-point/download/is-fullwidth-code-point-4.0.0.tgz#fae3167c729e7463f8461ce512b080a49268aa88"
+    integrity sha1-+uMWfHKedGP4RhzlErCApJJoqog=
+  
   is-generator-fn@^2.0.0:
     version "2.1.0"
     resolved "https://registry.npm.taobao.org/is-generator-fn/download/is-generator-fn-2.1.0.tgz#7d140adc389aaf3011a8f2a2a4cfa6faadffb118"
@@ -2207,7 +2246,7 @@ Lockfile:
     dependencies:
       detect-newline "^3.0.0"
   
-  jest-each@^26.6.2:
+  jest-each@*, jest-each@^26.6.2:
     version "26.6.2"
     resolved "https://registry.nlark.com/jest-each/download/jest-each-26.6.2.tgz#02526438a77a67401c8a6382dfe5999952c167cb"
     integrity sha1-AlJkOKd6Z0AcimOC3+WZmVLBZ8s=
@@ -2726,7 +2765,7 @@ Lockfile:
     dependencies:
       p-locate "^4.1.0"
   
-  lodash@4.x, lodash@^4.17.19, lodash@^4.7.0:
+  lodash@4.x, lodash@^4.17.19, lodash@^4.17.21, lodash@^4.7.0:
     version "4.17.21"
     resolved "https://registry.nlark.com/lodash/download/lodash-4.17.21.tgz?cache=0&sync_timestamp=1618910518249&other_urls=https%3A%2F%2Fregistry.nlark.com%2Flodash%2Fdownload%2Flodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
     integrity sha1-Z5WRxWTDv/quhFTPCz3zcMPWkRw=
@@ -3706,6 +3745,15 @@ Lockfile:
       char-regex "^1.0.2"
       strip-ansi "^6.0.0"
   
+  string-width@*, string-width@^5.0.0:
+    version "5.0.0"
+    resolved "https://registry.npm.taobao.org/string-width/download/string-width-5.0.0.tgz?cache=0&sync_timestamp=1618558751438&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fstring-width%2Fdownload%2Fstring-width-5.0.0.tgz#19191f152f937b96f4ec54ba0986a5656660c5a2"
+    integrity sha1-GRkfFS+Te5b07FS6CYalZWZgxaI=
+    dependencies:
+      emoji-regex "^9.2.2"
+      is-fullwidth-code-point "^4.0.0"
+      strip-ansi "^7.0.0"
+  
   string-width@^4.1.0, string-width@^4.2.0:
     version "4.2.2"
     resolved "https://registry.npm.taobao.org/string-width/download/string-width-4.2.2.tgz?cache=0&sync_timestamp=1618558751438&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fstring-width%2Fdownload%2Fstring-width-4.2.2.tgz#dafd4f9559a7585cfba529c6a0a4f73488ebd4c5"
@@ -3728,6 +3776,13 @@ Lockfile:
     integrity sha1-CxVx3XZpzNTz4G4U7x7tJiJa5TI=
     dependencies:
       ansi-regex "^5.0.0"
+  
+  strip-ansi@^7.0.0:
+    version "7.0.0"
+    resolved "https://registry.npm.taobao.org/strip-ansi/download/strip-ansi-7.0.0.tgz?cache=0&sync_timestamp=1618553388833&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fstrip-ansi%2Fdownload%2Fstrip-ansi-7.0.0.tgz#1dc49b980c3a4100366617adac59327eefdefcb0"
+    integrity sha1-HcSbmAw6QQA2ZhetrFkyfu/e/LA=
+    dependencies:
+      ansi-regex "^6.0.0"
   
   strip-bom@^4.0.0:
     version "4.0.0"

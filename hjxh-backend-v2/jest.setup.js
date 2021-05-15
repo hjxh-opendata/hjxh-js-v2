@@ -1,2 +1,1 @@
-// 设置一分钟
-jest.setTimeout(60000)
+jest.setTimeout(3 * 60 * 60 * 1000) // 三小时

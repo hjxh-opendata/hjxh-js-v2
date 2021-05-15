@@ -22,6 +22,7 @@ export interface PddRequest {
   baseType?: number
   basePath: PddBaseType
   path: string
+  targetDate: string         // YYYY-MM-DD
   params: PddRequestParams
   isAnti: boolean
   isInc: boolean

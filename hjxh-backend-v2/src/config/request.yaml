@@ -1,4 +1,5 @@
-userInfo:
+usersInfo:
+  collName: users
   description: 用户信息
   note:
   baseType: 1
@@ -7,10 +8,10 @@ userInfo:
   isInc: false
   params:
   pagination:
-  collName: users
   ids: id
 
 recentOrders:
+  collName: orders
   description: 最近订单
   baseType: 1
   path: /mangkhut/mms/recentOrderList
@@ -31,18 +32,18 @@ recentOrders:
     pageSizeKey: pageSize
     totalSizeKey: totalItemNum
     itemsKey: pageItems
-  collName: orders
   ids: order_sn
   note:
 
 adFangxin:
+  collName: ad_fangxin
   description: 放心推单元列表
   baseType: 2
   path: /venus/api/cpa/goods/list
   isAnti: true
   isInc: true
   params:
-    mallId:                 # 店铺ID，例：506673970
+    mallId: 506673970       # 店铺ID
     scenesType: 6           # 场景（放心推，固定参数）
     startDate: 2021-05-12   # 指定日期，YYYY-MM-DD
     endDate: 2021-05-12     # 指定日期， YYYY-MM-DD
@@ -54,9 +55,57 @@ adFangxin:
     pageSizeKey: pageSize
     totalSizeKey: total
     itemsKey: result
-  collName: ad_fangxin
   ids:
     - unitId
-    - dateStr
+    - targetDate
   note:
+
+adSearch:
+  collName: ad_search
+  description: 多多搜索单元列表
+  baseType: 2
+  path: /venus/api/unit/listPage
+  isAnti: true
+  isInc: true
+  params:
+    mallId: 506673970       # 店铺ID
+    scenesType: 0           # 场景（多多搜索，固定参数）
+    beginDate: 2021-05-12   # 区别于"放心推"的startDate
+    endDate: 2021-05-12     #
+    pageNumber: 1
+    pageSize: 50
+  pagination:
+    pageNumKey: pageNumber
+    pageSizeKey: pageSize
+    totalSizeKey: total
+    itemsKey: result
+  ids:
+    - adId
+    - targetDate
+  note:
+
+adScene:
+  collName: ad_scene
+  description: 多多场景单元列表
+  baseType: 2
+  path: /venus/api/unit/listPage
+  isAnti: true
+  isInc: true
+  params:
+    mallId: 506673970       # 店铺ID
+    scenesType: 2           # 场景（多多场景，固定参数）
+    beginDate: 2021-05-12   # 指定日期，YYYY-MM-DD
+    endDate: 2021-05-12     # 指定日期， YYYY-MM-DD
+    pageNumber: 1
+    pageSize: 50
+  pagination:
+    pageNumKey: pageNumber
+    pageSizeKey: pageSize
+    totalSizeKey: total
+    itemsKey: result
+  ids:
+    - adId
+    - targetDate
+  note:
+
 
