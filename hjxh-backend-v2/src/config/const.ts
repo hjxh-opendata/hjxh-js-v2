@@ -26,7 +26,8 @@ export const PddYxGetAdSearchList = "/venus/api/unit/listPage";
 export const PddYxGetAdFangxinList = "/venus/api/cpa/goods/list";
 
 // mongodb connection config
-export const MONGO_HOST = "nanchuan.site";
+// nanchuan.site 可能连接不上，直接用ip就好了
+export const MONGO_HOST = "212.64.67.85";
 export const MONGO_PORT = 2708;
 export const MONGO_DB_AUTH = "hjxh-operate";
 export const MONGO_USERNAME = "hjxh-operator";
@@ -35,7 +36,7 @@ export const MONGO_DATABASE_NAME = "hjxh-operate";
 export const MONGO_URI = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DATABASE_NAME}?authSource=${MONGO_DB_AUTH}`; // alias
 export const usernames = [
   "皇家小虎食品旗舰店雷港",
-  "乐和食品店:冯露",
+  // "乐和食品店:冯露",
   // "农夫牧场邓雪梅",
   // "千寻生鲜:小可爱",
   // "好食先生冯露",

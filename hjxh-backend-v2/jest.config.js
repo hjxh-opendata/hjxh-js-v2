@@ -3,6 +3,6 @@ module.exports = {
   testEnvironment: "node",
   setupFilesAfterEnv: [
     "jest-extended",
-    "./jest.config.js"
+    "./jest.setup.js"
 ]
 };

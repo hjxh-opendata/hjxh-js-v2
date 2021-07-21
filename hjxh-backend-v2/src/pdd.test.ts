@@ -2,7 +2,7 @@ import { createPdd, Pdd } from "./pdd";
 import { readRequestDict, RequestType } from "./config/readRequestDict";
 import { usernames } from "./config/const";
 
-const targetDate: string = "2021-05-07";
+const targetDate: string = "2021-07-17";
 
 describe.each(usernames)("用户：%s", function (username: string) {
   let pdd: Pdd;
