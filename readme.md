@@ -17,10 +17,10 @@ yarn  # 需要提前安装好全局yarn
 ```
 
 2. 运行测试
-![img.png](img.png)
+![img.png](.readme_images/img.png)
 
 3. 通过测试
-![img_1.png](img_1.png)
+![img_1.png](.readme_images/img_1.png)
 
 ## 业务相关
 
@@ -369,26 +369,26 @@ export const readRequestDict = (key: RequestType): PddRequest => {
 
 ```js
 new Promise((resolve) => resolve(
-    db.collection(COLL_USERS).find({}))
+        db.collection(COLL_ACCOUNTS).find({}))
 )
-    .then((e: any) => {
-        console.log({e})
-    })
+        .then((e: any) => {
+          console.log({e})
+        })
 ```
 
 ### 基于以上，使用`async/await`的最佳实现方式
 
 ```js
 const f1 = async () => {
-    const cursor = await db.collection(COLL_USERS).find()
-    while (await cursor.hasNext()) {
-        console.log(await cursor.next())
-    }
+  const cursor = await db.collection(COLL_ACCOUNTS).find()
+  while (await cursor.hasNext()) {
+    console.log(await cursor.next())
+  }
 }
 
 const f2 = async () => {
-    const cursor = await db.collection(COLL_USERS).find()
-    console.log(await cursor.toArray())
+  const cursor = await db.collection(COLL_ACCOUNTS).find()
+  console.log(await cursor.toArray())
 }
 
 f2()
@@ -823,7 +823,7 @@ module.exports = {
 ### 终于配置好了`jest`的`node`环境
 
 ```js
-// /Users/mark/projects/HJXH/hjxh-js/hjxh-backend/src/crawl/pdd.test.ts
+// /Users/mark/projects/HJXH/hjxh-js/hjxh-backend/src/crawl/pdd.unit.test.ts
 import {createPddClient, PddClientPlus} from "./pdd";
 
 describe("pdd test", () => {

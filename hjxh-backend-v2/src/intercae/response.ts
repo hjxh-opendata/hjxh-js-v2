@@ -5,7 +5,7 @@ export type ResponseItems = ResponseItem[]
 
 export interface DbItem extends ResponseItem {
   _id: string | number | Record<string, any>
-  userId: number
+  id: number
   updateTime: Date | number
 }
 
