@@ -120,4 +120,4 @@ fi
 
 # finish
 echo "脚本初始化完成！每次`git commit`后都会自动运行"
-echo "MarkShawn2020@github, 2021-04-22"
+echo "MarkShawn2020@github, 2021-12-14, Version: 0.0.3"
