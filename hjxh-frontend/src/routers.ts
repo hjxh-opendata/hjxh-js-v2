@@ -1,18 +1,8 @@
-import {
-  API_GET_AD_FANGXIN,
-  API_GET_AD_SCENE,
-  API_GET_AD_SEARCH,
-  API_GET_GOODS_COMMENTS,
-  API_GET_GOODS_DETAIL,
-  API_GET_GOODS_LIST,
-  API_GET_ORDERS
-} from "./const";
-
 export interface RouterItemBase {
   key: string
   title: string
   icon?: string
-  api?: string
+  collName?: string
   children?: RouterItemBase[]
 }
 
@@ -29,7 +19,7 @@ export const routerOfRawData: RouterItemBase =  {
       {
         key: "orders",
         title: "订单列表",
-        api: API_GET_ORDERS
+        collName: "V2_orders"
       },
       {
         key: "goods",
@@ -38,17 +28,17 @@ export const routerOfRawData: RouterItemBase =  {
           {
             key: 'list',
             title: '商品列表',
-            api: API_GET_GOODS_LIST
+            collName: "V2_goods_list"
           },
           {
             key: 'detail',
             title: '商品明细',
-            api: API_GET_GOODS_DETAIL
+            collName: "V2_goods_detail"
           },
           {
             key: 'comments',
             title: '商品评价',
-            api: API_GET_GOODS_COMMENTS
+            collName: "V2_goods_comments"
           }
         ]
       },
@@ -59,17 +49,17 @@ export const routerOfRawData: RouterItemBase =  {
           {
             key: "search",
             title: "多多推广",
-            api: API_GET_AD_SEARCH
+            collName: "V2_ad_search"
           },
           {
             key: "scene",
             title: "多多场景",
-            api: API_GET_AD_SCENE
+            collName: "V2_ad_scene"
           },
           {
             key: "fangxin",
             title: "放心推",
-            api: API_GET_AD_FANGXIN
+            collName: "V2_ad_fangxin"
           },
         ]
       },
