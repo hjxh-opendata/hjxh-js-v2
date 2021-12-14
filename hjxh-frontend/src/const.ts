@@ -68,7 +68,7 @@ export const DEFAULT_GOODS_NAME = '火山石烤肠纯肉肠地道肠大香肠肉
 
 // mongodb coll names
 export const COLL_STATS = "stats"
-export const COLL_USERS = "users"
+export const COLL_ACCOUNTS = "accounts"
 export const COLL_ORDERS = "orders"
 export const COLL_AD_SEARCH = "ad_search"
 export const COLL_AD_SCENE = "ad_scene"

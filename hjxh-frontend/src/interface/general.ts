@@ -6,6 +6,6 @@ export type Item = Record<string, any>;
 
 export interface DBItem extends Item{
   _id: number | string | Item
-  userId: number
+  id: number
   updateTime: number | Date
 }

@@ -1,5 +1,5 @@
 usersInfo:
-  collName: users
+  collName: accounts
   description: 用户信息
   note:
   baseType: 1
