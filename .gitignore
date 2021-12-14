@@ -23,3 +23,11 @@ venv/
 
 hjxh-backend/hack/
 **/reference/
+
+# add file of VERSION in case for REDUNDANT changes being detected by IDE
+VERSION
+
+
+# add file of VERSION.txt in case for REDUNDANT changes being detected by IDE
+VERSION.txt
+
