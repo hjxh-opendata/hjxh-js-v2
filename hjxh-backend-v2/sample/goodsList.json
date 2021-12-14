@@ -1,0 +1,1764 @@
+{
+  "success": true,
+  "errorCode": 1000000,
+  "errorMsg": null,
+  "result": {
+    "sessionId": "183b80f15d89433a99f0f823b8b89d4f",
+    "total": 66,
+    "goods_list": [
+      {
+        "quantity": 549962,
+        "score": 0.0,
+        "resource": "",
+        "priority": null,
+        "sku_group_price": [
+          660,
+          1998
+        ],
+        "sku_price": [
+          1060,
+          2398
+        ],
+        "origin_sku_group_price": [
+          660,
+          1998
+        ],
+        "promotion_goods": null,
+        "mall_id": 383241122,
+        "mall_name": null,
+        "id": 243548112709,
+        "goods_name": "皇家小虎油醋汁凉拌汁日式和风家庭拌面拌菜酱料健身零脂肪油醋汁",
+        "goods_sn": null,
+        "goods_type": 1,
+        "cat_id": 6643,
+        "cat_name": "其他调味品",
+        "cat_name_1": "粮油米面/南北干货/调味品",
+        "cat_name_2": "调味品/果酱/沙拉",
+        "cat_name_3": "其他调味品",
+        "cat_name_4": null,
+        "event_type": 0,
+        "display_priority": "99+",
+        "reserve_quantity": 0,
+        "hd_thumb_url": "http://t00img.yangkeduo.com/goods/images/2021-05-14/ead52c64328b5b27e81acf6343f30446.jpeg",
+        "image_url": null,
+        "hd_url": "https://img.pddpic.com/mms-material-img/2021-05-14/83c4daa0-84db-4dfe-b45f-25133eef9d37.jpeg",
+        "thumb_url": "http://t00img.yangkeduo.com/goods/images/2021-05-14/4f1debfda316aed3be505a416adccdde.jpeg",
+        "is_onsale": true,
+        "sold_quantity": 36,
+        "resource_hover": null,
+        "off_sale_check": null,
+        "onsale_check": null,
+        "edit_check": null,
+        "gray_goods_high_quality_refund": false,
+        "share_desc": null,
+        "goods_desc": null,
+        "activity_title": null,
+        "is_card_secret": false,
+        "market_price": 4000,
+        "out_goods_sn": "",
+        "sold_quantity_for_thirty_days": 35,
+        "fav_cnt": 46,
+        "multi_treasure": false,
+        "multi_treasure_status": 0,
+        "if_new_goods": false,
+        "tag_category_list": [],
+        "goods_info_score_dto": null,
+        "goods_inspect_score": {
+          "score": "4.0",
+          "problemsDesc": [
+            "商品分类有误",
+            "未上传白底图"
+          ],
+          "problemsCode": [
+            3,
+            18
+          ],
+          "status": 1,
+          "taskId": 130545038
+        },
+        "created_at": 1620840946,
+        "pre_sale_time": 0,
+        "shipment_limit_second": 172800,
+        "is_group_pre_sale": false,
+        "guide_target": 10001,
+        "over_sell": false,
+        "market_labels": null,
+        "labels": [],
+        "sku_type": 0,
+        "sku_count": 11,
+        "sku_list": [
+          {
+            "spec": "4瓶 日式和风油醋汁【划算推荐】",
+            "skuId": 854075465807,
+            "skuQuantity": 50000,
+            "skuSoldQuantity": null,
+            "outSkuSn": "HJXH-RSHFYCZ280g*4",
+            "isOnsale": true,
+            "normalPrice": 2230,
+            "groupPrice": 1830,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6801765046
+            ]
+          },
+          {
+            "spec": "4瓶 日式和风油醋汁2+麻辣油醋汁2",
+            "skuId": 854075465808,
+            "skuQuantity": 49998,
+            "skuSoldQuantity": null,
+            "outSkuSn": "HJXH-RSHFYCZ280g*2ML*2",
+            "isOnsale": true,
+            "normalPrice": 2298,
+            "groupPrice": 1898,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6801748546
+            ]
+          },
+          {
+            "spec": "4瓶 日式和风凉拌汁【划算推荐】",
+            "skuId": 854075465809,
+            "skuQuantity": 49999,
+            "skuSoldQuantity": null,
+            "outSkuSn": "HJXH-RSHFLBZ280g*4",
+            "isOnsale": true,
+            "normalPrice": 2230,
+            "groupPrice": 1830,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6801770072
+            ]
+          },
+          {
+            "spec": "4瓶 麻辣味油醋汁【划算推荐】",
+            "skuId": 854075465810,
+            "skuQuantity": 50000,
+            "skuSoldQuantity": null,
+            "outSkuSn": "HJXH-MLYCZ280g*4",
+            "isOnsale": true,
+            "normalPrice": 2398,
+            "groupPrice": 1998,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6801751561
+            ]
+          },
+          {
+            "spec": "3瓶 日式和风油醋汁【实惠装】",
+            "skuId": 854077130265,
+            "skuQuantity": 50000,
+            "skuSoldQuantity": null,
+            "outSkuSn": "HJXH-RSHFYCZ280g*3",
+            "isOnsale": true,
+            "normalPrice": 1898,
+            "groupPrice": 1498,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6801739806
+            ]
+          },
+          {
+            "spec": "3瓶 日式和风口味+麻辣口味+凉拌汁",
+            "skuId": 854077130266,
+            "skuQuantity": 49995,
+            "skuSoldQuantity": null,
+            "outSkuSn": "HJXH-RSHFYCZ280g*1ML*1LB*1",
+            "isOnsale": true,
+            "normalPrice": 1950,
+            "groupPrice": 1550,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6801756528
+            ]
+          },
+          {
+            "spec": "2瓶 日式和风油醋汁+麻辣油醋汁",
+            "skuId": 854077130267,
+            "skuQuantity": 49999,
+            "skuSoldQuantity": null,
+            "outSkuSn": "HJXH-RSHFYCZ280g*1ML*1",
+            "isOnsale": true,
+            "normalPrice": 1698,
+            "groupPrice": 1298,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6801756542
+            ]
+          },
+          {
+            "spec": "2瓶 日式和风油醋汁+凉拌汁【混搭】",
+            "skuId": 854077130268,
+            "skuQuantity": 49997,
+            "skuSoldQuantity": null,
+            "outSkuSn": "HJXH-RSHFYCZ280g*1LB*1",
+            "isOnsale": true,
+            "normalPrice": 1498,
+            "groupPrice": 1098,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6801765196
+            ]
+          },
+          {
+            "spec": "1瓶 麻辣味油醋汁【尝鲜试用】",
+            "skuId": 854077130269,
+            "skuQuantity": 49998,
+            "skuSoldQuantity": null,
+            "outSkuSn": "HJXH-MLYCZ280g",
+            "isOnsale": true,
+            "normalPrice": 1150,
+            "groupPrice": 750,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6801760344
+            ]
+          },
+          {
+            "spec": "1瓶 凉拌汁【尝鲜试用】",
+            "skuId": 854077130270,
+            "skuQuantity": 49987,
+            "skuSoldQuantity": null,
+            "outSkuSn": "HJXH-RSHFLBZ280g",
+            "isOnsale": true,
+            "normalPrice": 1060,
+            "groupPrice": 660,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6801746668
+            ]
+          },
+          {
+            "spec": "1瓶 日式和风油醋汁【尝鲜试用】",
+            "skuId": 854077130271,
+            "skuQuantity": 49989,
+            "skuSoldQuantity": null,
+            "outSkuSn": "HJXH-RSHFYCZ280g",
+            "isOnsale": true,
+            "normalPrice": 1060,
+            "groupPrice": 660,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6801767238
+            ]
+          }
+        ],
+        "property_list": null,
+        "schedule_sale": {
+          "sale_type": 0,
+          "sale_time_fixed": null,
+          "sale_time": null,
+          "price_show": null,
+          "price_desc": null
+        },
+        "costTemplateId": 163170354203554,
+        "goods_price_score": null,
+        "is_pre_sale": false,
+        "pre_sale_sku_list": [],
+        "sku_id_to_sold_out_config": null,
+        "sold_out_to_presale_type": null,
+        "vegetable_sold_quantity": 0,
+        "attributes_1": "{\"folt\":1,\"appNew\":0,\"homeDeliver\":0,\"sh\":0,\"brandId\":136650}",
+        "option_list": [
+          9,
+          54
+        ],
+        "high_price_sku_count": null,
+        "reject_status": null,
+        "reject_reason": null
+      },
+      {
+        "quantity": 399983,
+        "score": 0.0,
+        "resource": "",
+        "priority": null,
+        "sku_group_price": [
+          998,
+          2850
+        ],
+        "sku_price": [
+          1590,
+          3590
+        ],
+        "origin_sku_group_price": [
+          998,
+          2850
+        ],
+        "promotion_goods": null,
+        "mall_id": 383241122,
+        "mall_name": null,
+        "id": 243443306886,
+        "goods_name": "皇家小虎培根肉片家用早餐半成品烘焙烧烤食材商用手抓饼烤肠批发",
+        "goods_sn": null,
+        "goods_type": 1,
+        "cat_id": 7599,
+        "cat_name": "培根",
+        "cat_name_1": "粮油米面/南北干货/调味品",
+        "cat_name_2": "南北干货/肉类干货",
+        "cat_name_3": "熏腊/香肠/火腿制品",
+        "cat_name_4": "培根",
+        "event_type": 0,
+        "display_priority": "99+",
+        "reserve_quantity": 0,
+        "hd_thumb_url": "http://t00img.yangkeduo.com/goods/images/2021-05-12/1321671c909292ca42da600772b95b1a.jpeg",
+        "image_url": null,
+        "hd_url": "https://img.pddpic.com/mms-material-img/2021-04-15/0520d0a7-0c07-40a9-953b-0430b5784c0d.jpeg.a.jpeg",
+        "thumb_url": "http://t00img.yangkeduo.com/goods/images/2021-05-12/a96d1ad652970808c00ba7631c56e103.jpeg",
+        "is_onsale": true,
+        "sold_quantity": 12,
+        "resource_hover": null,
+        "off_sale_check": null,
+        "onsale_check": null,
+        "edit_check": null,
+        "gray_goods_high_quality_refund": false,
+        "share_desc": null,
+        "goods_desc": null,
+        "activity_title": null,
+        "is_card_secret": false,
+        "market_price": 3690,
+        "out_goods_sn": "",
+        "sold_quantity_for_thirty_days": 12,
+        "fav_cnt": 15,
+        "multi_treasure": false,
+        "multi_treasure_status": 0,
+        "if_new_goods": false,
+        "tag_category_list": [],
+        "goods_info_score_dto": null,
+        "goods_inspect_score": {
+          "score": "5.0",
+          "problemsDesc": [],
+          "problemsCode": [],
+          "status": 1,
+          "taskId": 130545038
+        },
+        "created_at": 1620811852,
+        "pre_sale_time": 0,
+        "shipment_limit_second": 172800,
+        "is_group_pre_sale": false,
+        "guide_target": 10001,
+        "over_sell": false,
+        "market_labels": null,
+        "labels": [],
+        "sku_type": 0,
+        "sku_count": 4,
+        "sku_list": [
+          {
+            "spec": "4斤精选培根 4袋装【量足巨划算】",
+            "skuId": 853790437528,
+            "skuQuantity": 99996,
+            "skuSoldQuantity": null,
+            "outSkuSn": "QY-PG500G*4",
+            "isOnsale": true,
+            "normalPrice": 3590,
+            "groupPrice": 2850,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6798772110
+            ]
+          },
+          {
+            "spec": "3斤精选培根 3袋装【超值推荐】",
+            "skuId": 853791782721,
+            "skuQuantity": 99997,
+            "skuSoldQuantity": null,
+            "outSkuSn": "QY-PG500G*3",
+            "isOnsale": true,
+            "normalPrice": 2990,
+            "groupPrice": 2328,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6798747730
+            ]
+          },
+          {
+            "spec": "2斤精选培根 2袋装【特惠】",
+            "skuId": 853791782722,
+            "skuQuantity": 99996,
+            "skuSoldQuantity": null,
+            "outSkuSn": "QY-PG500G*2",
+            "isOnsale": true,
+            "normalPrice": 2290,
+            "groupPrice": 1730,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6798765432
+            ]
+          },
+          {
+            "spec": "1斤精选培根 1袋装【尝鲜】",
+            "skuId": 853791782723,
+            "skuQuantity": 99994,
+            "skuSoldQuantity": null,
+            "outSkuSn": "QY-XHPG500G",
+            "isOnsale": true,
+            "normalPrice": 1590,
+            "groupPrice": 998,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6798755681
+            ]
+          }
+        ],
+        "property_list": null,
+        "schedule_sale": {
+          "sale_type": 0,
+          "sale_time_fixed": null,
+          "sale_time": null,
+          "price_show": null,
+          "price_desc": null
+        },
+        "costTemplateId": 28326383063970,
+        "goods_price_score": null,
+        "is_pre_sale": false,
+        "pre_sale_sku_list": [],
+        "sku_id_to_sold_out_config": null,
+        "sold_out_to_presale_type": null,
+        "vegetable_sold_quantity": 0,
+        "attributes_1": "{\"folt\":1,\"appNew\":0,\"homeDeliver\":0,\"sh\":0,\"brandId\":136650}",
+        "option_list": [
+          9,
+          13,
+          54
+        ],
+        "high_price_sku_count": null,
+        "reject_status": null,
+        "reject_reason": null
+      },
+      {
+        "quantity": 899984,
+        "score": 0.0,
+        "resource": "",
+        "priority": null,
+        "sku_group_price": [
+          1798,
+          4150
+        ],
+        "sku_price": [
+          1898,
+          4250
+        ],
+        "origin_sku_group_price": [
+          1798,
+          4150
+        ],
+        "promotion_goods": null,
+        "mall_id": 383241122,
+        "mall_name": null,
+        "id": 243423874439,
+        "goods_name": "皇家小虎糯米烧麦皮薄馅多懒人营养早餐半成品烧卖方便速食类批发",
+        "goods_sn": null,
+        "goods_type": 1,
+        "cat_id": 6703,
+        "cat_name": "面食",
+        "cat_name_1": "粮油米面/南北干货/调味品",
+        "cat_name_2": "方便速食",
+        "cat_name_3": "面食",
+        "cat_name_4": null,
+        "event_type": 0,
+        "display_priority": "99+",
+        "reserve_quantity": 0,
+        "hd_thumb_url": "http://t00img.yangkeduo.com/goods/images/2021-05-12/515af2e5360dbfb151b190457fd2c35e.jpeg",
+        "image_url": null,
+        "hd_url": "https://img.pddpic.com/mms-material-img/2021-04-06/4e08a7b7-d3fd-4db2-b9ba-501ab8cc6128.jpeg",
+        "thumb_url": "http://t00img.yangkeduo.com/goods/images/2021-05-12/d11618a4d53a7c7f302c7498362bf717.jpeg",
+        "is_onsale": true,
+        "sold_quantity": 6,
+        "resource_hover": null,
+        "off_sale_check": null,
+        "onsale_check": null,
+        "edit_check": null,
+        "gray_goods_high_quality_refund": false,
+        "share_desc": null,
+        "goods_desc": null,
+        "activity_title": null,
+        "is_card_secret": false,
+        "market_price": 4750,
+        "out_goods_sn": "",
+        "sold_quantity_for_thirty_days": 6,
+        "fav_cnt": 22,
+        "multi_treasure": false,
+        "multi_treasure_status": 0,
+        "if_new_goods": false,
+        "tag_category_list": [],
+        "goods_info_score_dto": null,
+        "goods_inspect_score": {
+          "score": "5.0",
+          "problemsDesc": [],
+          "problemsCode": [],
+          "status": 1,
+          "taskId": 130545038
+        },
+        "created_at": 1620808329,
+        "pre_sale_time": 0,
+        "shipment_limit_second": 172800,
+        "is_group_pre_sale": false,
+        "guide_target": 10001,
+        "over_sell": false,
+        "market_labels": null,
+        "labels": [],
+        "sku_type": 0,
+        "sku_count": 9,
+        "sku_list": [
+          {
+            "spec": "4斤香菇鲜肉烧麦【超值装】",
+            "skuId": 853743702024,
+            "skuQuantity": 99999,
+            "skuSoldQuantity": null,
+            "outSkuSn": "HJXH-XGXRSM1KG*2",
+            "isOnsale": true,
+            "normalPrice": 3368,
+            "groupPrice": 3268,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6588582903
+            ]
+          },
+          {
+            "spec": "2斤香菇鲜肉烧麦【实惠装】",
+            "skuId": 853743702025,
+            "skuQuantity": 99994,
+            "skuSoldQuantity": null,
+            "outSkuSn": "HJXH-XGXRSM1KG",
+            "isOnsale": true,
+            "normalPrice": 2068,
+            "groupPrice": 1968,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6588608367
+            ]
+          },
+          {
+            "spec": "鲜肉小笼包4斤（约90个）",
+            "skuId": 853745770096,
+            "skuQuantity": 99998,
+            "skuSoldQuantity": null,
+            "outSkuSn": "HJXH-XRXLB1KG*2",
+            "isOnsale": true,
+            "normalPrice": 4250,
+            "groupPrice": 4150,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6588585040
+            ]
+          },
+          {
+            "spec": "鲜肉小笼包2斤（约45个）",
+            "skuId": 853747778727,
+            "skuQuantity": 99999,
+            "skuSoldQuantity": null,
+            "outSkuSn": "HJXH-XRXLB1KG",
+            "isOnsale": true,
+            "normalPrice": 2556,
+            "groupPrice": 2456,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6588546931
+            ]
+          },
+          {
+            "spec": "鲜肉鲜菇+鲜肉玉米（4斤约100个）",
+            "skuId": 853749820719,
+            "skuQuantity": 99999,
+            "skuSoldQuantity": null,
+            "outSkuSn": "HJXH-ZRXGZJ1KG*1YM*1",
+            "isOnsale": true,
+            "normalPrice": 3146,
+            "groupPrice": 3046,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6611168819
+            ]
+          },
+          {
+            "spec": "鲜肉鲜菇蒸饺4斤（约100个）",
+            "skuId": 853749820720,
+            "skuQuantity": 99999,
+            "skuSoldQuantity": null,
+            "outSkuSn": "HJXH-ZRXGZJ1KG*2",
+            "isOnsale": true,
+            "normalPrice": 3180,
+            "groupPrice": 3080,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6588492776
+            ]
+          },
+          {
+            "spec": "鲜肉玉米蒸饺4斤（约100个）",
+            "skuId": 853749820721,
+            "skuQuantity": 99998,
+            "skuSoldQuantity": null,
+            "outSkuSn": "HJXH-ZRYMZJ1KG*2",
+            "isOnsale": true,
+            "normalPrice": 3080,
+            "groupPrice": 2980,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6588504248
+            ]
+          },
+          {
+            "spec": "鲜肉鲜菇蒸饺2斤（约50个）",
+            "skuId": 853749820722,
+            "skuQuantity": 99999,
+            "skuSoldQuantity": null,
+            "outSkuSn": "HJXH-ZRXGZJ1KG",
+            "isOnsale": true,
+            "normalPrice": 1998,
+            "groupPrice": 1898,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6588484863
+            ]
+          },
+          {
+            "spec": "鲜肉玉米蒸饺2斤（约50个）",
+            "skuId": 853749820723,
+            "skuQuantity": 99999,
+            "skuSoldQuantity": null,
+            "outSkuSn": "HJXH-ZRYMZJ1KG",
+            "isOnsale": true,
+            "normalPrice": 1898,
+            "groupPrice": 1798,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6588516097
+            ]
+          }
+        ],
+        "property_list": null,
+        "schedule_sale": {
+          "sale_type": 0,
+          "sale_time_fixed": null,
+          "sale_time": null,
+          "price_show": null,
+          "price_desc": null
+        },
+        "costTemplateId": 28326383063970,
+        "goods_price_score": null,
+        "is_pre_sale": false,
+        "pre_sale_sku_list": [],
+        "sku_id_to_sold_out_config": null,
+        "sold_out_to_presale_type": null,
+        "vegetable_sold_quantity": 0,
+        "attributes_1": "{\"folt\":1,\"appNew\":0,\"homeDeliver\":0,\"sh\":0,\"brandId\":136650}",
+        "option_list": [
+          9,
+          13,
+          54
+        ],
+        "high_price_sku_count": null,
+        "reject_status": null,
+        "reject_reason": null
+      },
+      {
+        "quantity": 99990,
+        "score": 0.0,
+        "resource": "",
+        "priority": null,
+        "sku_group_price": [
+          2390,
+          2390
+        ],
+        "sku_price": [
+          3990,
+          3990
+        ],
+        "origin_sku_group_price": [
+          2390,
+          2390
+        ],
+        "promotion_goods": null,
+        "mall_id": 383241122,
+        "mall_name": null,
+        "id": 243358208990,
+        "goods_name": "【手慢无】皇家小虎手抓饼4斤100g20片早餐半成品速食",
+        "goods_sn": null,
+        "goods_type": 1,
+        "cat_id": 6699,
+        "cat_name": "煎饼/手抓饼",
+        "cat_name_1": "粮油米面/南北干货/调味品",
+        "cat_name_2": "方便速食",
+        "cat_name_3": "煎饼/手抓饼",
+        "cat_name_4": null,
+        "event_type": 0,
+        "display_priority": "99+",
+        "reserve_quantity": 0,
+        "hd_thumb_url": "http://t00img.yangkeduo.com/goods/images/2021-05-12/066e246b9eea81261b11dbe208c08032.jpeg",
+        "image_url": null,
+        "hd_url": "https://img.pddpic.com/mms-material-img/2021-02-21/5e430c81-8a09-4d41-8ac4-9158bb941c59.jpeg.a.jpeg",
+        "thumb_url": "http://t00img.yangkeduo.com/goods/images/2021-05-12/227e9c12403a892d2ab4222104441581.jpeg",
+        "is_onsale": true,
+        "sold_quantity": 16,
+        "resource_hover": null,
+        "off_sale_check": null,
+        "onsale_check": null,
+        "edit_check": null,
+        "gray_goods_high_quality_refund": false,
+        "share_desc": null,
+        "goods_desc": null,
+        "activity_title": null,
+        "is_card_secret": false,
+        "market_price": 5080,
+        "out_goods_sn": "",
+        "sold_quantity_for_thirty_days": 16,
+        "fav_cnt": 2,
+        "multi_treasure": false,
+        "multi_treasure_status": 0,
+        "if_new_goods": false,
+        "tag_category_list": [],
+        "goods_info_score_dto": null,
+        "goods_inspect_score": {
+          "score": "4.8",
+          "problemsDesc": [
+            "未上传白底图"
+          ],
+          "problemsCode": [
+            18
+          ],
+          "status": 1,
+          "taskId": 130545038
+        },
+        "created_at": 1620796437,
+        "pre_sale_time": 0,
+        "shipment_limit_second": 172800,
+        "is_group_pre_sale": false,
+        "guide_target": 10001,
+        "over_sell": false,
+        "market_labels": null,
+        "labels": [],
+        "sku_type": 0,
+        "sku_count": 1,
+        "sku_list": [
+          {
+            "spec": "手抓饼4斤100g20片",
+            "skuId": 853626664180,
+            "skuQuantity": 99990,
+            "skuSoldQuantity": null,
+            "outSkuSn": "XH-CYB001*1SZB*1",
+            "isOnsale": true,
+            "normalPrice": 3990,
+            "groupPrice": 2390,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6796697883
+            ]
+          }
+        ],
+        "property_list": null,
+        "schedule_sale": {
+          "sale_type": 0,
+          "sale_time_fixed": null,
+          "sale_time": null,
+          "price_show": null,
+          "price_desc": null
+        },
+        "costTemplateId": 28326383063970,
+        "goods_price_score": null,
+        "is_pre_sale": false,
+        "pre_sale_sku_list": [],
+        "sku_id_to_sold_out_config": null,
+        "sold_out_to_presale_type": null,
+        "vegetable_sold_quantity": 0,
+        "attributes_1": "{\"folt\":1,\"appNew\":0,\"homeDeliver\":0,\"sh\":0,\"brandId\":136650}",
+        "option_list": [
+          9,
+          54,
+          20002
+        ],
+        "high_price_sku_count": null,
+        "reject_status": null,
+        "reject_reason": null
+      },
+      {
+        "quantity": 9999,
+        "score": 0.0,
+        "resource": "",
+        "priority": null,
+        "sku_group_price": [
+          2990,
+          2990
+        ],
+        "sku_price": [
+          4990,
+          4990
+        ],
+        "origin_sku_group_price": [
+          2990,
+          2990
+        ],
+        "promotion_goods": null,
+        "mall_id": 383241122,
+        "mall_name": null,
+        "id": 243356723056,
+        "goods_name": "【手慢无】皇家小虎柠檬无骨鸡爪2盒网红零食小吃",
+        "goods_sn": null,
+        "goods_type": 1,
+        "cat_id": 6694,
+        "cat_name": "肉制品",
+        "cat_name_1": "粮油米面/南北干货/调味品",
+        "cat_name_2": "方便速食",
+        "cat_name_3": "肉制品",
+        "cat_name_4": null,
+        "event_type": 0,
+        "display_priority": "99+",
+        "reserve_quantity": 1,
+        "hd_thumb_url": "http://t00img.yangkeduo.com/goods/images/2021-05-14/5afb27587953af3cc807502fee3f5f72.jpeg",
+        "image_url": null,
+        "hd_url": "https://img.pddpic.com/mms-material-img/2021-04-01/57250d4d-3fd6-4c60-adad-087a8a39f34e.jpeg",
+        "thumb_url": "http://t00img.yangkeduo.com/goods/images/2021-05-14/b5735e9f8aae8a8bce0448a96db16b9b.jpeg",
+        "is_onsale": true,
+        "sold_quantity": 0,
+        "resource_hover": null,
+        "off_sale_check": null,
+        "onsale_check": null,
+        "edit_check": null,
+        "gray_goods_high_quality_refund": false,
+        "share_desc": null,
+        "goods_desc": null,
+        "activity_title": null,
+        "is_card_secret": false,
+        "market_price": 6590,
+        "out_goods_sn": "",
+        "sold_quantity_for_thirty_days": 0,
+        "fav_cnt": 0,
+        "multi_treasure": false,
+        "multi_treasure_status": 0,
+        "if_new_goods": false,
+        "tag_category_list": [],
+        "goods_info_score_dto": null,
+        "goods_inspect_score": {
+          "score": "4.0",
+          "problemsDesc": [
+            "商品分类有误",
+            "未上传白底图"
+          ],
+          "problemsCode": [
+            3,
+            18
+          ],
+          "status": 1,
+          "taskId": 130545038
+        },
+        "created_at": 1620796821,
+        "pre_sale_time": 0,
+        "shipment_limit_second": 172800,
+        "is_group_pre_sale": false,
+        "guide_target": 10001,
+        "over_sell": false,
+        "market_labels": null,
+        "labels": [],
+        "sku_type": 0,
+        "sku_count": 1,
+        "sku_list": [
+          {
+            "spec": "柠檬鸡爪2盒",
+            "skuId": 853589363639,
+            "skuQuantity": 9998,
+            "skuSoldQuantity": null,
+            "outSkuSn": "QY-WGFZ200GW*2YZ*2",
+            "isOnsale": true,
+            "normalPrice": 4990,
+            "groupPrice": 2990,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              1421022040
+            ]
+          }
+        ],
+        "property_list": null,
+        "schedule_sale": {
+          "sale_type": 0,
+          "sale_time_fixed": null,
+          "sale_time": null,
+          "price_show": null,
+          "price_desc": null
+        },
+        "costTemplateId": 163170354203554,
+        "goods_price_score": null,
+        "is_pre_sale": false,
+        "pre_sale_sku_list": [],
+        "sku_id_to_sold_out_config": null,
+        "sold_out_to_presale_type": null,
+        "vegetable_sold_quantity": 0,
+        "attributes_1": "{\"folt\":1,\"appNew\":0,\"homeDeliver\":0,\"sh\":0,\"brandId\":136650}",
+        "option_list": [
+          9,
+          54,
+          20002
+        ],
+        "high_price_sku_count": null,
+        "reject_status": null,
+        "reject_reason": null
+      },
+      {
+        "quantity": 9999,
+        "score": 0.0,
+        "resource": "",
+        "priority": null,
+        "sku_group_price": [
+          2590,
+          2590
+        ],
+        "sku_price": [
+          4990,
+          4990
+        ],
+        "origin_sku_group_price": [
+          2590,
+          2590
+        ],
+        "promotion_goods": null,
+        "mall_id": 383241122,
+        "mall_name": null,
+        "id": 243355392551,
+        "goods_name": "【手慢无】皇家小虎卡兹脆鸡排2斤1000克+雪花鸡排半成品新鲜",
+        "goods_sn": null,
+        "goods_type": 1,
+        "cat_id": 6694,
+        "cat_name": "肉制品",
+        "cat_name_1": "粮油米面/南北干货/调味品",
+        "cat_name_2": "方便速食",
+        "cat_name_3": "肉制品",
+        "cat_name_4": null,
+        "event_type": 0,
+        "display_priority": "99+",
+        "reserve_quantity": 0,
+        "hd_thumb_url": "http://t00img.yangkeduo.com/goods/images/2021-05-12/a4eb3ca5bfe18d28eeefb7be7488bb9f.jpeg",
+        "image_url": null,
+        "hd_url": "https://img.pddpic.com/mms-material-img/2021-03-02/0d49f8bd-0469-45f8-89de-13b3cb891ea5.jpeg",
+        "thumb_url": "http://t00img.yangkeduo.com/goods/images/2021-05-12/88a077cd91c565acefa7139343067646.jpeg",
+        "is_onsale": true,
+        "sold_quantity": 0,
+        "resource_hover": null,
+        "off_sale_check": null,
+        "onsale_check": null,
+        "edit_check": null,
+        "gray_goods_high_quality_refund": false,
+        "share_desc": null,
+        "goods_desc": null,
+        "activity_title": null,
+        "is_card_secret": false,
+        "market_price": 6390,
+        "out_goods_sn": "",
+        "sold_quantity_for_thirty_days": 0,
+        "fav_cnt": 5,
+        "multi_treasure": false,
+        "multi_treasure_status": 0,
+        "if_new_goods": false,
+        "tag_category_list": [],
+        "goods_info_score_dto": null,
+        "goods_inspect_score": {
+          "score": "4.0",
+          "problemsDesc": [
+            "商品分类有误",
+            "未上传白底图"
+          ],
+          "problemsCode": [
+            3,
+            18
+          ],
+          "status": 1,
+          "taskId": 130545038
+        },
+        "created_at": 1620796723,
+        "pre_sale_time": 0,
+        "shipment_limit_second": 172800,
+        "is_group_pre_sale": false,
+        "guide_target": 10001,
+        "over_sell": false,
+        "market_labels": null,
+        "labels": [],
+        "sku_type": 0,
+        "sku_count": 1,
+        "sku_list": [
+          {
+            "spec": "卡兹脆鸡排2斤",
+            "skuId": 853585961863,
+            "skuQuantity": 9999,
+            "skuSoldQuantity": null,
+            "outSkuSn": "QY-HJXHKZCJP1000G*1XHJP*1J*10",
+            "isOnsale": true,
+            "normalPrice": 4990,
+            "groupPrice": 2590,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              2931313755
+            ]
+          }
+        ],
+        "property_list": null,
+        "schedule_sale": {
+          "sale_type": 0,
+          "sale_time_fixed": null,
+          "sale_time": null,
+          "price_show": null,
+          "price_desc": null
+        },
+        "costTemplateId": 163170354203554,
+        "goods_price_score": null,
+        "is_pre_sale": false,
+        "pre_sale_sku_list": [],
+        "sku_id_to_sold_out_config": null,
+        "sold_out_to_presale_type": null,
+        "vegetable_sold_quantity": 0,
+        "attributes_1": "{\"folt\":1,\"appNew\":0,\"homeDeliver\":0,\"sh\":0,\"brandId\":136650}",
+        "option_list": [
+          9,
+          54,
+          20002
+        ],
+        "high_price_sku_count": null,
+        "reject_status": null,
+        "reject_reason": null
+      },
+      {
+        "quantity": 19997,
+        "score": 0.0,
+        "resource": "",
+        "priority": null,
+        "sku_group_price": [
+          2390,
+          2390
+        ],
+        "sku_price": [
+          5980,
+          5980
+        ],
+        "origin_sku_group_price": [
+          2390,
+          2390
+        ],
+        "promotion_goods": null,
+        "mall_id": 383241122,
+        "mall_name": null,
+        "id": 243354143127,
+        "goods_name": "【超值套餐】皇家小虎鲜肉小笼包2斤装+烧麦2斤速食早餐",
+        "goods_sn": null,
+        "goods_type": 1,
+        "cat_id": 6703,
+        "cat_name": "面食",
+        "cat_name_1": "粮油米面/南北干货/调味品",
+        "cat_name_2": "方便速食",
+        "cat_name_3": "面食",
+        "cat_name_4": null,
+        "event_type": 0,
+        "display_priority": "99+",
+        "reserve_quantity": 0,
+        "hd_thumb_url": "http://t00img.yangkeduo.com/goods/images/2021-05-14/4a9e78f0ca34ecc1f8cb5ca4e30188e3.jpeg",
+        "image_url": null,
+        "hd_url": "https://img.pddpic.com/mms-material-img/2021-04-02/5243cc3a-9be8-42b4-b703-f51154d6ba41.jpeg.a.jpeg",
+        "thumb_url": "http://t00img.yangkeduo.com/goods/images/2021-05-14/b955335c778b30d45df688d686b6a478.jpeg",
+        "is_onsale": true,
+        "sold_quantity": 1,
+        "resource_hover": null,
+        "off_sale_check": null,
+        "onsale_check": null,
+        "edit_check": null,
+        "gray_goods_high_quality_refund": false,
+        "share_desc": null,
+        "goods_desc": null,
+        "activity_title": null,
+        "is_card_secret": false,
+        "market_price": 6080,
+        "out_goods_sn": "",
+        "sold_quantity_for_thirty_days": 1,
+        "fav_cnt": 2,
+        "multi_treasure": false,
+        "multi_treasure_status": 0,
+        "if_new_goods": false,
+        "tag_category_list": [],
+        "goods_info_score_dto": null,
+        "goods_inspect_score": {
+          "score": "4.8",
+          "problemsDesc": [
+            "未上传白底图"
+          ],
+          "problemsCode": [
+            18
+          ],
+          "status": 1,
+          "taskId": 130545038
+        },
+        "created_at": 1620796636,
+        "pre_sale_time": 0,
+        "shipment_limit_second": 172800,
+        "is_group_pre_sale": false,
+        "guide_target": 10001,
+        "over_sell": false,
+        "market_labels": null,
+        "labels": [],
+        "sku_type": 0,
+        "sku_count": 1,
+        "sku_list": [
+          {
+            "spec": "鲜肉小笼包2斤",
+            "skuId": 853582391580,
+            "skuQuantity": 19997,
+            "skuSoldQuantity": null,
+            "outSkuSn": "HJXH-XRXLB1KG*2SM*2",
+            "isOnsale": true,
+            "normalPrice": 5980,
+            "groupPrice": 2390,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6796169772
+            ]
+          }
+        ],
+        "property_list": null,
+        "schedule_sale": {
+          "sale_type": 0,
+          "sale_time_fixed": null,
+          "sale_time": null,
+          "price_show": null,
+          "price_desc": null
+        },
+        "costTemplateId": 163170354203554,
+        "goods_price_score": null,
+        "is_pre_sale": false,
+        "pre_sale_sku_list": [],
+        "sku_id_to_sold_out_config": null,
+        "sold_out_to_presale_type": null,
+        "vegetable_sold_quantity": 0,
+        "attributes_1": "{\"folt\":1,\"appNew\":0,\"homeDeliver\":0,\"sh\":0,\"brandId\":136650}",
+        "option_list": [
+          9,
+          54
+        ],
+        "high_price_sku_count": null,
+        "reject_status": null,
+        "reject_reason": null
+      },
+      {
+        "quantity": 9999,
+        "score": 0.0,
+        "resource": "",
+        "priority": null,
+        "sku_group_price": [
+          2690,
+          2690
+        ],
+        "sku_price": [
+          5190,
+          5190
+        ],
+        "origin_sku_group_price": [
+          2690,
+          2690
+        ],
+        "promotion_goods": null,
+        "mall_id": 383241122,
+        "mall_name": null,
+        "id": 243352159595,
+        "goods_name": "【手慢无】皇家小虎火山石烤肠2斤10根/袋*2",
+        "goods_sn": null,
+        "goods_type": 1,
+        "cat_id": 7600,
+        "cat_name": "香肠/腊肠",
+        "cat_name_1": "粮油米面/南北干货/调味品",
+        "cat_name_2": "南北干货/肉类干货",
+        "cat_name_3": "熏腊/香肠/火腿制品",
+        "cat_name_4": "香肠/腊肠",
+        "event_type": 0,
+        "display_priority": "99+",
+        "reserve_quantity": 0,
+        "hd_thumb_url": "http://t00img.yangkeduo.com/goods/images/2021-05-12/16dc184a5cde6497cb95fd865b7ba64e.jpeg",
+        "image_url": null,
+        "hd_url": "https://img.pddpic.com/mms-material-img/2021-01-13/2bc3157c-ae6d-456e-820b-2012805d8294.jpeg",
+        "thumb_url": "http://t00img.yangkeduo.com/goods/images/2021-05-12/151ce5da45dfa8a2f0b44e96b1b3a832.jpeg",
+        "is_onsale": true,
+        "sold_quantity": 28,
+        "resource_hover": null,
+        "off_sale_check": null,
+        "onsale_check": null,
+        "edit_check": null,
+        "gray_goods_high_quality_refund": false,
+        "share_desc": null,
+        "goods_desc": null,
+        "activity_title": null,
+        "is_card_secret": false,
+        "market_price": 5690,
+        "out_goods_sn": "",
+        "sold_quantity_for_thirty_days": 28,
+        "fav_cnt": 3,
+        "multi_treasure": false,
+        "multi_treasure_status": 0,
+        "if_new_goods": false,
+        "tag_category_list": [],
+        "goods_info_score_dto": null,
+        "goods_inspect_score": {
+          "score": "5.0",
+          "problemsDesc": [],
+          "problemsCode": [],
+          "status": 1,
+          "taskId": 130545038
+        },
+        "created_at": 1620796548,
+        "pre_sale_time": 0,
+        "shipment_limit_second": 172800,
+        "is_group_pre_sale": false,
+        "guide_target": 10001,
+        "over_sell": false,
+        "market_labels": null,
+        "labels": [],
+        "sku_type": 0,
+        "sku_count": 1,
+        "sku_list": [
+          {
+            "spec": "原味烤肠2斤",
+            "skuId": 853579625075,
+            "skuQuantity": 9999,
+            "skuSoldQuantity": null,
+            "outSkuSn": "QY-YWKC500G*2P*1Y*1",
+            "isOnsale": true,
+            "normalPrice": 5190,
+            "groupPrice": 2690,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              3237821795
+            ]
+          }
+        ],
+        "property_list": null,
+        "schedule_sale": {
+          "sale_type": 0,
+          "sale_time_fixed": null,
+          "sale_time": null,
+          "price_show": null,
+          "price_desc": null
+        },
+        "costTemplateId": 163170354203554,
+        "goods_price_score": null,
+        "is_pre_sale": false,
+        "pre_sale_sku_list": [],
+        "sku_id_to_sold_out_config": null,
+        "sold_out_to_presale_type": null,
+        "vegetable_sold_quantity": 0,
+        "attributes_1": "{\"folt\":1,\"appNew\":0,\"homeDeliver\":0,\"sh\":0,\"brandId\":136650}",
+        "option_list": [
+          9,
+          13,
+          54,
+          20002
+        ],
+        "high_price_sku_count": null,
+        "reject_status": null,
+        "reject_reason": null
+      },
+      {
+        "quantity": 479957,
+        "score": 0.0,
+        "resource": "",
+        "priority": null,
+        "sku_group_price": [
+          1158,
+          2850
+        ],
+        "sku_price": [
+          1898,
+          3368
+        ],
+        "origin_sku_group_price": [
+          1158,
+          2850
+        ],
+        "promotion_goods": null,
+        "mall_id": 383241122,
+        "mall_name": null,
+        "id": 243148501359,
+        "goods_name": "皇家小虎正宗老上海葱油饼葱香手抓饼皮煎饼早餐食品半成品家庭装",
+        "goods_sn": null,
+        "goods_type": 1,
+        "cat_id": 6699,
+        "cat_name": "煎饼/手抓饼",
+        "cat_name_1": "粮油米面/南北干货/调味品",
+        "cat_name_2": "方便速食",
+        "cat_name_3": "煎饼/手抓饼",
+        "cat_name_4": null,
+        "event_type": 0,
+        "display_priority": "99+",
+        "reserve_quantity": 0,
+        "hd_thumb_url": "http://t00img.yangkeduo.com/goods/images/2021-05-11/11ee7756de2ca1033f93418447392640.jpeg",
+        "image_url": null,
+        "hd_url": "https://img.pddpic.com/mms-material-img/2021-04-12/ab26dde0-7286-4b23-afbe-58ee20245692.jpeg.a.jpeg",
+        "thumb_url": "http://t00img.yangkeduo.com/goods/images/2021-05-11/9b5560bcdbfd9fdc85d5dd8638dca933.jpeg",
+        "is_onsale": true,
+        "sold_quantity": 31,
+        "resource_hover": null,
+        "off_sale_check": null,
+        "onsale_check": null,
+        "edit_check": null,
+        "gray_goods_high_quality_refund": false,
+        "share_desc": null,
+        "goods_desc": null,
+        "activity_title": null,
+        "is_card_secret": false,
+        "market_price": 3468,
+        "out_goods_sn": "",
+        "sold_quantity_for_thirty_days": 28,
+        "fav_cnt": 36,
+        "multi_treasure": false,
+        "multi_treasure_status": 0,
+        "if_new_goods": false,
+        "tag_category_list": [],
+        "goods_info_score_dto": null,
+        "goods_inspect_score": {
+          "score": "5.0",
+          "problemsDesc": [],
+          "problemsCode": [],
+          "status": 1,
+          "taskId": 130545038
+        },
+        "created_at": 1620720941,
+        "pre_sale_time": 0,
+        "shipment_limit_second": 172800,
+        "is_group_pre_sale": false,
+        "guide_target": 10001,
+        "over_sell": false,
+        "market_labels": null,
+        "labels": [
+          {
+            "label": [
+              "机会商品"
+            ],
+            "color": "#FC8D51",
+            "priority": 4,
+            "type": "chance",
+            "ext_info": {}
+          }
+        ],
+        "sku_type": 0,
+        "sku_count": 8,
+        "sku_list": [
+          {
+            "spec": "5.4斤90g30片葱油饼 送纸袋酱",
+            "skuId": 853036670979,
+            "skuQuantity": 59988,
+            "skuSoldQuantity": null,
+            "outSkuSn": "XH-CYB002",
+            "isOnsale": true,
+            "normalPrice": 2998,
+            "groupPrice": 2568,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6588380226
+            ]
+          },
+          {
+            "spec": "3.6斤90g20片 老上海葱油饼",
+            "skuId": 853036670980,
+            "skuQuantity": 59987,
+            "skuSoldQuantity": null,
+            "outSkuSn": "XH-CYB001",
+            "isOnsale": true,
+            "normalPrice": 2498,
+            "groupPrice": 1868,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6588372611
+            ]
+          },
+          {
+            "spec": "1.8斤90g10片 老上海葱油饼",
+            "skuId": 853036670981,
+            "skuQuantity": 59992,
+            "skuSoldQuantity": null,
+            "outSkuSn": "XH-CYB003",
+            "isOnsale": true,
+            "normalPrice": 1898,
+            "groupPrice": 1298,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6790251096
+            ]
+          },
+          {
+            "spec": "2.4斤 60g20片 手抓饼尝鲜",
+            "skuId": 853036670982,
+            "skuQuantity": 59998,
+            "skuSoldQuantity": null,
+            "outSkuSn": "XH-SZB001",
+            "isOnsale": true,
+            "normalPrice": 1998,
+            "groupPrice": 1158,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6588353908
+            ]
+          },
+          {
+            "spec": "4斤 100g20片 大手抓饼够饱",
+            "skuId": 853036670983,
+            "skuQuantity": 59999,
+            "skuSoldQuantity": null,
+            "outSkuSn": "XH-SZB006",
+            "isOnsale": true,
+            "normalPrice": 2129,
+            "groupPrice": 1658,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6790241338
+            ]
+          },
+          {
+            "spec": "4.8斤80g30片 手抓饼送纸袋酱",
+            "skuId": 853036670984,
+            "skuQuantity": 59998,
+            "skuSoldQuantity": null,
+            "outSkuSn": "XH-SZB004",
+            "isOnsale": true,
+            "normalPrice": 2368,
+            "groupPrice": 1968,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6588370789
+            ]
+          },
+          {
+            "spec": "8斤 80g50片 大手抓饼送纸袋酱",
+            "skuId": 853036670985,
+            "skuQuantity": 59998,
+            "skuSoldQuantity": null,
+            "outSkuSn": "XH-SZB005",
+            "isOnsale": true,
+            "normalPrice": 3368,
+            "groupPrice": 2850,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6588387155
+            ]
+          },
+          {
+            "spec": "8斤 100g40片 手抓饼送酱超值",
+            "skuId": 853036670986,
+            "skuQuantity": 59997,
+            "skuSoldQuantity": null,
+            "outSkuSn": "XH-SZB008",
+            "isOnsale": true,
+            "normalPrice": 3368,
+            "groupPrice": 2850,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6588373710
+            ]
+          }
+        ],
+        "property_list": null,
+        "schedule_sale": {
+          "sale_type": 0,
+          "sale_time_fixed": null,
+          "sale_time": null,
+          "price_show": null,
+          "price_desc": null
+        },
+        "costTemplateId": 28326383063970,
+        "goods_price_score": null,
+        "is_pre_sale": false,
+        "pre_sale_sku_list": [],
+        "sku_id_to_sold_out_config": null,
+        "sold_out_to_presale_type": null,
+        "vegetable_sold_quantity": 0,
+        "attributes_1": "{\"folt\":1,\"appNew\":0,\"homeDeliver\":0,\"sh\":0,\"brandId\":136650}",
+        "option_list": [
+          9,
+          13,
+          54
+        ],
+        "high_price_sku_count": null,
+        "reject_status": null,
+        "reject_reason": null
+      },
+      {
+        "quantity": 4999992,
+        "score": 0.0,
+        "resource": "",
+        "priority": null,
+        "sku_group_price": [
+          2998,
+          5790
+        ],
+        "sku_price": [
+          3498,
+          6290
+        ],
+        "origin_sku_group_price": [
+          2998,
+          5790
+        ],
+        "promotion_goods": null,
+        "mall_id": 383241122,
+        "mall_name": null,
+        "id": 242979325011,
+        "goods_name": "皇家小虎地道肠火山石烤肠纯肉台湾黑胡椒烤肠热狗香肠类肉肠批发",
+        "goods_sn": null,
+        "goods_type": 1,
+        "cat_id": 7600,
+        "cat_name": "香肠/腊肠",
+        "cat_name_1": "粮油米面/南北干货/调味品",
+        "cat_name_2": "南北干货/肉类干货",
+        "cat_name_3": "熏腊/香肠/火腿制品",
+        "cat_name_4": "香肠/腊肠",
+        "event_type": 0,
+        "display_priority": "99+",
+        "reserve_quantity": 0,
+        "hd_thumb_url": "http://t00img.yangkeduo.com/goods/images/2021-05-11/941f18a56dd2b83f55844ed257016fa1.jpeg",
+        "image_url": null,
+        "hd_url": "https://img.pddpic.com/mms-material-img/2021-04-17/3e34f3a2-1b60-4206-a785-796ed5bea840.jpeg.a.jpeg",
+        "thumb_url": "http://t00img.yangkeduo.com/goods/images/2021-05-11/e3ccf99987413c7af2ca2f572c0b86b8.jpeg",
+        "is_onsale": true,
+        "sold_quantity": 6,
+        "resource_hover": null,
+        "off_sale_check": null,
+        "onsale_check": null,
+        "edit_check": null,
+        "gray_goods_high_quality_refund": false,
+        "share_desc": null,
+        "goods_desc": null,
+        "activity_title": null,
+        "is_card_secret": false,
+        "market_price": 6390,
+        "out_goods_sn": "",
+        "sold_quantity_for_thirty_days": 6,
+        "fav_cnt": 4,
+        "multi_treasure": false,
+        "multi_treasure_status": 0,
+        "if_new_goods": false,
+        "tag_category_list": [],
+        "goods_info_score_dto": null,
+        "goods_inspect_score": {
+          "score": "4.8",
+          "problemsDesc": [
+            "未上传白底图"
+          ],
+          "problemsCode": [
+            18
+          ],
+          "status": 1,
+          "taskId": 130545038
+        },
+        "created_at": 1620662745,
+        "pre_sale_time": 0,
+        "shipment_limit_second": 172800,
+        "is_group_pre_sale": false,
+        "guide_target": 10001,
+        "over_sell": false,
+        "market_labels": null,
+        "labels": [],
+        "sku_type": 0,
+        "sku_count": 10,
+        "sku_list": [
+          {
+            "spec": "40根 黑椒【厂家直销4斤】",
+            "skuId": 852603327867,
+            "skuQuantity": 499997,
+            "skuSoldQuantity": null,
+            "outSkuSn": "QY-HJKC500G*4",
+            "isOnsale": true,
+            "normalPrice": 6290,
+            "groupPrice": 5790,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6615004482
+            ]
+          },
+          {
+            "spec": "40根 原味+黑椒【超值组合4斤】",
+            "skuId": 852603327868,
+            "skuQuantity": 499997,
+            "skuSoldQuantity": null,
+            "outSkuSn": "QY-YWKC500G*2*2H",
+            "isOnsale": true,
+            "normalPrice": 6190,
+            "groupPrice": 5690,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6615015241
+            ]
+          },
+          {
+            "spec": "40根 原味【分享装批发价4斤】",
+            "skuId": 852603327869,
+            "skuQuantity": 500000,
+            "skuSoldQuantity": null,
+            "outSkuSn": "QY-YWKC500G*4",
+            "isOnsale": true,
+            "normalPrice": 5990,
+            "groupPrice": 5490,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6615020139
+            ]
+          },
+          {
+            "spec": "30根 原味+玉米+黑椒【实惠3斤】",
+            "skuId": 852603327870,
+            "skuQuantity": 500000,
+            "skuSoldQuantity": null,
+            "outSkuSn": "QY-YWKC500G*1H*1Y*1",
+            "isOnsale": true,
+            "normalPrice": 5390,
+            "groupPrice": 4890,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6615017196
+            ]
+          },
+          {
+            "spec": "20根 黑椒【实惠装2斤】",
+            "skuId": 852603327872,
+            "skuQuantity": 500000,
+            "skuSoldQuantity": null,
+            "outSkuSn": "QY-HJKC500G*2",
+            "isOnsale": true,
+            "normalPrice": 4590,
+            "groupPrice": 4090,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6655179708
+            ]
+          },
+          {
+            "spec": "20根 原味+黑椒【实惠装2斤】",
+            "skuId": 852603327874,
+            "skuQuantity": 500000,
+            "skuSoldQuantity": null,
+            "outSkuSn": "QY-YWKC500G*1H*1",
+            "isOnsale": true,
+            "normalPrice": 4490,
+            "groupPrice": 3990,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6655199411
+            ]
+          },
+          {
+            "spec": "20根 原味【实惠装2斤】",
+            "skuId": 852604873156,
+            "skuQuantity": 500000,
+            "skuSoldQuantity": null,
+            "outSkuSn": "QY-YWKC500G*2",
+            "isOnsale": true,
+            "normalPrice": 4390,
+            "groupPrice": 3890,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6655199433
+            ]
+          },
+          {
+            "spec": "10根 黑椒【新鲜试吃1斤】",
+            "skuId": 852604873157,
+            "skuQuantity": 499999,
+            "skuSoldQuantity": null,
+            "outSkuSn": "QY-HJKC500G",
+            "isOnsale": true,
+            "normalPrice": 3598,
+            "groupPrice": 3098,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6614993765
+            ]
+          },
+          {
+            "spec": "10根 玉米【量少尝鲜1斤】",
+            "skuId": 852604873158,
+            "skuQuantity": 500000,
+            "skuSoldQuantity": null,
+            "outSkuSn": "QY-YMKC500G",
+            "isOnsale": true,
+            "normalPrice": 3498,
+            "groupPrice": 2998,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6615001616
+            ]
+          },
+          {
+            "spec": "10根 原味【量少尝鲜1斤】",
+            "skuId": 852604873159,
+            "skuQuantity": 499999,
+            "skuSoldQuantity": null,
+            "outSkuSn": "QY-YWKC500G",
+            "isOnsale": true,
+            "normalPrice": 3498,
+            "groupPrice": 2998,
+            "activityGroupPrice": null,
+            "skuThumbUrl": null,
+            "specIdList": [
+              6614992787
+            ]
+          }
+        ],
+        "property_list": null,
+        "schedule_sale": {
+          "sale_type": 0,
+          "sale_time_fixed": null,
+          "sale_time": null,
+          "price_show": null,
+          "price_desc": null
+        },
+        "costTemplateId": 163170354203554,
+        "goods_price_score": null,
+        "is_pre_sale": false,
+        "pre_sale_sku_list": [],
+        "sku_id_to_sold_out_config": null,
+        "sold_out_to_presale_type": null,
+        "vegetable_sold_quantity": 0,
+        "attributes_1": "{\"folt\":1,\"appNew\":0,\"homeDeliver\":0,\"sh\":0,\"brandId\":136650}",
+        "option_list": [
+          9,
+          54
+        ],
+        "high_price_sku_count": null,
+        "reject_status": null,
+        "reject_reason": null
+      }
+    ]
+  }
+}
